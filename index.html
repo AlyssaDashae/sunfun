@@ -728,8 +728,8 @@
   </div>
 </section>
 
-<!-- MAPBOX CSS -->
-<link href="https://cdn.jsdelivr.net/npm/mapbox-gl@2.15.0/dist/mapbox-gl.css" rel="stylesheet">
+<!-- Leaflet CSS (free, no API key) -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet@1.9.4/dist/leaflet.min.css">
 
 <!-- EXPLORE MAP -->
 <section id="explore-map" style="background: var(--navy); padding: 5rem 0 0;">
@@ -763,16 +763,11 @@
 
   <!-- Map + Sidebar layout -->
   <div id="map-shell" style="display:grid; grid-template-columns:340px 1fr; height:600px; max-width:100%;">
-
-    <!-- Sidebar list -->
-    <div id="place-list" style="overflow-y:auto; height:600px; background:#0a1624; border-top:1px solid rgba(255,255,255,.07);">
-    </div>
-
-    <!-- Mapbox map -->
-    <div id="mapbox-map" style="width:100%; height:600px;"></div>
+    <div id="place-list" style="overflow-y:auto; height:600px; background:#0a1624; border-top:1px solid rgba(255,255,255,.07);"></div>
+    <div id="leaflet-map" style="width:100%; height:600px; z-index:1;"></div>
   </div>
 
-  <!-- Bottom address bar -->
+  <!-- Bottom bar -->
   <div style="background:#060F1A; padding:1.2rem 2rem; display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:1rem;">
     <span style="color:rgba(255,255,255,.5); font-size:.85rem; display:flex; align-items:center; gap:.5rem;">
       <span class="material-icons" style="color:var(--gold);font-size:18px;">location_on</span>
@@ -803,75 +798,67 @@
     cursor: pointer; transition: background .2s; display:flex; gap:.9rem; align-items:flex-start;
   }
   .place-item:hover { background: rgba(255,255,255,.07); }
-  .place-item.selected { background: rgba(255,255,255,.1); border-left: 3px solid var(--gold); }
-  .place-icon {
-    width: 36px; height: 36px; border-radius: 50%; flex-shrink:0;
-    display:flex; align-items:center; justify-content:center;
-  }
-  .place-icon .material-icons { font-size:17px; }
-  .place-name { font-size:.88rem; font-weight:500; color:var(--white); margin-bottom:.2rem; line-height:1.3; }
-  .place-meta { font-size:.75rem; color:rgba(255,255,255,.45); display:flex; align-items:center; gap:.4rem; flex-wrap:wrap; }
-  .place-rating { color: var(--gold); }
+  .place-item.selected { background: rgba(255,255,255,.1); border-left: 3px solid #D4A017; }
+  .place-name { font-size:.88rem; font-weight:500; color:#fff; margin-bottom:.2rem; line-height:1.3; }
+  .place-rating { color: #D4A017; }
   .place-directions {
     display:inline-flex; align-items:center; gap:.3rem; margin-top:.5rem;
     font-size:.7rem; letter-spacing:.08em; text-transform:uppercase;
-    color: #64B5F6; text-decoration:none; transition: color .2s;
+    color: #64B5F6; text-decoration:none;
   }
   .place-directions:hover { color: #90CDF4; }
-  .place-directions .material-icons { font-size:12px; }
 
-  /* Custom Mapbox popup */
-  .mapboxgl-popup-content {
+  /* Leaflet dark popup override */
+  .leaflet-popup-content-wrapper {
     background: #0d1e30 !important;
-    border: 1px solid rgba(255,255,255,.12) !important;
+    border: 1px solid rgba(255,255,255,.14) !important;
     border-radius: 10px !important;
+    box-shadow: 0 8px 40px rgba(0,0,0,.7) !important;
     padding: 0 !important;
-    box-shadow: 0 8px 40px rgba(0,0,0,.6) !important;
-    min-width: 220px;
+    color: #fff !important;
   }
-  .mapboxgl-popup-tip { display: none !important; }
-  .mapboxgl-popup-close-button {
-    color: rgba(255,255,255,.4) !important;
-    font-size: 18px !important;
-    top: 6px !important; right: 10px !important;
+  .leaflet-popup-content { margin: 0 !important; }
+  .leaflet-popup-tip { background: #0d1e30 !important; }
+  .leaflet-popup-close-button {
+    color: rgba(255,255,255,.5) !important;
+    font-size: 20px !important;
+    top: 6px !important; right: 8px !important;
   }
-  .mapboxgl-popup-close-button:hover { color: white !important; background: transparent !important; }
-  .mapboxgl-ctrl-logo, .mapboxgl-ctrl-attrib { opacity: 0.3 !important; }
+  .leaflet-popup-close-button:hover { color: #fff !important; }
+  .leaflet-control-zoom a {
+    background: #0d1e30 !important; color: #fff !important;
+    border-color: rgba(255,255,255,.15) !important;
+  }
+  .leaflet-control-zoom a:hover { background: #1a2f45 !important; }
+  .leaflet-control-attribution { background: rgba(0,0,0,.4) !important; color: rgba(255,255,255,.3) !important; }
+  .leaflet-control-attribution a { color: rgba(255,255,255,.4) !important; }
 
-  /* Custom marker dot */
-  .map-marker {
-    width: 34px; height: 34px; border-radius: 50%;
+  /* Custom pin markers */
+  .lf-marker {
+    width: 36px; height: 36px; border-radius: 50%;
     display: flex; align-items: center; justify-content: center;
-    cursor: pointer;
-    box-shadow: 0 2px 12px rgba(0,0,0,.5);
-    border: 2.5px solid rgba(255,255,255,.25);
-    transition: transform .15s, box-shadow .15s;
-    font-size: 15px;
+    font-size: 16px; cursor: pointer;
+    border: 2px solid rgba(255,255,255,.3);
+    box-shadow: 0 3px 14px rgba(0,0,0,.5);
+    transition: transform .15s;
   }
-  .map-marker:hover { transform: scale(1.2); box-shadow: 0 4px 20px rgba(0,0,0,.7); }
-  .map-marker.pulse::after {
-    content:''; position:absolute; inset:-6px; border-radius:50%;
-    border: 2px solid currentColor; opacity:0; animation: pulse 1.6s ease-out infinite;
-  }
-  @keyframes pulse { 0% { transform:scale(.9); opacity:.6; } 100% { transform:scale(1.8); opacity:0; } }
-
-  /* Resort home marker */
-  .resort-marker {
+  .lf-marker:hover { transform: scale(1.2); }
+  .lf-resort {
     width: 44px; height: 44px; border-radius: 50%;
-    background: #D4A017; border: 3px solid white;
+    background: #D4A017; border: 3px solid #fff;
     display: flex; align-items: center; justify-content: center;
-    cursor: pointer; font-size: 18px;
+    font-size: 20px;
     box-shadow: 0 4px 20px rgba(212,160,23,.6);
   }
 
   @media (max-width: 768px) {
     #map-shell { grid-template-columns: 1fr !important; height: auto !important; }
-    #mapbox-map { height: 380px !important; }
-    #place-list { height: 300px !important; }
+    #leaflet-map { height: 380px !important; }
+    #place-list { height: 280px !important; }
   }
 </style>
 
-<script src="https://cdn.jsdelivr.net/npm/mapbox-gl@2.15.0/dist/mapbox-gl.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/leaflet@1.9.4/dist/leaflet.min.js"></script>
 <script>
 const PLACES = [
   { cat:'beach',      name:'Cable Beach',               note:'Quiet & beautiful — 10 min walk from the resort', rating:4.2, lat:25.0779, lng:-77.4117 },
@@ -899,147 +886,113 @@ const PLACES = [
 ];
 
 const CAT = {
-  beach:      { color:'#1E8FD5', emoji:'🏖️', icon:'beach_access',       label:'Beach' },
-  activity:   { color:'#1DB87A', emoji:'🤿', icon:'kayaking',            label:'Activity' },
-  restaurant: { color:'#E8593F', emoji:'🍽️', icon:'restaurant',          label:'Restaurant' },
-  grocery:    { color:'#D4A017', emoji:'🛒', icon:'local_grocery_store', label:'Grocery' },
-  landmark:   { color:'#A370F7', emoji:'🏛️', icon:'account_balance',     label:'Landmark' },
+  beach:      { color:'#1E8FD5', emoji:'🏖️', label:'Beach' },
+  activity:   { color:'#1DB87A', emoji:'🤿',  label:'Activity' },
+  restaurant: { color:'#E8593F', emoji:'🍽️', label:'Restaurant' },
+  grocery:    { color:'#D4A017', emoji:'🛒',  label:'Grocery' },
+  landmark:   { color:'#A370F7', emoji:'🏛️', label:'Landmark' },
 };
 
 let currentCat = 'all';
-let mapMarkers = [];
-let activePopup = null;
-let map;
+let leafMarkers = [];
 
-mapboxgl.accessToken = 'pk.eyJ1IjoibWFwYm94IiwiYSI6ImNpejY4NXVycTA2emYycXBndHRqcmZ3N3gifQ.rJcFIG214AriISLbB6B5aw';
+// Init Leaflet with CartoDB Dark Matter tiles — no API key needed, looks great
+const map = L.map('leaflet-map', {
+  center: [25.072, -77.39],
+  zoom: 12,
+  zoomControl: true,
+  scrollWheelZoom: false,
+});
 
-function initMap() {
-  map = new mapboxgl.Map({
-    container: 'mapbox-map',
-    style: 'mapbox://styles/mapbox/dark-v11',
-    center: [-77.39, 25.072],
-    zoom: 11.5,
-    pitch: 30,
-    bearing: -10,
-    antialias: true,
-  });
+L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png', {
+  attribution: '© <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> © <a href="https://carto.com/">CARTO</a>',
+  subdomains: 'abcd',
+  maxZoom: 19,
+}).addTo(map);
 
-  map.addControl(new mapboxgl.NavigationControl({ showCompass: false }), 'top-right');
-  map.scrollZoom.disable();
+// Resort marker
+const resortIcon = L.divIcon({
+  html: '<div class="lf-resort">🏨</div>',
+  className: '', iconSize: [44,44], iconAnchor: [22,22],
+});
+L.marker([25.0824, -77.3845], { icon: resortIcon })
+  .addTo(map)
+  .bindPopup(`<div style="padding:14px 16px 12px;">
+    <div style="font-size:.65rem;letter-spacing:.15em;text-transform:uppercase;color:#D4A017;margin-bottom:5px;">You are here</div>
+    <div style="font-weight:600;color:#fff;font-size:.95rem;">SunFun Resort & Hotel</div>
+    <div style="font-size:.78rem;color:rgba(255,255,255,.5);margin-top:3px;">642 W Bay St, Nassau, The Bahamas</div>
+  </div>`, { maxWidth: 260 });
 
-  map.on('load', () => {
-    // Style the water to a deep tropical teal
-    map.setPaintProperty('water', 'fill-color', '#0a2a3a');
-
-    // Add resort home marker
-    const resortEl = document.createElement('div');
-    resortEl.className = 'resort-marker';
-    resortEl.innerHTML = '🏨';
-    resortEl.title = 'SunFun Resort';
-    new mapboxgl.Marker({ element: resortEl, anchor: 'center' })
-      .setLngLat([-77.3845, 25.0824])
-      .setPopup(new mapboxgl.Popup({ offset: 20, closeButton: false })
-        .setHTML(`<div style="padding:12px 14px;">
-          <div style="font-size:.7rem;letter-spacing:.12em;text-transform:uppercase;color:#D4A017;margin-bottom:4px;">You are here</div>
-          <div style="font-weight:600;color:#fff;font-size:.95rem;">SunFun Resort & Hotel</div>
-          <div style="font-size:.78rem;color:rgba(255,255,255,.5);margin-top:2px;">642 W Bay St, Nassau</div>
-        </div>`))
-      .addTo(map);
-
-    addAllMarkers('all');
-    renderList('all');
+function makeIcon(cat) {
+  const c = CAT[cat];
+  return L.divIcon({
+    html: `<div class="lf-marker" style="background:${c.color}cc;">${c.emoji}</div>`,
+    className: '', iconSize: [36,36], iconAnchor: [18,18], popupAnchor: [0,-20],
   });
 }
 
-function makeMarkerEl(place) {
+function popupHTML(place) {
   const c = CAT[place.cat];
-  const el = document.createElement('div');
-  el.className = 'map-marker';
-  el.style.background = c.color + 'DD';
-  el.style.color = 'white';
-  el.innerHTML = c.emoji;
-  return el;
+  const stars = '★'.repeat(Math.round(place.rating)) + '☆'.repeat(5-Math.round(place.rating));
+  return `<div style="padding:14px 16px 12px;min-width:210px;">
+    <div style="font-size:.62rem;letter-spacing:.15em;text-transform:uppercase;color:${c.color};margin-bottom:4px;">${c.label}</div>
+    <div style="font-weight:600;color:#fff;font-size:.92rem;line-height:1.3;margin-bottom:4px;">${place.name}</div>
+    <div style="font-size:.74rem;color:rgba(255,255,255,.55);line-height:1.5;margin-bottom:7px;">${place.note}</div>
+    <div style="font-size:.72rem;color:#D4A017;margin-bottom:10px;">${stars} ${place.rating.toFixed(1)}</div>
+    <a href="https://maps.google.com/?q=${encodeURIComponent(place.name+' Nassau Bahamas')}" target="_blank"
+      style="font-size:.7rem;letter-spacing:.08em;text-transform:uppercase;color:#64B5F6;text-decoration:none;">
+      Get directions ↗
+    </a>
+  </div>`;
 }
 
-function addAllMarkers(cat) {
-  mapMarkers.forEach(m => m.remove());
-  mapMarkers = [];
-  if (activePopup) { activePopup.remove(); activePopup = null; }
-
+function addMarkers(cat) {
+  leafMarkers.forEach(m => map.removeLayer(m));
+  leafMarkers = [];
   const filtered = PLACES.filter(p => cat === 'all' || p.cat === cat);
   filtered.forEach((place, i) => {
-    const el = makeMarkerEl(place);
-    const c = CAT[place.cat];
-
-    const popup = new mapboxgl.Popup({ offset: 18, closeButton: true, maxWidth:'260px' })
-      .setHTML(`
-        <div style="padding:14px 16px 12px;">
-          <div style="font-size:.65rem;letter-spacing:.15em;text-transform:uppercase;color:${c.color};margin-bottom:5px;">${c.label}</div>
-          <div style="font-weight:600;color:#fff;font-size:.95rem;line-height:1.3;margin-bottom:4px;">${place.name}</div>
-          <div style="font-size:.75rem;color:rgba(255,255,255,.55);margin-bottom:8px;line-height:1.5;">${place.note}</div>
-          <div style="font-size:.72rem;color:#D4A017;margin-bottom:10px;">${'★'.repeat(Math.round(place.rating))}${'☆'.repeat(5-Math.round(place.rating))} ${place.rating.toFixed(1)}</div>
-          <a href="https://maps.google.com/?q=${encodeURIComponent(place.name+' Nassau Bahamas')}" target="_blank"
-            style="display:inline-flex;align-items:center;gap:4px;font-size:.7rem;letter-spacing:.08em;text-transform:uppercase;color:#64B5F6;text-decoration:none;">
-            Get directions ↗
-          </a>
-        </div>`);
-
-    const marker = new mapboxgl.Marker({ element: el, anchor: 'center' })
-      .setLngLat([place.lng, place.lat])
-      .setPopup(popup)
-      .addTo(map);
-
-    el.addEventListener('click', () => {
-      highlightListItem(i, cat);
-    });
-
-    mapMarkers.push(marker);
+    const m = L.marker([place.lat, place.lng], { icon: makeIcon(place.cat) })
+      .addTo(map)
+      .bindPopup(popupHTML(place), { maxWidth: 270 });
+    m.on('click', () => highlightItem(i));
+    leafMarkers.push(m);
   });
 }
 
-function stars(r) {
-  return '★'.repeat(Math.round(r)) + '☆'.repeat(5-Math.round(r));
-}
+function stars(r) { return '★'.repeat(Math.round(r)) + '☆'.repeat(5-Math.round(r)); }
 
 function renderList(cat) {
   const list = document.getElementById('place-list');
   const filtered = PLACES.filter(p => cat === 'all' || p.cat === cat);
   list.innerHTML = filtered.map((p, i) => {
     const c = CAT[p.cat];
-    return `<div class="place-item" id="pitem-${i}" onclick="selectPlace(${i}, '${cat}')">
-      <div class="place-icon" style="background:${c.color}22;">
-        <span style="font-size:18px;">${c.emoji}</span>
-      </div>
+    return `<div class="place-item" id="pitem-${i}" onclick="selectPlace(${i})">
+      <div style="width:36px;height:36px;border-radius:50%;background:${c.color}25;display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:18px;">${c.emoji}</div>
       <div style="flex:1;min-width:0;">
-        <div style="font-size:.65rem;letter-spacing:.1em;text-transform:uppercase;color:${c.color};margin-bottom:2px;">${c.label}</div>
+        <div style="font-size:.62rem;letter-spacing:.1em;text-transform:uppercase;color:${c.color};margin-bottom:2px;">${c.label}</div>
         <div class="place-name">${p.name}</div>
-        <div class="place-meta">
-          <span class="place-rating">${stars(p.rating)}</span>
-          <span>${p.rating.toFixed(1)}</span>
+        <div style="font-size:.74rem;color:rgba(255,255,255,.45);display:flex;align-items:center;gap:5px;">
+          <span class="place-rating">${stars(p.rating)}</span><span>${p.rating.toFixed(1)}</span>
         </div>
-        <div style="font-size:.75rem;color:rgba(255,255,255,.45);margin-top:3px;line-height:1.45;">${p.note}</div>
-        <a class="place-directions" href="https://maps.google.com/?q=${encodeURIComponent(p.name+' Nassau Bahamas')}" target="_blank">
-          Directions ↗
-        </a>
+        <div style="font-size:.74rem;color:rgba(255,255,255,.4);margin-top:3px;line-height:1.45;">${p.note}</div>
+        <a class="place-directions" href="https://maps.google.com/?q=${encodeURIComponent(p.name+' Nassau Bahamas')}" target="_blank">Directions ↗</a>
       </div>
     </div>`;
   }).join('');
 }
 
-function highlightListItem(i, cat) {
+function highlightItem(i) {
   document.querySelectorAll('.place-item').forEach(el => el.classList.remove('selected'));
   const el = document.getElementById('pitem-' + i);
   if (el) { el.classList.add('selected'); el.scrollIntoView({ behavior:'smooth', block:'nearest' }); }
 }
 
-function selectPlace(i, cat) {
-  highlightListItem(i, cat);
-  const filtered = PLACES.filter(p => cat === 'all' || p.cat === cat);
+function selectPlace(i) {
+  highlightItem(i);
+  const filtered = PLACES.filter(p => currentCat === 'all' || p.cat === currentCat);
   const place = filtered[i];
-  map.flyTo({ center: [place.lng, place.lat], zoom: 14.5, speed: 1.2, curve: 1.4 });
-  if (mapMarkers[i]) {
-    setTimeout(() => mapMarkers[i].togglePopup(), 400);
-  }
+  map.flyTo([place.lat, place.lng], 15, { duration: 0.8 });
+  setTimeout(() => { if (leafMarkers[i]) leafMarkers[i].openPopup(); }, 700);
 }
 
 function filterMap(cat, btn) {
@@ -1047,19 +1000,19 @@ function filterMap(cat, btn) {
   document.querySelectorAll('.map-cat-btn').forEach(b => b.classList.remove('active'));
   btn.classList.add('active');
   renderList(cat);
-  addAllMarkers(cat);
-
+  addMarkers(cat);
   const filtered = PLACES.filter(p => cat === 'all' || p.cat === cat);
-  if (cat === 'all' || !filtered.length) {
-    map.flyTo({ center: [-77.39, 25.072], zoom: 11.5, pitch: 30, speed: 1 });
+  if (!filtered.length || cat === 'all') {
+    map.flyTo([25.072, -77.39], 12, { duration: 0.7 });
   } else {
-    const lngs = filtered.map(p=>p.lng), lats = filtered.map(p=>p.lat);
-    const bounds = [[Math.min(...lngs)-.02, Math.min(...lats)-.01],[Math.max(...lngs)+.02, Math.max(...lats)+.01]];
-    map.fitBounds(bounds, { padding: 60, maxZoom: 13.5, duration: 900 });
+    const bounds = L.latLngBounds(filtered.map(p => [p.lat, p.lng]));
+    map.flyToBounds(bounds, { padding: [50, 50], maxZoom: 14, duration: 0.8 });
   }
 }
 
-initMap();
+// Init
+addMarkers('all');
+renderList('all');
 </script>
 
 <!-- INSIDER TIPS -->
