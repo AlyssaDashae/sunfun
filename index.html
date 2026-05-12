@@ -10,19 +10,20 @@
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
   :root {
-    --sand:   #F5EDD8;
-    --sand-d: #E8D9B5;
-    --ocean:  #1B6CA8;
-    --ocean-d:#0E4B78;
-    --teal:   #1DA57A;
-    --coral:  #E85D3F;
-    --gold:   #D4A017;
-    --navy:   #0C2340;
-    --white:  #FFFFFF;
-    --text:   #1A1A2E;
-    --muted:  #5C6875;
-    --serif:  'Playfair Display', Georgia, serif;
-    --sans:   'DM Sans', sans-serif;
+    --sand:    #FAF6EE;
+    --sand-d:  #EFE6CE;
+    --ocean:   #1B6CA8;
+    --ocean-d: #0E4B78;
+    --teal:    #1DA57A;
+    --coral:   #E85D3F;
+    --gold:    #C8922A;
+    --gold-lt: #D4A017;
+    --navy:    #0C2340;
+    --white:   #FFFFFF;
+    --text:    #1A1A2E;
+    --muted:   #5C6875;
+    --serif:   'Playfair Display', Georgia, serif;
+    --sans:    'DM Sans', sans-serif;
   }
 
   html { scroll-behavior: smooth; }
@@ -34,82 +35,115 @@
     overflow-x: hidden;
   }
 
-  /* ── NAV ── */
+  /* ══════════════════════════════
+     NAV — matches sunfunhotel.com
+     White bg, logo left, links center, black Book Now
+  ══════════════════════════════ */
   nav {
     position: fixed; top: 0; left: 0; right: 0; z-index: 100;
-    display: flex; align-items: center; justify-content: space-between;
-    padding: 1rem 3rem;
-    background: rgba(12,35,64,0.92);
-    backdrop-filter: blur(8px);
-    border-bottom: 1px solid rgba(255,255,255,0.08);
+    display: grid;
+    grid-template-columns: auto 1fr auto;
+    align-items: center;
+    gap: 1rem;
+    padding: .75rem 2.5rem;
+    background: rgba(255,255,255,0.97);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid rgba(0,0,0,.07);
+    box-shadow: 0 2px 16px rgba(0,0,0,.06);
   }
-  nav .logo { display: flex; align-items: center; gap: .6rem; }
-  nav .logo img { height: 38px; }
-  nav .logo span { color: var(--white); font-family: var(--serif); font-size: 1rem; letter-spacing: .04em; }
-  nav ul { display: flex; gap: 2rem; list-style: none; }
-  nav ul a { color: rgba(255,255,255,.75); text-decoration: none; font-size: .85rem; letter-spacing: .06em; text-transform: uppercase; transition: color .2s; }
-  nav ul a:hover, nav ul a.active { color: var(--gold); }
+  nav .logo img { height: 60px; width: auto; display: block; }
+  nav ul {
+    display: flex; align-items: center; justify-content: center;
+    gap: 0; list-style: none; flex-wrap: wrap;
+  }
+  nav ul li { display: flex; align-items: center; }
+  nav ul li:not(:last-child)::after {
+    content: '–';
+    color: #aaa;
+    margin: 0 .55rem;
+    font-size: .85rem;
+  }
+  nav ul a {
+    color: #333;
+    text-decoration: none;
+    font-size: .82rem;
+    font-weight: 400;
+    letter-spacing: .01em;
+    transition: color .2s;
+    white-space: nowrap;
+  }
+  nav ul a:hover { color: var(--gold); }
+  nav ul a.active { color: var(--gold); font-weight: 500; }
   nav .book-btn {
-    background: var(--gold); color: var(--navy);
-    padding: .55rem 1.4rem; border-radius: 2px;
-    font-size: .8rem; font-weight: 500; letter-spacing: .08em; text-transform: uppercase;
+    background: #111; color: #fff;
+    padding: .65rem 1.6rem; border-radius: 4px;
+    font-size: .82rem; font-weight: 500; letter-spacing: .04em;
     text-decoration: none; transition: background .2s;
+    white-space: nowrap;
   }
-  nav .book-btn:hover { background: #b88a12; }
+  nav .book-btn:hover { background: #333; }
 
-  /* ── HERO ── */
+  /* ══════════════════════════════
+     HERO — warm, bright, resort-feeling
+     Uses actual resort photo with sunny overlay
+  ══════════════════════════════ */
   .hero {
     position: relative; height: 100vh; min-height: 600px;
-    display: flex; align-items: flex-end;
-    background: linear-gradient(to bottom, #061827 0%, #0E4B78 40%, #1B6CA8 80%);
+    display: flex; align-items: center;
     overflow: hidden;
+    background: #a8c8d8;
   }
   .hero-bg {
     position: absolute; inset: 0;
-    background-image: url('https://images.unsplash.com/photo-1548574505-5e239809ee19?w=1600&q=80');
-    background-size: cover; background-position: center 30%;
-    opacity: .45;
+    background-image: url('https://sunfunhotel.com/assets/img/gallery-1.jpg');
+    background-size: cover; background-position: center center;
   }
   .hero-overlay {
     position: absolute; inset: 0;
-    background: linear-gradient(170deg, rgba(6,24,39,.2) 0%, rgba(6,24,39,.85) 100%);
+    background: linear-gradient(135deg,
+      rgba(8,20,40,.72) 0%,
+      rgba(8,20,40,.35) 60%,
+      rgba(8,20,40,.10) 100%);
   }
   .hero-content {
     position: relative; z-index: 2;
-    padding: 0 4rem 6rem;
-    max-width: 780px;
+    padding: 7rem 4rem 4rem;
+    max-width: 680px;
   }
   .hero-eyebrow {
-    display: inline-flex; align-items: center; gap: .5rem;
-    font-size: .75rem; letter-spacing: .2em; text-transform: uppercase;
-    color: var(--gold); margin-bottom: 1.2rem;
+    display: inline-flex; align-items: center; gap: .6rem;
+    font-size: .72rem; letter-spacing: .22em; text-transform: uppercase;
+    color: var(--gold-lt); margin-bottom: 1.2rem;
   }
   .hero-eyebrow::before {
     content: ''; display: inline-block;
-    width: 32px; height: 1px; background: var(--gold);
+    width: 32px; height: 1px; background: var(--gold-lt);
   }
   .hero h1 {
-    font-family: var(--serif); font-size: clamp(2.8rem, 6vw, 5rem);
+    font-family: var(--serif); font-size: clamp(2.6rem, 5.5vw, 4.5rem);
     color: var(--white); line-height: 1.1;
     margin-bottom: 1.2rem;
+    text-shadow: 0 2px 20px rgba(0,0,0,.3);
   }
-  .hero h1 em { font-style: italic; color: #90CDF4; }
+  .hero h1 em { font-style: italic; color: #fde68a; }
   .hero p {
-    font-size: 1.05rem; color: rgba(255,255,255,.75);
-    line-height: 1.8; max-width: 520px; margin-bottom: 2.2rem;
+    font-size: 1rem; color: rgba(255,255,255,.85);
+    line-height: 1.85; max-width: 500px; margin-bottom: 2.2rem;
+    text-shadow: 0 1px 8px rgba(0,0,0,.25);
   }
   .hero-cta {
     display: inline-flex; align-items: center; gap: .8rem;
-    background: var(--coral); color: var(--white);
-    padding: .9rem 2rem; border-radius: 2px;
-    font-size: .85rem; font-weight: 500; letter-spacing: .06em; text-transform: uppercase;
-    text-decoration: none; transition: background .2s;
+    background: var(--white); color: var(--navy);
+    padding: .9rem 2rem; border-radius: 4px;
+    font-size: .85rem; font-weight: 600; letter-spacing: .04em;
+    text-decoration: none; transition: all .2s;
+    box-shadow: 0 4px 20px rgba(0,0,0,.2);
   }
-  .hero-cta:hover { background: #c54a2e; }
+  .hero-cta:hover { background: var(--gold-lt); color: var(--white); }
   .hero-scroll {
     position: absolute; bottom: 2rem; left: 50%; transform: translateX(-50%);
     z-index: 2; display: flex; flex-direction: column; align-items: center; gap: .4rem;
-    font-size: .7rem; letter-spacing: .15em; text-transform: uppercase; color: rgba(255,255,255,.5);
+    font-size: .68rem; letter-spacing: .15em; text-transform: uppercase; color: rgba(255,255,255,.5);
   }
   .scroll-line {
     width: 1px; height: 40px;
