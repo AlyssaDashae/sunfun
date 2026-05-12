@@ -449,6 +449,8 @@
     <p>From swimming with pigs to snorkeling vivid coral reefs, here's what makes Nassau unforgettable.</p>
   </div>
   <div class="featured-grid">
+
+    <!-- LEFT: tall card -->
     <div class="featured-card tall" data-category="water">
       <img src="https://images.unsplash.com/photo-1544551763-46a013bb70d5?w=800&q=80" alt="Snorkeling in Nassau">
       <div class="featured-card-overlay">
@@ -461,30 +463,102 @@
         </div>
       </div>
     </div>
-    <div class="featured-card" data-category="adventure">
-      <img src="https://sunfunhotel.com/assets/img/blog-2.jpg" alt="Swim with pigs">
-      <div class="featured-card-overlay">
-        <span class="fc-tag">Adventure</span>
-        <h3>Swim with the Famous Pigs</h3>
-        <p>Meet the Bahamas' most beloved locals on a guided boat tour — an experience like no other.</p>
-        <div class="fc-meta">
-          <span><span class="material-icons">schedule</span> Full day</span>
+
+    <!-- RIGHT: 2×2 grid of four cards -->
+    <div class="featured-right-grid">
+
+      <div class="featured-card" data-category="water">
+        <img src="https://lirp.cdn-website.com/48478c1e/dms3rep/multi/opt/social-image-1920w.jpg"
+          alt="Dolphin Encounter Blue Lagoon Island"
+          onerror="this.src='https://images.unsplash.com/photo-1566438480900-0609be27a4be?w=800&q=80'">
+        <div class="featured-card-overlay">
+          <span class="fc-tag water">Water</span>
+          <h3>Dolphin Encounters — Blue Lagoon Island</h3>
+          <p>Swim, kiss, and dance with Atlantic bottlenose dolphins at this award-winning all-natural ocean habitat. 25 minutes from Nassau by ferry.</p>
+          <div class="fc-meta">
+            <span><span class="material-icons">schedule</span> Half day</span>
+            <span><span class="material-icons">directions_boat</span> Ferry included</span>
+          </div>
+          <a href="https://www.dolphinencounters.com/programs/dolphin-encounter" target="_blank"
+            style="display:inline-flex;align-items:center;gap:4px;margin-top:.6rem;font-size:.72rem;letter-spacing:.08em;text-transform:uppercase;color:#D4A017;text-decoration:none;">
+            Book at dolphinencounters.com ↗
+          </a>
         </div>
       </div>
-    </div>
-    <div class="featured-card" data-category="culture">
-      <img src="https://images.unsplash.com/photo-1528543606781-2f6e6857f318?w=800&q=80" alt="Nassau downtown">
-      <div class="featured-card-overlay">
-        <span class="fc-tag culture">Culture</span>
-        <h3>Nassau City & Heritage Tour</h3>
-        <p>Explore colorful colonial architecture, the straw market, and Fort Fincastle with a local guide.</p>
-        <div class="fc-meta">
-          <span><span class="material-icons">schedule</span> 3–4 hours</span>
+
+      <div class="featured-card" data-category="adventure">
+        <img src="https://sunfunhotel.com/assets/img/blog-2.jpg" alt="Swim with pigs"
+          onerror="this.src='https://images.unsplash.com/photo-1548199973-03cce0bbc87b?w=800&q=80'">
+        <div class="featured-card-overlay">
+          <span class="fc-tag">Adventure</span>
+          <h3>Swim with the Famous Pigs</h3>
+          <p>Meet the Bahamas' most beloved locals on a guided boat tour — an experience like no other.</p>
+          <div class="fc-meta">
+            <span><span class="material-icons">schedule</span> Full day</span>
+          </div>
         </div>
       </div>
-    </div>
+
+      <div class="featured-card" data-category="adventure">
+        <img src="https://cdn11.bigcommerce.com/s-kkcycdhlmf/images/stencil/1000x570/products/324/1212/Arial-View_Approved__42449.1652968516.png"
+          alt="Baha Bay Waterpark at Baha Mar Nassau"
+          onerror="this.src='https://images.unsplash.com/photo-1555041469-a586c61ea9bc?w=800&q=80'">
+        <div class="featured-card-overlay">
+          <span class="fc-tag">Adventure</span>
+          <h3>Baha Bay Waterpark — Day Pass</h3>
+          <p>15 beachfront acres of thrills: water coasters, a 500,000-gallon wave pool, the Caribbean's only surf simulator, lazy river, and world-class dining. Day passes from $65.</p>
+          <div class="fc-meta">
+            <span><span class="material-icons">schedule</span> Full day · 10am–5pm</span>
+          </div>
+          <a href="https://bahabay.bahamar.com/buy-tickets/" target="_blank"
+            style="display:inline-flex;align-items:center;gap:4px;margin-top:.6rem;font-size:.72rem;letter-spacing:.08em;text-transform:uppercase;color:#D4A017;text-decoration:none;">
+            Buy tickets at bahabay.com ↗
+          </a>
+        </div>
+      </div>
+
+      <div class="featured-card" data-category="culture">
+        <img src="https://images.unsplash.com/photo-1528543606781-2f6e6857f318?w=800&q=80" alt="Nassau downtown">
+        <div class="featured-card-overlay">
+          <span class="fc-tag culture">Culture</span>
+          <h3>Nassau City & Heritage Tour</h3>
+          <p>Explore colorful colonial architecture, the straw market, and Fort Fincastle with a local guide.</p>
+          <div class="fc-meta">
+            <span><span class="material-icons">schedule</span> 3–4 hours</span>
+          </div>
+        </div>
+      </div>
+
+    </div><!-- end featured-right-grid -->
   </div>
 </section>
+
+<style>
+  .featured-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 6px;
+    max-width: 1200px;
+    margin: 0 auto 5rem;
+    padding: 0 2rem;
+  }
+  .featured-right-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 6px;
+  }
+  .featured-right-grid .featured-card {
+    aspect-ratio: 4/3;
+  }
+  @media (max-width: 900px) {
+    .featured-grid { grid-template-columns: 1fr; }
+    .featured-card.tall { aspect-ratio: 4/3; }
+    .featured-right-grid { grid-template-columns: 1fr 1fr; }
+  }
+  @media (max-width: 560px) {
+    .featured-right-grid { grid-template-columns: 1fr; }
+  }
+</style>
 
 <!-- ACTIVITIES GRID -->
 <section class="activities-section">
@@ -669,64 +743,401 @@
   </div>
 </section>
 
-<!-- DINING -->
-<section class="dining-section">
+<!-- TASTE THE ISLANDS — DISHES -->
+<section class="dining-section" id="taste-islands">
   <div class="section-header fade-up">
-    <div class="section-tag">Food & Drink</div>
+    <div class="section-tag">Bahamian Food & Drink</div>
     <h2>Taste the Islands</h2>
-    <p>Island flavors, fresh ingredients, and local inspiration — from your morning wrap to a midday salmon bowl.</p>
+    <p>Nassau's food culture runs deep — shaped by African, Caribbean, and British roots. These are the dishes and drinks you simply cannot leave without trying.</p>
   </div>
-  <div class="dining-grid">
-    <div class="dining-card fade-up">
-      <div class="dining-icon"><span class="material-icons">free_breakfast</span></div>
-      <div>
-        <h3>Coconut French Toast</h3>
-        <p>Thick-cut bread soaked in coconut custard, topped with coconut flakes and powdered sugar. A guest favourite every morning.</p>
-        <span class="dining-tag">Breakfast · $10</span>
-      </div>
-    </div>
-    <div class="dining-card fade-up">
-      <div class="dining-icon"><span class="material-icons">set_meal</span></div>
-      <div>
-        <h3>Honey Garlic Salmon Bowl</h3>
-        <p>Jasmine rice, glazed salmon, sautéed vegetables, and a fresh vegetable slaw — light and satisfying at the same time.</p>
-        <span class="dining-tag">Lunch · $22</span>
-      </div>
-    </div>
-    <div class="dining-card fade-up">
-      <div class="dining-icon"><span class="material-icons">lunch_dining</span></div>
-      <div>
-        <h3>The Coconut Club</h3>
-        <p>Layers of turkey, ham, bacon, cheddar, lettuce, tomato and garlic butter on toasted white bread. The ultimate island club sandwich.</p>
-        <span class="dining-tag">Lunch · $17</span>
-      </div>
-    </div>
-    <div class="dining-card fade-up">
-      <div class="dining-icon"><span class="material-icons">spa</span></div>
-      <div>
-        <h3>Avocado Toast</h3>
-        <p>Smashed avocado with pickled onions, sliced jalapeños, and flakey sea salt on toasted sourdough. Add eggs for $4.</p>
-        <span class="dining-tag">Breakfast · $10</span>
-      </div>
-    </div>
-    <div class="dining-card fade-up">
-      <div class="dining-icon"><span class="material-icons">ramen_dining</span></div>
-      <div>
-        <h3>Grilled Chicken Bowl</h3>
-        <p>Jasmine rice, black beans, roasted corn, lettuce, and a house avocado-lime sauce. Add shrimp for $6.</p>
-        <span class="dining-tag">Lunch · $18</span>
-      </div>
-    </div>
-    <div class="dining-card fade-up">
-      <div class="dining-icon"><span class="material-icons">restaurant</span></div>
-      <div>
-        <h3>Sweet Potato Bowl</h3>
-        <p>Roasted chickpeas, sweet potatoes, purple cabbage, broccoli, zucchini, and bell peppers with house-made aioli.</p>
-        <span class="dining-tag">Lunch · $16</span>
-      </div>
+
+  <!-- Sub-header: Dishes -->
+  <div style="max-width:1200px; margin: 0 auto 2rem; padding: 0 2rem;">
+    <div style="display:flex; align-items:center; gap:1rem; margin-bottom:2rem;">
+      <span style="font-family:var(--serif); font-size:1.5rem; color:var(--navy);">🍽️ Signature Dishes</span>
+      <div style="flex:1; height:1px; background:rgba(12,35,64,.1);"></div>
     </div>
   </div>
+
+  <div class="dish-grid">
+
+    <!-- CONCH SALAD -->
+    <div class="dish-card fade-up">
+      <div class="dish-img-wrap">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/91/Conch_salad.jpg/800px-Conch_salad.jpg" alt="Conch Salad"
+          onerror="this.src='https://images.unsplash.com/photo-1512621776951-a57141f2eefd?w=600&q=80'">
+        <span class="dish-badge">🐚 National Dish</span>
+      </div>
+      <div class="dish-body">
+        <h3>Fresh Conch Salad</h3>
+        <p>Raw conch tossed with diced tomatoes, onions, sweet peppers, scotch bonnet, and a bright squeeze of lime and orange juice. Served fresh — practically still from the sea.</p>
+        <div class="dish-where">
+          <span class="dish-where-label">Where to try it</span>
+          <div class="dish-spots">
+            <a href="https://maps.google.com/?q=Goldie's+Conch+House+Nassau" target="_blank">Goldie's Conch House <span>↗</span></a>
+            <a href="https://maps.google.com/?q=Twin+Brothers+Arawak+Cay+Nassau" target="_blank">Twin Brothers — Arawak Cay <span>↗</span></a>
+            <a href="https://maps.google.com/?q=Arawak+Cay+Fish+Fry+Nassau" target="_blank">Arawak Cay Fish Fry <span>↗</span></a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- CONCH CHOWDER -->
+    <div class="dish-card fade-up">
+      <div class="dish-img-wrap">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/2e/Clam_chowder.jpg/800px-Clam_chowder.jpg" alt="Conch Chowder"
+          onerror="this.src='https://images.unsplash.com/photo-1547592166-23ac45744acd?w=600&q=80'">
+        <span class="dish-badge">🍜 Island Classic</span>
+      </div>
+      <div class="dish-body">
+        <h3>Conch Chowder</h3>
+        <p>Hearty tomato-based soup (not creamy — think gumbo) packed with conch, potatoes, root vegetables, and island spices. Served piping hot with a side of Johnny Cake to soak it all up.</p>
+        <div class="dish-where">
+          <span class="dish-where-label">Where to try it</span>
+          <div class="dish-spots">
+            <a href="https://maps.google.com/?q=Cricket+Club+Restaurant+West+Bay+Street+Nassau" target="_blank">Cricket Club Restaurant & Pub <span>↗</span></a>
+            <a href="https://maps.google.com/?q=The+Poop+Deck+Nassau" target="_blank">The Poop Deck <span>↗</span></a>
+            <a href="https://maps.google.com/?q=Mckenzie's+Fresh+Fish+Conch+Nassau" target="_blank">McKenzie's Fresh Fish & Conch <span>↗</span></a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- CRACKED CONCH -->
+    <div class="dish-card fade-up">
+      <div class="dish-img-wrap">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/3c/Cracked_conch_Bahamas.jpg/800px-Cracked_conch_Bahamas.jpg" alt="Cracked Conch"
+          onerror="this.src='https://images.unsplash.com/photo-1585325701956-60dd9c8553bc?w=600&q=80'">
+        <span class="dish-badge">🔥 Local Favourite</span>
+      </div>
+      <div class="dish-body">
+        <h3>Cracked Conch</h3>
+        <p>Conch meat tenderized with a mallet, dipped in seasoned batter, and deep-fried to golden perfection. Crispy outside, tender inside — served with peas 'n' rice and coleslaw.</p>
+        <div class="dish-where">
+          <span class="dish-where-label">Where to try it</span>
+          <div class="dish-spots">
+            <a href="https://maps.google.com/?q=Lukka+Kairi+Nassau" target="_blank">Lukka Kairi <span>↗</span></a>
+            <a href="https://maps.google.com/?q=The+Poop+Deck+Nassau" target="_blank">The Poop Deck <span>↗</span></a>
+            <a href="https://maps.google.com/?q=Twin+Brothers+Arawak+Cay+Nassau" target="_blank">Twin Brothers <span>↗</span></a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- BAHAMIAN STEW FISH -->
+    <div class="dish-card fade-up">
+      <div class="dish-img-wrap">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/5b/Stew_fish.jpg/800px-Stew_fish.jpg" alt="Stew Fish"
+          onerror="this.src='https://images.unsplash.com/photo-1534080564583-6be75777b70a?w=600&q=80'">
+        <span class="dish-badge">🐟 Sunday Classic</span>
+      </div>
+      <div class="dish-body">
+        <h3>Bahamian Stew Fish</h3>
+        <p>Fresh grouper or snapper marinated in lime, then simmered in a rich tomato-based sauce with onions, thyme, and a medley of island spices. Best eaten with Johnny Cake on the side.</p>
+        <div class="dish-where">
+          <span class="dish-where-label">Where to try it</span>
+          <div class="dish-spots">
+            <a href="https://maps.google.com/?q=Café+Johnny+Canoe+Nassau" target="_blank">Café Johnny Canoe <span>↗</span></a>
+            <a href="https://maps.google.com/?q=Nesbitt's+Restaurant+Nassau" target="_blank">Nesbitt's Restaurant & Lounge <span>↗</span></a>
+            <a href="https://maps.google.com/?q=Bahama+Grill+Nassau" target="_blank">Bahama Grill <span>↗</span></a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ROCK LOBSTER -->
+    <div class="dish-card fade-up">
+      <div class="dish-img-wrap">
+        <img src="https://images.unsplash.com/photo-1615361200141-f45040f367be?w=600&q=80" alt="Bahamian Rock Lobster"
+          onerror="this.src='https://images.unsplash.com/photo-1559737558-2f5a35f4523b?w=600&q=80'">
+        <span class="dish-badge">🦞 Prized Delicacy</span>
+      </div>
+      <div class="dish-body">
+        <h3>Bahamian Rock Lobster</h3>
+        <p>Spiny lobster pulled straight from the turquoise shallows — smaller and sweeter than its Atlantic cousin. Grilled, steamed, or broiled and served with butter and a squeeze of fresh lime.</p>
+        <div class="dish-where">
+          <span class="dish-where-label">Where to try it</span>
+          <div class="dish-spots">
+            <a href="https://maps.google.com/?q=The+Poop+Deck+Nassau" target="_blank">The Poop Deck <span>↗</span></a>
+            <a href="https://maps.google.com/?q=Solemar+Nassau" target="_blank">Solemar <span>↗</span></a>
+            <a href="https://maps.google.com/?q=Aquafire+Nassau" target="_blank">Aquafire <span>↗</span></a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- PEAS N RICE -->
+    <div class="dish-card fade-up">
+      <div class="dish-img-wrap">
+        <img src="https://images.unsplash.com/photo-1596560548464-f010549b84d7?w=600&q=80" alt="Peas and Rice"
+          onerror="this.src='https://images.unsplash.com/photo-1536304993881-ff86e0c9c4d1?w=600&q=80'">
+        <span class="dish-badge">🍚 Island Staple</span>
+      </div>
+      <div class="dish-body">
+        <h3>Peas 'n' Rice</h3>
+        <p>Pigeon peas cooked down with rice, tomatoes, thyme, and sweet peppers — the essential side dish of the Bahamas. You'll find it on virtually every local plate, and for good reason.</p>
+        <div class="dish-where">
+          <span class="dish-where-label">Where to try it</span>
+          <div class="dish-spots">
+            <a href="https://maps.google.com/?q=Arawak+Cay+Fish+Fry+Nassau" target="_blank">Arawak Cay Fish Fry <span>↗</span></a>
+            <a href="https://maps.google.com/?q=Nesbitt's+Restaurant+Nassau" target="_blank">Nesbitt's Restaurant <span>↗</span></a>
+            <a href="https://maps.google.com/?q=Lukka+Kairi+Nassau" target="_blank">Lukka Kairi <span>↗</span></a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- CHICKEN SOUSE -->
+    <div class="dish-card fade-up">
+      <div class="dish-img-wrap">
+        <img src="https://images.unsplash.com/photo-1547592166-23ac45744acd?w=600&q=80" alt="Chicken Souse"
+          onerror="this.src='https://images.unsplash.com/photo-1569050467447-ce54b3bbc37d?w=600&q=80'">
+        <span class="dish-badge">🍲 Comfort Food</span>
+      </div>
+      <div class="dish-body">
+        <h3>Chicken Souse</h3>
+        <p>The Bahamian answer to chicken soup — slow-cooked chicken in a tangy broth of onions, lime, potatoes, and warm spices. A breakfast staple on weekends and a go-to hangover cure for locals.</p>
+        <div class="dish-where">
+          <span class="dish-where-label">Where to try it</span>
+          <div class="dish-spots">
+            <a href="https://maps.google.com/?q=Nesbitt's+Restaurant+Nassau" target="_blank">Nesbitt's Restaurant & Lounge <span>↗</span></a>
+            <a href="https://maps.google.com/?q=Café+Johnny+Canoe+Nassau" target="_blank">Café Johnny Canoe <span>↗</span></a>
+            <a href="https://maps.google.com/?q=Cricket+Club+Restaurant+West+Bay+Street+Nassau" target="_blank">Cricket Club Restaurant & Pub <span>↗</span></a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- GUAVA DUFF -->
+    <div class="dish-card fade-up">
+      <div class="dish-img-wrap">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/e3/Guava_duff.jpg/800px-Guava_duff.jpg" alt="Guava Duff Dessert"
+          onerror="this.src='https://images.unsplash.com/photo-1578985545062-69928b1d9587?w=600&q=80'">
+        <span class="dish-badge">🍮 Must-Try Dessert</span>
+      </div>
+      <div class="dish-body">
+        <h3>Guava Duff</h3>
+        <p>Soft dough rolled with guava paste, boiled, sliced, and crowned with a warm rum or brandy butter sauce. The iconic Bahamian dessert — sweet, pillowy, and totally unforgettable.</p>
+        <div class="dish-where">
+          <span class="dish-where-label">Where to try it</span>
+          <div class="dish-spots">
+            <a href="https://maps.google.com/?q=Graycliff+Restaurant+Nassau" target="_blank">Graycliff Hotel & Restaurant <span>↗</span></a>
+            <a href="https://maps.google.com/?q=Café+Johnny+Canoe+Nassau" target="_blank">Café Johnny Canoe <span>↗</span></a>
+            <a href="https://maps.google.com/?q=The+New+Duff+Nassau" target="_blank">The New Duff <span>↗</span></a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- RUM CAKE -->
+    <div class="dish-card fade-up">
+      <div class="dish-img-wrap">
+        <img src="https://images.unsplash.com/photo-1578985545062-69928b1d9587?w=600&q=80" alt="Rum Cake"
+          onerror="this.src='https://images.unsplash.com/photo-1621303837174-89787a7d4729?w=600&q=80'">
+        <span class="dish-badge">🎂 Take-Home Treat</span>
+      </div>
+      <div class="dish-body">
+        <h3>Bahamian Rum Cake</h3>
+        <p>A dense, moist cake soaked in Ole Nassau rum, available in pineapple, coconut, banana, and chocolate flavors. The Bahamas Rum Cake Factory is the definitive stop for this classic souvenir.</p>
+        <div class="dish-where">
+          <span class="dish-where-label">Where to try it</span>
+          <div class="dish-spots">
+            <a href="https://maps.google.com/?q=Bahamas+Rum+Cake+Factory+Nassau" target="_blank">Bahamas Rum Cake Factory <span>↗</span></a>
+            <a href="https://maps.google.com/?q=Graycliff+Chocolatier+Nassau" target="_blank">Graycliff Chocolatier <span>↗</span></a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div><!-- end dish-grid -->
+
+  <!-- ── ISLAND DRINKS ── -->
+  <div style="max-width:1200px; margin: 4rem auto 2rem; padding: 0 2rem;">
+    <div style="display:flex; align-items:center; gap:1rem; margin-bottom:2rem;">
+      <span style="font-family:var(--serif); font-size:1.5rem; color:var(--navy);">🍹 Island Drinks</span>
+      <div style="flex:1; height:1px; background:rgba(12,35,64,.1);"></div>
+    </div>
+  </div>
+
+  <div class="drinks-grid">
+
+    <div class="drink-card fade-up">
+      <div class="drink-icon" style="background: linear-gradient(135deg, #F97316, #FB923C);">🍹</div>
+      <div class="drink-body">
+        <div class="drink-name">Goombay Smash</div>
+        <div class="drink-type">The Bahamian Signature</div>
+        <p>Coconut rum, apricot brandy, pineapple juice, and orange juice — named after the island's own music and dance tradition. No two bars make it exactly the same.</p>
+        <div class="drink-spots">
+          <span>Try it at:</span>
+          <a href="https://maps.google.com/?q=Twin+Brothers+Nassau" target="_blank">Twin Brothers</a>
+          <a href="https://maps.google.com/?q=Lukka+Kairi+Nassau" target="_blank">Lukka Kairi</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="drink-card fade-up">
+      <div class="drink-icon" style="background: linear-gradient(135deg, #DC2626, #F87171);">🌅</div>
+      <div class="drink-body">
+        <div class="drink-name">Bahama Mama</div>
+        <div class="drink-type">The Classic</div>
+        <p>Dark rum, coconut liqueur, coffee liqueur, pineapple and orange juice — vibrant, fruity, and completely synonymous with a Bahamian beach day. Often served frozen.</p>
+        <div class="drink-spots">
+          <span>Try it at:</span>
+          <a href="https://maps.google.com/?q=Grand+Hyatt+Baha+Mar+Nassau" target="_blank">Grand Hyatt Baha Mar</a>
+          <a href="https://maps.google.com/?q=Blue+Sail+Bar+Nassau" target="_blank">Blue Sail Bar</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="drink-card fade-up">
+      <div class="drink-icon" style="background: linear-gradient(135deg, #0891B2, #22D3EE);">🥥</div>
+      <div class="drink-body">
+        <div class="drink-name">Sky Juice</div>
+        <div class="drink-type">Born at Arawak Cay</div>
+        <p>Gin, fresh coconut water, sweetened condensed milk, and nutmeg — the original backyard drink of the Bahamas, invented during Prohibition at Arawak Cay. Creamy, sweet, and deceivingly strong.</p>
+        <div class="drink-spots">
+          <span>Try it at:</span>
+          <a href="https://maps.google.com/?q=Arawak+Cay+Fish+Fry+Nassau" target="_blank">Arawak Cay Fish Fry</a>
+          <a href="https://maps.google.com/?q=Goldie's+Conch+House+Nassau" target="_blank">Goldie's Conch House</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="drink-card fade-up">
+      <div class="drink-icon" style="background: linear-gradient(135deg, #CA8A04, #FDE047);">🐦</div>
+      <div class="drink-body">
+        <div class="drink-name">Yellow Bird</div>
+        <div class="drink-type">Named for a calypso classic</div>
+        <p>Light rum, Galliano, crème de banana, pineapple and orange juice — a bright canary-yellow cocktail with a zingy citrus kick. A nod to the beloved Caribbean song of the same name.</p>
+        <div class="drink-spots">
+          <span>Try it at:</span>
+          <a href="https://maps.google.com/?q=Frankie+Gone+Bananas+Nassau" target="_blank">Frankie Gone Bananas</a>
+          <a href="https://maps.google.com/?q=The+Poop+Deck+Nassau" target="_blank">The Poop Deck</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="drink-card fade-up">
+      <div class="drink-icon" style="background: linear-gradient(135deg, #7C3AED, #A78BFA);">🥃</div>
+      <div class="drink-body">
+        <div class="drink-name">John Watling's Rum</div>
+        <div class="drink-type">Bahamian Craft Rum</div>
+        <p>Small-batch rum distilled at Nassau's Buena Vista Estate using hand-harvested Bahamian sugarcane molasses, aged in American white oak. Visit the distillery for a free tour and tasting.</p>
+        <div class="drink-spots">
+          <span>Try it at:</span>
+          <a href="https://maps.google.com/?q=John+Watling's+Distillery+Nassau" target="_blank">John Watling's Distillery</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="drink-card fade-up">
+      <div class="drink-icon" style="background: linear-gradient(135deg, #065F46, #34D399);">🍺</div>
+      <div class="drink-body">
+        <div class="drink-name">Kalik Beer</div>
+        <div class="drink-type">The Local Lager</div>
+        <p>The Bahamas' own brew — a light, crisp lager that's been a local institution since 1969. Its name comes from the sound of the cowbells in Junkanoo. Cold Kalik, warm sun, white sand: perfection.</p>
+        <div class="drink-spots">
+          <span>Try it at:</span>
+          <a href="https://maps.google.com/?q=Pirate+Republic+Brewing+Nassau" target="_blank">Pirate Republic Brewing Co.</a>
+          <a href="https://maps.google.com/?q=Arawak+Cay+Fish+Fry+Nassau" target="_blank">Arawak Cay Fish Fry</a>
+        </div>
+      </div>
+    </div>
+
+  </div><!-- end drinks-grid -->
+
+  <div style="text-align:center; padding: 3rem 2rem 0;">
+    <p style="color:var(--muted); font-size:.9rem; max-width:480px; margin: 0 auto 1.5rem;">Our front desk team knows all the best spots — ask us for a personal recommendation or reservation help.</p>
+    <a href="https://sunfunhotel.com/#contact-us" style="display:inline-flex;align-items:center;gap:.5rem; background:var(--navy);color:var(--white);padding:.85rem 2rem;border-radius:2px;font-size:.8rem;letter-spacing:.08em;text-transform:uppercase;text-decoration:none;transition:background .2s;" onmouseover="this.style.background='#1B6CA8'" onmouseout="this.style.background='var(--navy)'">
+      <span class="material-icons" style="font-size:16px;">support_agent</span> Ask Our Team
+    </a>
+  </div>
+
 </section>
+
+<style>
+  /* ── DISH GRID ── */
+  .dish-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 1.5rem;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 2rem 1rem;
+  }
+  .dish-card {
+    background: var(--white);
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 2px 20px rgba(12,35,64,.08);
+    transition: transform .3s, box-shadow .3s;
+    display: flex;
+    flex-direction: column;
+  }
+  .dish-card:hover { transform: translateY(-5px); box-shadow: 0 12px 36px rgba(12,35,64,.14); }
+  .dish-img-wrap { position: relative; height: 200px; overflow: hidden; }
+  .dish-img-wrap img { width:100%; height:100%; object-fit:cover; transition: transform .5s; }
+  .dish-card:hover .dish-img-wrap img { transform: scale(1.07); }
+  .dish-badge {
+    position: absolute; top: .9rem; left: .9rem;
+    background: rgba(12,35,64,.82); color: #fff;
+    font-size: .65rem; letter-spacing: .1em; text-transform: uppercase;
+    padding: .28rem .7rem; border-radius: 2px;
+    backdrop-filter: blur(4px);
+  }
+  .dish-body { padding: 1.3rem 1.4rem 1.4rem; flex:1; display:flex; flex-direction:column; }
+  .dish-body h3 { font-family: var(--serif); font-size: 1.1rem; color: var(--navy); margin-bottom: .5rem; }
+  .dish-body p { font-size: .84rem; color: var(--muted); line-height: 1.75; flex:1; margin-bottom: 1rem; }
+  .dish-where { border-top: 1px solid rgba(12,35,64,.07); padding-top: .9rem; margin-top: auto; }
+  .dish-where-label { font-size: .65rem; letter-spacing: .15em; text-transform: uppercase; color: var(--muted); display: block; margin-bottom: .4rem; }
+  .dish-spots { display: flex; flex-direction: column; gap: .25rem; }
+  .dish-spots a {
+    font-size: .8rem; color: var(--ocean); text-decoration: none; font-weight: 500;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: .2rem 0; border-bottom: 1px dotted rgba(27,108,168,.2);
+    transition: color .2s;
+  }
+  .dish-spots a:last-child { border-bottom: none; }
+  .dish-spots a:hover { color: var(--ocean-d); }
+  .dish-spots a span { color: var(--muted); font-size:.75rem; }
+
+  /* ── DRINKS GRID ── */
+  .drinks-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 1.2rem;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 2rem 2rem;
+  }
+  .drink-card {
+    display: flex; gap: 1rem; align-items: flex-start;
+    background: var(--white);
+    border: 1px solid rgba(12,35,64,.07);
+    border-radius: 10px;
+    padding: 1.3rem;
+    transition: box-shadow .3s, transform .2s;
+  }
+  .drink-card:hover { box-shadow: 0 8px 28px rgba(12,35,64,.1); transform: translateY(-3px); }
+  .drink-icon {
+    width: 52px; height: 52px; border-radius: 12px; flex-shrink: 0;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 24px;
+    box-shadow: 0 4px 12px rgba(0,0,0,.15);
+  }
+  .drink-body { flex: 1; min-width: 0; }
+  .drink-name { font-family: var(--serif); font-size: 1.05rem; color: var(--navy); margin-bottom: .15rem; }
+  .drink-type { font-size: .68rem; letter-spacing: .12em; text-transform: uppercase; color: var(--muted); margin-bottom: .6rem; }
+  .drink-body p { font-size: .82rem; color: var(--muted); line-height: 1.7; margin-bottom: .7rem; }
+  .drink-spots { font-size: .75rem; color: var(--muted); display: flex; flex-wrap: wrap; align-items: center; gap: .4rem; }
+  .drink-spots span { font-weight: 500; color: var(--navy); }
+  .drink-spots a {
+    color: var(--ocean); text-decoration: none; font-weight: 500;
+    background: rgba(27,108,168,.08); padding: .18rem .55rem; border-radius: 100px;
+    transition: background .2s;
+  }
+  .drink-spots a:hover { background: rgba(27,108,168,.18); }
+</style>
 
 <!-- Leaflet CSS (free, no API key) -->
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet@1.9.4/dist/leaflet.min.css">
@@ -808,30 +1219,33 @@
   }
   .place-directions:hover { color: #90CDF4; }
 
-  /* Leaflet dark popup override */
+  /* Leaflet popup — light card matching SunFun brand */
   .leaflet-popup-content-wrapper {
-    background: #0d1e30 !important;
-    border: 1px solid rgba(255,255,255,.14) !important;
-    border-radius: 10px !important;
-    box-shadow: 0 8px 40px rgba(0,0,0,.7) !important;
+    background: #ffffff !important;
+    border: none !important;
+    border-radius: 12px !important;
+    box-shadow: 0 8px 40px rgba(12,35,64,.18) !important;
     padding: 0 !important;
-    color: #fff !important;
+    color: #0C2340 !important;
   }
   .leaflet-popup-content { margin: 0 !important; }
-  .leaflet-popup-tip { background: #0d1e30 !important; }
+  .leaflet-popup-tip { background: #ffffff !important; }
   .leaflet-popup-close-button {
-    color: rgba(255,255,255,.5) !important;
+    color: #aab !important;
     font-size: 20px !important;
     top: 6px !important; right: 8px !important;
   }
-  .leaflet-popup-close-button:hover { color: #fff !important; }
+  .leaflet-popup-close-button:hover { color: #0C2340 !important; }
   .leaflet-control-zoom a {
-    background: #0d1e30 !important; color: #fff !important;
-    border-color: rgba(255,255,255,.15) !important;
+    background: #0C2340 !important; color: #fff !important;
+    border-color: rgba(12,35,64,.2) !important; font-weight: 600 !important;
   }
-  .leaflet-control-zoom a:hover { background: #1a2f45 !important; }
-  .leaflet-control-attribution { background: rgba(0,0,0,.4) !important; color: rgba(255,255,255,.3) !important; }
-  .leaflet-control-attribution a { color: rgba(255,255,255,.4) !important; }
+  .leaflet-control-zoom a:hover { background: #1B6CA8 !important; }
+  .leaflet-control-attribution {
+    background: rgba(255,255,255,.8) !important;
+    color: #999 !important; font-size: .65rem !important;
+  }
+  .leaflet-control-attribution a { color: #1B6CA8 !important; }
 
   /* Custom pin markers */
   .lf-marker {
@@ -904,7 +1318,7 @@ const map = L.map('leaflet-map', {
   scrollWheelZoom: false,
 });
 
-L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png', {
+L.tileLayer('https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png', {
   attribution: '© <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> © <a href="https://carto.com/">CARTO</a>',
   subdomains: 'abcd',
   maxZoom: 19,
@@ -918,9 +1332,9 @@ const resortIcon = L.divIcon({
 L.marker([25.0824, -77.3845], { icon: resortIcon })
   .addTo(map)
   .bindPopup(`<div style="padding:14px 16px 12px;">
-    <div style="font-size:.65rem;letter-spacing:.15em;text-transform:uppercase;color:#D4A017;margin-bottom:5px;">You are here</div>
-    <div style="font-weight:600;color:#fff;font-size:.95rem;">SunFun Resort & Hotel</div>
-    <div style="font-size:.78rem;color:rgba(255,255,255,.5);margin-top:3px;">642 W Bay St, Nassau, The Bahamas</div>
+    <div style="font-size:.65rem;letter-spacing:.15em;text-transform:uppercase;color:#D4A017;margin-bottom:5px;font-weight:600;">You are here</div>
+    <div style="font-weight:700;color:#0C2340;font-size:.95rem;">SunFun Resort & Hotel</div>
+    <div style="font-size:.78rem;color:#5C6875;margin-top:3px;">642 W Bay St, Nassau, The Bahamas</div>
   </div>`, { maxWidth: 260 });
 
 function makeIcon(cat) {
@@ -935,12 +1349,12 @@ function popupHTML(place) {
   const c = CAT[place.cat];
   const stars = '★'.repeat(Math.round(place.rating)) + '☆'.repeat(5-Math.round(place.rating));
   return `<div style="padding:14px 16px 12px;min-width:210px;">
-    <div style="font-size:.62rem;letter-spacing:.15em;text-transform:uppercase;color:${c.color};margin-bottom:4px;">${c.label}</div>
-    <div style="font-weight:600;color:#fff;font-size:.92rem;line-height:1.3;margin-bottom:4px;">${place.name}</div>
-    <div style="font-size:.74rem;color:rgba(255,255,255,.55);line-height:1.5;margin-bottom:7px;">${place.note}</div>
-    <div style="font-size:.72rem;color:#D4A017;margin-bottom:10px;">${stars} ${place.rating.toFixed(1)}</div>
+    <div style="font-size:.62rem;letter-spacing:.15em;text-transform:uppercase;color:${c.color};margin-bottom:4px;font-weight:600;">${c.label}</div>
+    <div style="font-weight:700;color:#0C2340;font-size:.95rem;line-height:1.3;margin-bottom:4px;">${place.name}</div>
+    <div style="font-size:.74rem;color:#5C6875;line-height:1.5;margin-bottom:7px;">${place.note}</div>
+    <div style="font-size:.72rem;color:#D4A017;margin-bottom:10px;">${stars} <span style="color:#5C6875;">${place.rating.toFixed(1)}</span></div>
     <a href="https://maps.google.com/?q=${encodeURIComponent(place.name+' Nassau Bahamas')}" target="_blank"
-      style="font-size:.7rem;letter-spacing:.08em;text-transform:uppercase;color:#64B5F6;text-decoration:none;">
+      style="font-size:.7rem;letter-spacing:.08em;text-transform:uppercase;color:#1B6CA8;text-decoration:none;font-weight:500;">
       Get directions ↗
     </a>
   </div>`;
@@ -1012,6 +1426,26 @@ function filterMap(cat, btn) {
 
 // Init
 addMarkers('all');
+
+// Robust dish image fallbacks — if any src fails, use a themed food photo
+const DISH_FALLBACKS = {
+  'Conch Salad':        'https://images.unsplash.com/photo-1512621776951-a57141f2eefd?w=600&q=80',
+  'Conch Chowder':      'https://images.unsplash.com/photo-1547592166-23ac45744acd?w=600&q=80',
+  'Cracked Conch':      'https://images.unsplash.com/photo-1585325701956-60dd9c8553bc?w=600&q=80',
+  'Stew Fish':          'https://images.unsplash.com/photo-1534080564583-6be75777b70a?w=600&q=80',
+  'Rock Lobster':       'https://images.unsplash.com/photo-1559737558-2f5a35f4523b?w=600&q=80',
+  'Peas and Rice':      'https://images.unsplash.com/photo-1596560548464-f010549b84d7?w=600&q=80',
+  'Chicken Souse':      'https://images.unsplash.com/photo-1547592166-23ac45744acd?w=600&q=80',
+  'Guava Duff Dessert': 'https://images.unsplash.com/photo-1578985545062-69928b1d9587?w=600&q=80',
+  'Rum Cake':           'https://images.unsplash.com/photo-1621303837174-89787a7d4729?w=600&q=80',
+};
+document.querySelectorAll('.dish-img-wrap img').forEach(img => {
+  img.addEventListener('error', function() {
+    const fallback = DISH_FALLBACKS[this.alt] || 'https://images.unsplash.com/photo-1512621776951-a57141f2eefd?w=600&q=80';
+    if (this.src !== fallback) this.src = fallback;
+  });
+});
+
 renderList('all');
 </script>
 
