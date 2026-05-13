@@ -1496,7 +1496,7 @@ let leafMarkers = [];
 
 // ── FIX 1: Enable scrollWheelZoom ──
 const map = L.map('leaflet-map', {
-  center: [25.072, -77.41],
+  center: [25.073, -77.41],
   zoom: 13,
   zoomControl: true,
   scrollWheelZoom: true,   // ← was false, now true
@@ -1510,8 +1510,8 @@ L.tileLayer('https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r
 
 // ── FIX 2: Correct SunFun Hotel pin — 642 W Bay St, Nassau ──
 // Verified coordinates for 642 West Bay Street (Cable Beach corridor)
-const RESORT_LAT = 25.0824;
-const RESORT_LNG = -77.4845;
+const RESORT_LAT = 25.073278842292073;
+const RESORT_LNG = -77.43926705202382;
 
 const resortIcon = L.divIcon({
   html: '<div class="lf-resort">🏨</div>',
