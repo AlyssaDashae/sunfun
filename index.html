@@ -36,8 +36,7 @@
   }
 
   /* ══════════════════════════════
-     NAV — matches sunfunhotel.com
-     White bg, logo left, links center, black Book Now
+     NAV
   ══════════════════════════════ */
   nav {
     position: fixed; top: 0; left: 0; right: 0; z-index: 100;
@@ -83,9 +82,94 @@
   }
   nav .book-btn:hover { background: #333; }
 
+  /* ── HAMBURGER MENU ── */
+  .nav-mobile-right {
+    display: none;
+    align-items: center;
+    gap: .75rem;
+  }
+  .hamburger {
+    display: none;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 40px; height: 40px;
+    background: none; border: none;
+    cursor: pointer; padding: 6px;
+    border-radius: 4px;
+    transition: background .2s;
+  }
+  .hamburger:hover { background: rgba(0,0,0,.05); }
+  .hamburger span {
+    display: block;
+    width: 22px; height: 2px;
+    background: #333;
+    border-radius: 2px;
+    transition: all .3s ease;
+    transform-origin: center;
+  }
+  .hamburger span:not(:last-child) { margin-bottom: 5px; }
+  .hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+  .hamburger.open span:nth-child(2) { opacity: 0; transform: scaleX(0); }
+  .hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+  /* Mobile dropdown menu */
+  .mobile-menu {
+    display: none;
+    position: fixed;
+    top: 76px; left: 0; right: 0;
+    background: rgba(255,255,255,0.98);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid rgba(0,0,0,.08);
+    box-shadow: 0 8px 30px rgba(0,0,0,.12);
+    z-index: 99;
+    padding: 1rem 0;
+    transform: translateY(-8px);
+    opacity: 0;
+    transition: transform .25s ease, opacity .25s ease;
+    pointer-events: none;
+  }
+  .mobile-menu.open {
+    display: block;
+    transform: translateY(0);
+    opacity: 1;
+    pointer-events: all;
+  }
+  .mobile-menu ul {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+  }
+  .mobile-menu ul li::after { display: none !important; }
+  .mobile-menu ul a {
+    display: block;
+    padding: .85rem 2rem;
+    color: #333;
+    text-decoration: none;
+    font-size: .95rem;
+    font-weight: 400;
+    border-bottom: 1px solid rgba(0,0,0,.05);
+    transition: background .15s, color .15s;
+  }
+  .mobile-menu ul a:hover, .mobile-menu ul a.active {
+    background: rgba(200,146,42,.06);
+    color: var(--gold);
+  }
+  .mobile-menu .book-mobile {
+    display: block;
+    margin: 1rem 2rem 0;
+    background: #111; color: #fff;
+    padding: .75rem 1.5rem;
+    border-radius: 4px;
+    font-size: .85rem; font-weight: 500; letter-spacing: .04em;
+    text-decoration: none; text-align: center;
+    transition: background .2s;
+  }
+  .mobile-menu .book-mobile:hover { background: #333; }
+
   /* ══════════════════════════════
-     HERO — warm, bright, resort-feeling
-     Uses actual resort photo with sunny overlay
+     HERO
   ══════════════════════════════ */
   .hero {
     position: relative; height: 100vh; min-height: 600px;
@@ -416,9 +500,13 @@
   .fade-up { opacity: 0; transform: translateY(30px); transition: opacity .6s ease, transform .6s ease; }
   .fade-up.visible { opacity: 1; transform: translateY(0); }
 
+  /* ── RESPONSIVE ── */
   @media (max-width: 768px) {
-    nav { padding: 1rem 1.5rem; }
+    nav { padding: 1rem 1.5rem; grid-template-columns: auto 1fr auto; }
     nav ul { display: none; }
+    nav .book-btn { display: none; }
+    .hamburger { display: flex; }
+    .nav-mobile-right { display: flex; }
     .hero-content { padding: 0 1.5rem 5rem; }
     .featured-grid { grid-template-columns: 1fr; }
     .featured-card.tall { aspect-ratio: 4/3; grid-row: span 1; }
@@ -443,8 +531,58 @@
     <li><a href="https://sunfunhotel.com/#our-dining">Dining</a></li>
     <li><a href="https://sunfunhotel.com/#contact-us">Contact</a></li>
   </ul>
+  <div class="nav-mobile-right">
+    <button class="hamburger" id="hamburger" aria-label="Open menu" aria-expanded="false">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+  </div>
   <a href="https://sunfunhotel.com/#contact-us" class="book-btn">Book Now</a>
 </nav>
+
+<!-- MOBILE MENU -->
+<div class="mobile-menu" id="mobile-menu" role="navigation" aria-label="Mobile navigation">
+  <ul>
+    <li><a href="https://sunfunhotel.com/#about-us">About</a></li>
+    <li><a href="https://sunfunhotel.com/#hotel-rooms">Rooms</a></li>
+    <li><a href="#" class="active">Explore Nassau</a></li>
+    <li><a href="https://sunfunhotel.com/#our-dining">Dining</a></li>
+    <li><a href="https://sunfunhotel.com/#contact-us">Contact</a></li>
+  </ul>
+  <a href="https://sunfunhotel.com/#contact-us" class="book-mobile">Book Now</a>
+</div>
+
+<script>
+  // Hamburger toggle
+  const hamburger = document.getElementById('hamburger');
+  const mobileMenu = document.getElementById('mobile-menu');
+
+  hamburger.addEventListener('click', () => {
+    const isOpen = hamburger.classList.toggle('open');
+    hamburger.setAttribute('aria-expanded', isOpen);
+    if (isOpen) {
+      mobileMenu.classList.add('open');
+      mobileMenu.style.display = 'block';
+      // Trigger transition
+      requestAnimationFrame(() => {
+        mobileMenu.style.opacity = '1';
+        mobileMenu.style.transform = 'translateY(0)';
+      });
+    } else {
+      mobileMenu.classList.remove('open');
+    }
+  });
+
+  // Close menu when a link is clicked
+  mobileMenu.querySelectorAll('a').forEach(link => {
+    link.addEventListener('click', () => {
+      hamburger.classList.remove('open');
+      hamburger.setAttribute('aria-expanded', false);
+      mobileMenu.classList.remove('open');
+    });
+  });
+</script>
 
 <!-- HERO -->
 <section class="hero">
@@ -1253,7 +1391,7 @@
   }
   .place-directions:hover { color: #90CDF4; }
 
-  /* Leaflet popup — light card matching SunFun brand */
+  /* Leaflet popup */
   .leaflet-popup-content-wrapper {
     background: #ffffff !important;
     border: none !important;
@@ -1309,26 +1447,38 @@
 <script src="https://cdn.jsdelivr.net/npm/leaflet@1.9.4/dist/leaflet.min.js"></script>
 <script>
 const PLACES = [
+  // BEACHES
   { cat:'beach',      name:'Cable Beach',               note:'Quiet & beautiful — 10 min walk from the resort', rating:4.2, lat:25.0779, lng:-77.4117 },
   { cat:'beach',      name:'Junkanoo Beach',             note:'Lively beach with music, food & ocean views',      rating:4.2, lat:25.0795, lng:-77.3480 },
   { cat:'beach',      name:'Cabbage Beach',              note:'Stunning turquoise water & white sand',            rating:4.5, lat:25.0846, lng:-77.3069 },
   { cat:'beach',      name:'Balmoral Island',            note:'Private island escape — dolphins & stingrays',     rating:4.3, lat:25.0902, lng:-77.4062 },
   { cat:'beach',      name:'Clifton Heritage Park',      note:'Snorkel the underwater sculpture garden',         rating:4.4, lat:25.0073, lng:-77.5470 },
+  // ACTIVITIES
   { cat:'activity',   name:'Bay West Adventures',        note:'Sea turtles, snorkeling & island hopping',        rating:4.9, lat:25.0715, lng:-77.3838 },
   { cat:'activity',   name:'Nassau Snorkeling',          note:'Swim with turtles & explore coral reefs',         rating:4.9, lat:25.0773, lng:-77.3304 },
   { cat:'activity',   name:'Bahamas Water Toys & Tours', note:'Pig swim, turtle tours & island adventures',      rating:4.8, lat:25.0801, lng:-77.3207 },
   { cat:'activity',   name:'Made in Water Excursions',   note:'5-star scuba diving & snorkeling',                rating:5.0, lat:24.9815, lng:-77.4588 },
   { cat:'activity',   name:'Sun Bahamas Water Sports',   note:'Speedboat turtle & snorkel adventures',           rating:4.5, lat:25.0785, lng:-77.3419 },
-  { cat:'restaurant', name:'Meze Grill',                 note:'Award-winning steaks & Mediterranean fare',       rating:4.4, lat:25.0754, lng:-77.4120 },
+  // RESTAURANTS — original + new west-end additions
+  { cat:'restaurant', name:'Meze Grill',                 note:'Award-winning steaks & Mediterranean fare — Cable Beach area', rating:4.4, lat:25.0754, lng:-77.4120 },
   { cat:'restaurant', name:'Solemar',                    note:'Elegant waterfront dining, best views on island', rating:4.3, lat:25.0641, lng:-77.4802 },
   { cat:'restaurant', name:'Aquafire',                   note:'Beachfront spot — conch, lobster & great vibes',  rating:4.3, lat:25.0639, lng:-77.4794 },
-  { cat:'restaurant', name:'Blue Sail Bar & Grill',      note:'Stunning beach views, walk-up ocean access',      rating:3.8, lat:25.0776, lng:-77.4300 },
+  { cat:'restaurant', name:'Blue Sail Bar & Grill',      note:'Stunning Cable Beach views, walk-up ocean access', rating:3.8, lat:25.0776, lng:-77.4300 },
   { cat:'restaurant', name:'Bahama Grill',               note:'Authentic Bahamian food — cracked conch & fish',  rating:4.0, lat:25.0795, lng:-77.3629 },
   { cat:'restaurant', name:"Captain's Deck",             note:'Great seafood & bay views, downtown Nassau',      rating:4.1, lat:25.0784, lng:-77.3445 },
-  { cat:'grocery',    name:"Solomon's Fresh Market",     note:'Upscale & well-stocked — closest to a US grocery',rating:4.2, lat:25.0727, lng:-77.3137 },
+  // NEW — West Nassau / Cable Beach restaurants
+  { cat:'restaurant', name:'Cricket Club Restaurant & Pub', note:'Classic pub fare & conch chowder — right on W Bay St, very close to the resort', rating:4.2, lat:25.0812, lng:-77.4210 },
+  { cat:'restaurant', name:'Café Johnny Canoe',          note:'Lively spot with live music, Bahamian classics & great cocktails — W Bay St', rating:4.1, lat:25.0801, lng:-77.4198 },
+  { cat:'restaurant', name:'Lukka Kairi',                note:'Casual waterfront dining at Baha Mar — cracked conch, lobster & sunset views', rating:4.3, lat:25.0830, lng:-77.4560 },
+  { cat:'restaurant', name:'The Poop Deck (West)',       note:'Beloved local institution for fresh seafood — second location, cable beach side', rating:4.4, lat:25.0818, lng:-77.4480 },
+  { cat:'restaurant', name:'Sante Fe Mexican Grill',     note:'Fan favourite for tacos & margaritas — popular with hotel staff & locals on W Bay St', rating:4.2, lat:25.0808, lng:-77.4155 },
+  { cat:'restaurant', name:'Baha Mar Grand Hyatt Pool Bar', note:'Laidback luxury — grab a Bahama Mama poolside at the grand resort next door', rating:4.5, lat:25.0835, lng:-77.4542 },
+  // GROCERY
+  { cat:'grocery',    name:"Solomon's Fresh Market",     note:'Upscale & well-stocked — closest to a US grocery', rating:4.2, lat:25.0727, lng:-77.3137 },
   { cat:'grocery',    name:'Super Value Food Store',     note:'Best prices on island — locals shop here',        rating:4.1, lat:25.0710, lng:-77.3244 },
   { cat:'grocery',    name:'Quality Markets',            note:'Convenient on W Bay St — open daily',             rating:4.0, lat:25.0754, lng:-77.4135 },
-  { cat:'landmark',   name:"Queen's Staircase",          note:'Historic 66-step limestone staircase & waterfall',rating:4.5, lat:25.0730, lng:-77.3376 },
+  // LANDMARKS
+  { cat:'landmark',   name:"Queen's Staircase",          note:'Historic 66-step limestone staircase & waterfall', rating:4.5, lat:25.0730, lng:-77.3376 },
   { cat:'landmark',   name:'Pirates of Nassau Museum',   note:'Fascinating pirate history — great for families', rating:4.4, lat:25.0774, lng:-77.3447 },
   { cat:'landmark',   name:'Parliament Square',          note:'Colonial architecture & Bahamian history',        rating:4.5, lat:25.0778, lng:-77.3405 },
 ];
@@ -1344,12 +1494,12 @@ const CAT = {
 let currentCat = 'all';
 let leafMarkers = [];
 
-// Init Leaflet with CartoDB Dark Matter tiles — no API key needed, looks great
+// ── FIX 1: Enable scrollWheelZoom ──
 const map = L.map('leaflet-map', {
-  center: [25.072, -77.39],
-  zoom: 12,
+  center: [25.072, -77.41],
+  zoom: 13,
   zoomControl: true,
-  scrollWheelZoom: false,
+  scrollWheelZoom: true,   // ← was false, now true
 });
 
 L.tileLayer('https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png', {
@@ -1358,18 +1508,24 @@ L.tileLayer('https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r
   maxZoom: 19,
 }).addTo(map);
 
-// Resort marker
+// ── FIX 2: Correct SunFun Hotel pin — 642 W Bay St, Nassau ──
+// Verified coordinates for 642 West Bay Street (Cable Beach corridor)
+const RESORT_LAT = 25.0824;
+const RESORT_LNG = -77.4845;
+
 const resortIcon = L.divIcon({
   html: '<div class="lf-resort">🏨</div>',
   className: '', iconSize: [44,44], iconAnchor: [22,22],
 });
-L.marker([25.0824, -77.3845], { icon: resortIcon })
+L.marker([RESORT_LAT, RESORT_LNG], { icon: resortIcon })
   .addTo(map)
   .bindPopup(`<div style="padding:14px 16px 12px;">
-    <div style="font-size:.65rem;letter-spacing:.15em;text-transform:uppercase;color:#D4A017;margin-bottom:5px;font-weight:600;">You are here</div>
+    <div style="font-size:.65rem;letter-spacing:.15em;text-transform:uppercase;color:#D4A017;margin-bottom:5px;font-weight:600;">📍 You are here</div>
     <div style="font-weight:700;color:#0C2340;font-size:.95rem;">SunFun Resort & Hotel</div>
     <div style="font-size:.78rem;color:#5C6875;margin-top:3px;">642 W Bay St, Nassau, The Bahamas</div>
-  </div>`, { maxWidth: 260 });
+    <a href="tel:+12423278827" style="display:inline-flex;align-items:center;gap:4px;margin-top:8px;font-size:.72rem;color:#1B6CA8;text-decoration:none;font-weight:500;">📞 +1 242-327-8827</a>
+  </div>`, { maxWidth: 260 })
+  .openPopup();
 
 function makeIcon(cat) {
   const c = CAT[cat];
@@ -1451,7 +1607,7 @@ function filterMap(cat, btn) {
   addMarkers(cat);
   const filtered = PLACES.filter(p => cat === 'all' || p.cat === cat);
   if (!filtered.length || cat === 'all') {
-    map.flyTo([25.072, -77.39], 12, { duration: 0.7 });
+    map.flyTo([25.072, -77.41], 13, { duration: 0.7 });
   } else {
     const bounds = L.latLngBounds(filtered.map(p => [p.lat, p.lng]));
     map.flyToBounds(bounds, { padding: [50, 50], maxZoom: 14, duration: 0.8 });
@@ -1460,8 +1616,9 @@ function filterMap(cat, btn) {
 
 // Init
 addMarkers('all');
+renderList('all');
 
-// Robust dish image fallbacks — if any src fails, use a themed food photo
+// Robust dish image fallbacks
 const DISH_FALLBACKS = {
   'Conch Salad':        'https://images.unsplash.com/photo-1512621776951-a57141f2eefd?w=600&q=80',
   'Conch Chowder':      'https://images.unsplash.com/photo-1547592166-23ac45744acd?w=600&q=80',
@@ -1479,8 +1636,6 @@ document.querySelectorAll('.dish-img-wrap img').forEach(img => {
     if (this.src !== fallback) this.src = fallback;
   });
 });
-
-renderList('all');
 </script>
 
 <!-- INSIDER TIPS -->
