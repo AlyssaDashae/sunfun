@@ -35,9 +35,6 @@
     overflow-x: hidden;
   }
 
-  /* ══════════════════════════════
-     NAV
-  ══════════════════════════════ */
   nav {
     position: fixed; top: 0; left: 0; right: 0; z-index: 100;
     display: grid;
@@ -82,7 +79,6 @@
   }
   nav .book-btn:hover { background: #333; }
 
-  /* ── HAMBURGER MENU ── */
   .nav-mobile-right {
     display: none;
     align-items: center;
@@ -113,7 +109,6 @@
   .hamburger.open span:nth-child(2) { opacity: 0; transform: scaleX(0); }
   .hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
 
-  /* Mobile dropdown menu */
   .mobile-menu {
     display: none;
     position: fixed;
@@ -168,9 +163,6 @@
   }
   .mobile-menu .book-mobile:hover { background: #333; }
 
-  /* ══════════════════════════════
-     HERO
-  ══════════════════════════════ */
   .hero {
     position: relative; height: 100vh; min-height: 600px;
     display: flex; align-items: center;
@@ -236,7 +228,6 @@
   }
   @keyframes scrollAnim { 0%,100% { opacity: 0; transform: scaleY(.5) translateY(-10px); } 50% { opacity: 1; transform: scaleY(1) translateY(0); } }
 
-  /* ── FILTER TABS ── */
   .filter-section {
     background: var(--navy);
     padding: 2rem 4rem;
@@ -252,7 +243,6 @@
     background: var(--gold); border-color: var(--gold); color: var(--navy); font-weight: 500;
   }
 
-  /* ── SECTION HEADER ── */
   .section-header {
     text-align: center; padding: 5rem 2rem 3rem;
   }
@@ -267,47 +257,6 @@
   }
   .section-header p { color: var(--muted); max-width: 550px; margin: 0 auto; line-height: 1.8; }
 
-  /* ── FEATURED CARD (big) ── */
-  .featured-grid {
-    display: grid; grid-template-columns: 1fr 1fr;
-    gap: 2px; max-width: 1200px; margin: 0 auto 5rem; padding: 0 2rem;
-  }
-  .featured-card {
-    position: relative; overflow: hidden; border-radius: 4px;
-    aspect-ratio: 4/3; cursor: pointer;
-  }
-  .featured-card.tall { grid-row: span 2; aspect-ratio: auto; }
-  .featured-card img {
-    width: 100%; height: 100%; object-fit: cover;
-    transition: transform .6s ease;
-  }
-  .featured-card:hover img { transform: scale(1.06); }
-  .featured-card-overlay {
-    position: absolute; inset: 0;
-    background: linear-gradient(to top, rgba(6,24,39,.85) 0%, transparent 55%);
-    display: flex; flex-direction: column; justify-content: flex-end;
-    padding: 2rem;
-  }
-  .fc-tag {
-    display: inline-block; font-size: .65rem; letter-spacing: .18em; text-transform: uppercase;
-    background: var(--coral); color: var(--white);
-    padding: .25rem .7rem; border-radius: 2px; margin-bottom: .7rem; align-self: flex-start;
-  }
-  .fc-tag.water { background: var(--ocean); }
-  .fc-tag.culture { background: var(--teal); }
-  .fc-tag.dining { background: var(--gold); color: var(--navy); }
-  .featured-card h3 {
-    font-family: var(--serif); font-size: 1.5rem; color: var(--white);
-    margin-bottom: .4rem; line-height: 1.2;
-  }
-  .featured-card p { font-size: .85rem; color: rgba(255,255,255,.7); line-height: 1.6; }
-  .fc-meta {
-    display: flex; align-items: center; gap: 1rem; margin-top: .8rem;
-  }
-  .fc-meta span { font-size: .75rem; color: rgba(255,255,255,.55); display: flex; align-items: center; gap: .3rem; }
-  .fc-meta .material-icons { font-size: 14px; }
-
-  /* ── ACTIVITIES GRID ── */
   .activities-section { background: var(--sand); padding: 0 2rem 5rem; }
   .activities-grid {
     display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
@@ -346,7 +295,6 @@
   .ac-link .material-icons { font-size: 14px; transition: transform .2s; }
   .activity-card:hover .ac-link .material-icons { transform: translateX(4px); }
 
-  /* ── BEACH BANNER ── */
   .beach-banner {
     position: relative; min-height: 420px;
     display: flex; align-items: center; overflow: hidden;
@@ -391,7 +339,6 @@
   .beach-stat .num { font-family: var(--serif); font-size: 2.4rem; color: var(--white); }
   .beach-stat .label { font-size: .75rem; letter-spacing: .12em; text-transform: uppercase; color: rgba(255,255,255,.45); margin-top: .3rem; }
 
-  /* ── DINING ── */
   .dining-section { padding: 5rem 2rem; }
   .dining-section .section-header { padding-top: 0; }
   .dining-grid {
@@ -414,7 +361,6 @@
   .dining-card p { font-size: .85rem; color: var(--muted); line-height: 1.7; }
   .dining-tag { font-size: .7rem; letter-spacing: .1em; text-transform: uppercase; color: var(--coral); margin-top: .5rem; display: inline-block; }
 
-  /* ── MAP CTA ── */
   .map-cta {
     background: var(--sand); padding: 4rem 2rem;
     text-align: center;
@@ -440,7 +386,6 @@
   }
   .map-address a .material-icons { font-size: 14px; }
 
-  /* ── TIPS ── */
   .tips-section {
     padding: 5rem 2rem; background: var(--white);
     max-width: 1200px; margin: 0 auto;
@@ -454,7 +399,6 @@
   .tip-card h3 { font-family: var(--serif); font-size: 1.05rem; color: var(--navy); margin-bottom: .5rem; }
   .tip-card p { font-size: .85rem; color: var(--muted); line-height: 1.8; }
 
-  /* ── BOOK BANNER ── */
   .book-banner {
     background: var(--navy); padding: 5rem 2rem; text-align: center;
     position: relative; overflow: hidden;
@@ -487,7 +431,6 @@
   }
   .btn-outline:hover { border-color: var(--white); background: rgba(255,255,255,.05); }
 
-  /* ── FOOTER ── */
   footer {
     background: #060F1A; color: rgba(255,255,255,.45);
     padding: 2rem 4rem; font-size: .8rem;
@@ -496,11 +439,9 @@
   footer a { color: rgba(255,255,255,.45); text-decoration: none; }
   footer a:hover { color: var(--gold); }
 
-  /* ── ANIMATIONS ── */
   .fade-up { opacity: 0; transform: translateY(30px); transition: opacity .6s ease, transform .6s ease; }
   .fade-up.visible { opacity: 1; transform: translateY(0); }
 
-  /* ── RESPONSIVE ── */
   @media (max-width: 768px) {
     nav { padding: 1rem 1.5rem; grid-template-columns: auto 1fr auto; }
     nav ul { display: none; }
@@ -508,8 +449,6 @@
     .hamburger { display: flex; }
     .nav-mobile-right { display: flex; }
     .hero-content { padding: 0 1.5rem 5rem; }
-    .featured-grid { grid-template-columns: 1fr; }
-    .featured-card.tall { aspect-ratio: 4/3; grid-row: span 1; }
     .filter-section { padding: 1.5rem; }
     .beach-banner-content { grid-template-columns: 1fr; gap: 2rem; }
     .beach-stats { grid-template-columns: repeat(2, 1fr); }
@@ -554,17 +493,14 @@
 </div>
 
 <script>
-  // Hamburger toggle
   const hamburger = document.getElementById('hamburger');
   const mobileMenu = document.getElementById('mobile-menu');
-
   hamburger.addEventListener('click', () => {
     const isOpen = hamburger.classList.toggle('open');
     hamburger.setAttribute('aria-expanded', isOpen);
     if (isOpen) {
       mobileMenu.classList.add('open');
       mobileMenu.style.display = 'block';
-      // Trigger transition
       requestAnimationFrame(() => {
         mobileMenu.style.opacity = '1';
         mobileMenu.style.transform = 'translateY(0)';
@@ -573,8 +509,6 @@
       mobileMenu.classList.remove('open');
     }
   });
-
-  // Close menu when a link is clicked
   mobileMenu.querySelectorAll('a').forEach(link => {
     link.addEventListener('click', () => {
       hamburger.classList.remove('open');
@@ -613,124 +547,416 @@
   <button class="filter-btn" onclick="filterCards('dining', this)">Dining</button>
 </div>
 
-<!-- FEATURED -->
+<!-- ═══════════════════════════════════════
+     EXPERIENCES CAROUSEL
+════════════════════════════════════════ -->
 <section id="adventures">
   <div class="section-header fade-up">
     <div class="section-tag">Top Picks</div>
     <h2>Can't-Miss Nassau Experiences</h2>
     <p>From swimming with pigs to snorkeling vivid coral reefs, here's what makes Nassau unforgettable.</p>
   </div>
-  <div class="featured-grid">
 
-    <!-- LEFT: tall card -->
-    <div class="featured-card tall" data-category="water">
-      <img src="https://images.unsplash.com/photo-1544551763-46a013bb70d5?w=800&q=80" alt="Snorkeling in Nassau">
-      <div class="featured-card-overlay">
-        <span class="fc-tag water">Water</span>
-        <h3>Snorkel Nassau's Coral Reefs</h3>
-        <p>Dive into electric blue waters teeming with tropical fish, sea turtles, and vibrant coral gardens.</p>
-        <div class="fc-meta">
-          <span><span class="material-icons">schedule</span> Half day</span>
-          <span><span class="material-icons">directions_boat</span> Boat transfer included</span>
+  <!-- Carousel -->
+  <div class="exp-carousel-wrap">
+
+    <button class="exp-arrow exp-arrow-prev" id="exp-prev" aria-label="Previous">
+      <span class="material-icons">chevron_left</span>
+    </button>
+    <button class="exp-arrow exp-arrow-next" id="exp-next" aria-label="Next">
+      <span class="material-icons">chevron_right</span>
+    </button>
+
+    <div class="exp-track-outer">
+      <div class="exp-track" id="exp-track">
+
+        <!-- Card 1 -->
+        <div class="exp-card" data-category="water">
+          <img src="https://images.unsplash.com/photo-1544551763-46a013bb70d5?w=800&q=80" alt="Snorkeling Nassau coral reefs">
+          <div class="exp-card-overlay">
+            <span class="exp-tag exp-tag-water">Water</span>
+            <h3>Snorkel Nassau's Coral Reefs</h3>
+            <p>Dive into electric blue waters teeming with tropical fish, sea turtles, and vibrant coral gardens.</p>
+            <div class="exp-meta">
+              <span><span class="material-icons">schedule</span> Half day</span>
+              <span><span class="material-icons">directions_boat</span> Boat transfer</span>
+            </div>
+          </div>
         </div>
-      </div>
+
+        <!-- Card 2 -->
+        <div class="exp-card" data-category="water">
+          <img src="DOLPHIN.webp" alt="Dolphin Encounter Blue Lagoon Island"
+            onerror="this.src='https://images.unsplash.com/photo-1566438480900-0609be27a4be?w=800&q=80'">
+          <div class="exp-card-overlay">
+            <span class="exp-tag exp-tag-water">Water</span>
+            <h3>Dolphin Encounters — Blue Lagoon Island</h3>
+            <p>Swim, kiss, and dance with Atlantic bottlenose dolphins at this award-winning ocean habitat. 25 min by ferry.</p>
+            <div class="exp-meta">
+              <span><span class="material-icons">schedule</span> Half day</span>
+              <span><span class="material-icons">directions_boat</span> Ferry included</span>
+            </div>
+            <a href="https://www.dolphinencounters.com/programs/dolphin-encounter" target="_blank" class="exp-ext-link">
+              Book at dolphinencounters.com ↗
+            </a>
+          </div>
+        </div>
+
+        <!-- Card 3 -->
+        <div class="exp-card" data-category="adventure">
+          <img src="https://sunfunhotel.com/assets/img/blog-2.jpg" alt="Swim with pigs"
+            onerror="this.src='https://images.unsplash.com/photo-1548199973-03cce0bbc87b?w=800&q=80'">
+          <div class="exp-card-overlay">
+            <span class="exp-tag exp-tag-adventure">Adventure</span>
+            <h3>Swim with the Famous Pigs</h3>
+            <p>Meet the Bahamas' most beloved locals on a guided boat tour — an experience like no other.</p>
+            <div class="exp-meta">
+              <span><span class="material-icons">schedule</span> Full day</span>
+              <span><span class="material-icons">directions_boat</span> Boat departs Nassau</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Card 4 -->
+        <div class="exp-card" data-category="adventure">
+          <img src="https://cdn11.bigcommerce.com/s-kkcycdhlmf/images/stencil/1000x570/products/324/1212/Arial-View_Approved__42449.1652968516.png"
+            alt="Baha Bay Waterpark Nassau"
+            onerror="this.src='https://images.unsplash.com/photo-1555041469-a586c61ea9bc?w=800&q=80'">
+          <div class="exp-card-overlay">
+            <span class="exp-tag exp-tag-adventure">Adventure</span>
+            <h3>Baha Bay Waterpark — Day Pass</h3>
+            <p>15 beachfront acres of thrills: water coasters, a 500,000-gallon wave pool, the Caribbean's only surf simulator & lazy river. From $65.</p>
+            <div class="exp-meta">
+              <span><span class="material-icons">schedule</span> Full day · 10am–5pm</span>
+            </div>
+            <a href="https://bahabay.bahamar.com/buy-tickets/" target="_blank" class="exp-ext-link">
+              Buy tickets at bahabay.com ↗
+            </a>
+          </div>
+        </div>
+
+        <!-- Card 5 -->
+        <div class="exp-card" data-category="culture">
+          <img src="https://images.unsplash.com/photo-1528543606781-2f6e6857f318?w=800&q=80" alt="Nassau downtown heritage tour">
+          <div class="exp-card-overlay">
+            <span class="exp-tag exp-tag-culture">Culture</span>
+            <h3>Nassau City & Heritage Tour</h3>
+            <p>Explore colorful colonial architecture, the straw market, and Fort Fincastle with a local guide.</p>
+            <div class="exp-meta">
+              <span><span class="material-icons">schedule</span> 3–4 hours</span>
+              <span><span class="material-icons">group</span> Small group</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Card 6 -->
+        <div class="exp-card" data-category="adventure">
+          <img src="https://images.unsplash.com/photo-1505118380757-91f5f5632de0?w=800&q=80" alt="Sunset sailing cruise Nassau">
+          <div class="exp-card-overlay">
+            <span class="exp-tag exp-tag-adventure">Adventure</span>
+            <h3>Sunset Sailing Cruise</h3>
+            <p>Glide across Nassau Harbour as the sky turns gold and pink. Cocktails, sea breeze, and unforgettable views.</p>
+            <div class="exp-meta">
+              <span><span class="material-icons">schedule</span> 2–3 hours</span>
+              <span><span class="material-icons">local_bar</span> Cocktails included</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Card 7 — NEW: John Watling's Distillery -->
+        <div class="exp-card" data-category="culture">
+          <img src="https://images.unsplash.com/photo-1558642452-9d2a7deb7f62?w=800&q=80" alt="John Watling's Rum Distillery Nassau">
+          <div class="exp-card-overlay">
+            <span class="exp-tag exp-tag-culture">Culture</span>
+            <h3>John Watling's Distillery Tour</h3>
+            <p>Sip small-batch Bahamian rum aged in white oak at Nassau's stunning Buena Vista Estate. Free tour and tasting.</p>
+            <div class="exp-meta">
+              <span><span class="material-icons">schedule</span> 1–2 hours</span>
+              <span><span class="material-icons">attach_money</span> Free entry</span>
+            </div>
+            <a href="https://maps.google.com/?q=John+Watling's+Distillery+Nassau" target="_blank" class="exp-ext-link">
+              Get directions ↗
+            </a>
+          </div>
+        </div>
+
+        <!-- Card 8 — NEW: Parasailing -->
+        <div class="exp-card" data-category="adventure">
+          <img src="https://images.unsplash.com/photo-1533760881669-80db4d7b341d?w=800&q=80" alt="Parasailing Nassau Cable Beach">
+          <div class="exp-card-overlay">
+            <span class="exp-tag exp-tag-adventure">Adventure</span>
+            <h3>Parasailing over Nassau</h3>
+            <p>Soar 500 feet above the turquoise water for jaw-dropping aerial views of Cable Beach and the Nassau skyline.</p>
+            <div class="exp-meta">
+              <span><span class="material-icons">schedule</span> 1 hour</span>
+              <span><span class="material-icons">directions_boat</span> Boat-launched</span>
+            </div>
+          </div>
+        </div>
+
+      </div><!-- end exp-track -->
+    </div><!-- end exp-track-outer -->
+
+    <!-- Dots + progress bar -->
+    <div class="exp-controls">
+      <div class="exp-dots" id="exp-dots"></div>
+      <div class="exp-progress-bar"><div class="exp-progress-fill" id="exp-fill"></div></div>
     </div>
 
-    <!-- RIGHT: 2×2 grid of four cards -->
-    <div class="featured-right-grid">
-
-      <div class="featured-card" data-category="water">
-        <img src="DOLPHIN.webp"
-          alt="Dolphin Encounter Blue Lagoon Island"
-          onerror="this.src='https://images.unsplash.com/photo-1566438480900-0609be27a4be?w=800&q=80'">
-        <div class="featured-card-overlay">
-          <span class="fc-tag water">Water</span>
-          <h3>Dolphin Encounters — Blue Lagoon Island</h3>
-          <p>Swim, kiss, and dance with Atlantic bottlenose dolphins at this award-winning all-natural ocean habitat. 25 minutes from Nassau by ferry.</p>
-          <div class="fc-meta">
-            <span><span class="material-icons">schedule</span> Half day</span>
-            <span><span class="material-icons">directions_boat</span> Ferry included</span>
-          </div>
-          <a href="https://www.dolphinencounters.com/programs/dolphin-encounter" target="_blank"
-            style="display:inline-flex;align-items:center;gap:4px;margin-top:.6rem;font-size:.72rem;letter-spacing:.08em;text-transform:uppercase;color:#D4A017;text-decoration:none;">
-            Book at dolphinencounters.com ↗
-          </a>
-        </div>
-      </div>
-
-      <div class="featured-card" data-category="adventure">
-        <img src="https://sunfunhotel.com/assets/img/blog-2.jpg" alt="Swim with pigs"
-          onerror="this.src='https://images.unsplash.com/photo-1548199973-03cce0bbc87b?w=800&q=80'">
-        <div class="featured-card-overlay">
-          <span class="fc-tag">Adventure</span>
-          <h3>Swim with the Famous Pigs</h3>
-          <p>Meet the Bahamas' most beloved locals on a guided boat tour — an experience like no other.</p>
-          <div class="fc-meta">
-            <span><span class="material-icons">schedule</span> Full day</span>
-          </div>
-        </div>
-      </div>
-
-      <div class="featured-card" data-category="adventure">
-        <img src="https://cdn11.bigcommerce.com/s-kkcycdhlmf/images/stencil/1000x570/products/324/1212/Arial-View_Approved__42449.1652968516.png"
-          alt="Baha Bay Waterpark at Baha Mar Nassau"
-          onerror="this.src='https://images.unsplash.com/photo-1555041469-a586c61ea9bc?w=800&q=80'">
-        <div class="featured-card-overlay">
-          <span class="fc-tag">Adventure</span>
-          <h3>Baha Bay Waterpark — Day Pass</h3>
-          <p>15 beachfront acres of thrills: water coasters, a 500,000-gallon wave pool, the Caribbean's only surf simulator, lazy river, and world-class dining. Day passes from $65.</p>
-          <div class="fc-meta">
-            <span><span class="material-icons">schedule</span> Full day · 10am–5pm</span>
-          </div>
-          <a href="https://bahabay.bahamar.com/buy-tickets/" target="_blank"
-            style="display:inline-flex;align-items:center;gap:4px;margin-top:.6rem;font-size:.72rem;letter-spacing:.08em;text-transform:uppercase;color:#D4A017;text-decoration:none;">
-            Buy tickets at bahabay.com ↗
-          </a>
-        </div>
-      </div>
-
-      <div class="featured-card" data-category="culture">
-        <img src="https://images.unsplash.com/photo-1528543606781-2f6e6857f318?w=800&q=80" alt="Nassau downtown">
-        <div class="featured-card-overlay">
-          <span class="fc-tag culture">Culture</span>
-          <h3>Nassau City & Heritage Tour</h3>
-          <p>Explore colorful colonial architecture, the straw market, and Fort Fincastle with a local guide.</p>
-          <div class="fc-meta">
-            <span><span class="material-icons">schedule</span> 3–4 hours</span>
-          </div>
-        </div>
-      </div>
-
-    </div><!-- end featured-right-grid -->
-  </div>
+  </div><!-- end exp-carousel-wrap -->
 </section>
 
 <style>
-  .featured-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 6px;
+  /* ══ EXPERIENCES CAROUSEL ══ */
+  .exp-carousel-wrap {
+    position: relative;
     max-width: 1200px;
     margin: 0 auto 5rem;
     padding: 0 2rem;
   }
-  .featured-right-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 6px;
+  .exp-track-outer {
+    overflow: hidden;
+    border-radius: 6px;
   }
-  .featured-right-grid .featured-card {
-    aspect-ratio: 4/3;
+  .exp-track {
+    display: flex;
+    gap: 16px;
+    transition: transform .55s cubic-bezier(.4,0,.2,1);
+    will-change: transform;
   }
+  .exp-card {
+    flex: 0 0 calc(33.333% - 11px);
+    min-width: 0;
+    position: relative;
+    border-radius: 6px;
+    overflow: hidden;
+    cursor: pointer;
+    background: #0a1624;
+    aspect-ratio: 3/4;
+  }
+  .exp-card img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform .6s ease;
+  }
+  .exp-card:hover img { transform: scale(1.06); }
+  .exp-card-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to top,
+      rgba(6,18,34,.95) 0%,
+      rgba(6,18,34,.5) 45%,
+      transparent 100%);
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    padding: 1.6rem;
+  }
+  .exp-tag {
+    display: inline-block;
+    font-size: .62rem;
+    letter-spacing: .16em;
+    text-transform: uppercase;
+    padding: .22rem .65rem;
+    border-radius: 2px;
+    margin-bottom: .65rem;
+    align-self: flex-start;
+    font-weight: 600;
+  }
+  .exp-tag-water    { background: #1B6CA8; color: #fff; }
+  .exp-tag-adventure{ background: #E85D3F; color: #fff; }
+  .exp-tag-culture  { background: #1DA57A; color: #fff; }
+  .exp-card-overlay h3 {
+    font-family: var(--serif);
+    font-size: 1.1rem;
+    color: #fff;
+    line-height: 1.25;
+    margin-bottom: .45rem;
+  }
+  .exp-card-overlay p {
+    font-size: .78rem;
+    color: rgba(255,255,255,.68);
+    line-height: 1.6;
+    margin-bottom: .8rem;
+  }
+  .exp-meta {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    flex-wrap: wrap;
+  }
+  .exp-meta span {
+    font-size: .72rem;
+    color: rgba(255,255,255,.5);
+    display: flex;
+    align-items: center;
+    gap: .25rem;
+  }
+  .exp-meta .material-icons { font-size: 13px; }
+  .exp-ext-link {
+    margin-top: .6rem;
+    font-size: .7rem;
+    letter-spacing: .08em;
+    text-transform: uppercase;
+    color: #D4A017;
+    text-decoration: none;
+    display: inline-block;
+    font-weight: 500;
+  }
+  .exp-ext-link:hover { color: #f0c040; }
+
+  /* Arrows */
+  .exp-arrow {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-60%);
+    z-index: 10;
+    width: 44px; height: 44px;
+    border-radius: 50%;
+    border: 1px solid rgba(12,35,64,.2);
+    background: #fff;
+    color: var(--navy);
+    cursor: pointer;
+    display: flex; align-items: center; justify-content: center;
+    box-shadow: 0 2px 16px rgba(12,35,64,.15);
+    transition: background .2s, color .2s, border-color .2s;
+  }
+  .exp-arrow:hover { background: var(--navy); color: #fff; border-color: var(--navy); }
+  .exp-arrow .material-icons { font-size: 22px; }
+  .exp-arrow-prev { left: -10px; }
+  .exp-arrow-next { right: -10px; }
+
+  /* Dots + progress */
+  .exp-controls {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+    padding-top: 1.4rem;
+  }
+  .exp-dots { display: flex; gap: 7px; align-items: center; }
+  .exp-dot {
+    width: 8px; height: 8px; border-radius: 50%;
+    background: rgba(12,35,64,.2);
+    border: none;
+    cursor: pointer;
+    padding: 0;
+    transition: background .25s, transform .25s;
+  }
+  .exp-dot.active {
+    background: var(--navy);
+    transform: scale(1.35);
+  }
+  .exp-progress-bar {
+    width: 64px; height: 2px;
+    background: rgba(12,35,64,.12);
+    border-radius: 2px;
+    overflow: hidden;
+  }
+  .exp-progress-fill {
+    height: 100%;
+    background: var(--gold);
+    border-radius: 2px;
+    width: 0%;
+    transition: width linear;
+  }
+
+  /* Responsive */
   @media (max-width: 900px) {
-    .featured-grid { grid-template-columns: 1fr; }
-    .featured-card.tall { aspect-ratio: 4/3; }
-    .featured-right-grid { grid-template-columns: 1fr 1fr; }
+    .exp-card { flex: 0 0 calc(50% - 8px); }
   }
   @media (max-width: 560px) {
-    .featured-right-grid { grid-template-columns: 1fr; }
+    .exp-card { flex: 0 0 100%; }
+    .exp-arrow-prev { left: 0; }
+    .exp-arrow-next { right: 0; }
   }
 </style>
+
+<script>
+(function() {
+  const track   = document.getElementById('exp-track');
+  const dotsEl  = document.getElementById('exp-dots');
+  const fillEl  = document.getElementById('exp-fill');
+  const CARDS   = Array.from(track.children);
+  const TOTAL   = CARDS.length;
+  const DURATION = 4500;
+  let current = 0, timer = null, paused = false;
+
+  function visCount() {
+    const w = track.parentElement.offsetWidth;
+    if (w < 560) return 1;
+    if (w < 900) return 2;
+    return 3;
+  }
+  function slides() { return Math.max(1, TOTAL - visCount() + 1); }
+
+  function buildDots() {
+    dotsEl.innerHTML = '';
+    for (let i = 0; i < slides(); i++) {
+      const d = document.createElement('button');
+      d.className = 'exp-dot' + (i === current ? ' active' : '');
+      d.setAttribute('aria-label', 'Slide ' + (i+1));
+      d.addEventListener('click', () => goTo(i));
+      dotsEl.appendChild(d);
+    }
+  }
+  function updateDots() {
+    dotsEl.querySelectorAll('.exp-dot').forEach((d,i) => d.classList.toggle('active', i === current));
+  }
+  function cardWidth() {
+    const gap = 16;
+    const outer = track.parentElement.offsetWidth;
+    const n = visCount();
+    return (outer - gap * (n - 1)) / n;
+  }
+  function slideTo(idx) {
+    const offset = idx * (cardWidth() + 16);
+    track.style.transform = 'translateX(-' + offset + 'px)';
+  }
+  function goTo(idx) {
+    current = Math.max(0, Math.min(idx, slides() - 1));
+    slideTo(current);
+    updateDots();
+    resetFill();
+  }
+  function next() { goTo((current + 1) % slides()); }
+  function prev() { goTo((current - 1 + slides()) % slides()); }
+
+  function resetFill() {
+    clearInterval(timer);
+    fillEl.style.transition = 'none';
+    fillEl.style.width = '0%';
+    requestAnimationFrame(() => {
+      fillEl.style.transition = 'width ' + DURATION + 'ms linear';
+      fillEl.style.width = '100%';
+    });
+    if (!paused) timer = setInterval(next, DURATION);
+  }
+
+  document.getElementById('exp-prev').addEventListener('click', () => { paused = false; prev(); });
+  document.getElementById('exp-next').addEventListener('click', () => { paused = false; next(); });
+
+  const outer = track.parentElement;
+  outer.addEventListener('mouseenter', () => { paused = true; clearInterval(timer); fillEl.style.transition = 'none'; });
+  outer.addEventListener('mouseleave', () => { paused = false; resetFill(); });
+
+  let ts = 0;
+  track.addEventListener('touchstart', e => { ts = e.touches[0].clientX; paused = true; clearInterval(timer); }, { passive: true });
+  track.addEventListener('touchend',   e => {
+    const diff = ts - e.changedTouches[0].clientX;
+    if (Math.abs(diff) > 40) diff > 0 ? next() : prev();
+    paused = false; resetFill();
+  }, { passive: true });
+
+  window.addEventListener('resize', () => { buildDots(); slideTo(current); });
+
+  buildDots();
+  slideTo(0);
+  resetFill();
+})();
+</script>
 
 <!-- ACTIVITIES GRID -->
 <section class="activities-section">
@@ -923,7 +1149,6 @@
     <p>Nassau's food culture runs deep — shaped by African, Caribbean, and British roots. These are the dishes and drinks you simply cannot leave without trying.</p>
   </div>
 
-  <!-- Sub-header: Dishes -->
   <div style="max-width:1200px; margin: 0 auto 2rem; padding: 0 2rem;">
     <div style="display:flex; align-items:center; gap:1rem; margin-bottom:2rem;">
       <span style="font-family:var(--serif); font-size:1.5rem; color:var(--navy);">🍽️ Signature Dishes</span>
@@ -933,7 +1158,6 @@
 
   <div class="dish-grid">
 
-    <!-- CONCH SALAD -->
     <div class="dish-card fade-up">
       <div class="dish-img-wrap">
         <img src="ConchSalad.webp" alt="Conch Salad"
@@ -954,7 +1178,6 @@
       </div>
     </div>
 
-    <!-- CONCH CHOWDER -->
     <div class="dish-card fade-up">
       <div class="dish-img-wrap">
         <img src="conchchowder.jpeg" alt="Conch Chowder"
@@ -963,7 +1186,7 @@
       </div>
       <div class="dish-body">
         <h3>Conch Chowder</h3>
-        <p>Hearty tomato-based soup (not creamy — think gumbo) packed with conch, potatoes, root vegetables, and island spices. Served piping hot with a side of Johnny Cake to soak it all up.</p>
+        <p>Hearty tomato-based soup packed with conch, potatoes, root vegetables, and island spices. Served piping hot with a side of Johnny Cake to soak it all up.</p>
         <div class="dish-where">
           <span class="dish-where-label">Where to try it</span>
           <div class="dish-spots">
@@ -975,7 +1198,6 @@
       </div>
     </div>
 
-    <!-- CRACKED CONCH -->
     <div class="dish-card fade-up">
       <div class="dish-img-wrap">
         <img src="cracked-conch.jpg" alt="Cracked Conch"
@@ -996,7 +1218,6 @@
       </div>
     </div>
 
-    <!-- BAHAMIAN STEW FISH -->
     <div class="dish-card fade-up">
       <div class="dish-img-wrap">
         <img src="stew-fish.jpg" alt="Stew Fish"
@@ -1005,7 +1226,7 @@
       </div>
       <div class="dish-body">
         <h3>Bahamian Stew Fish</h3>
-        <p>Fresh grouper or snapper marinated in lime, then simmered in a rich tomato-based sauce with onions, thyme, and a medley of island spices. Best eaten with Johnny Cake on the side.</p>
+        <p>Fresh grouper or snapper marinated in lime, then simmered in a rich tomato-based sauce with onions, thyme, and island spices. Best eaten with Johnny Cake on the side.</p>
         <div class="dish-where">
           <span class="dish-where-label">Where to try it</span>
           <div class="dish-spots">
@@ -1017,7 +1238,6 @@
       </div>
     </div>
 
-    <!-- ROCK LOBSTER -->
     <div class="dish-card fade-up">
       <div class="dish-img-wrap">
         <img src="lobster.webp" alt="Rock Lobster"
@@ -1026,7 +1246,7 @@
       </div>
       <div class="dish-body">
         <h3>Rock Lobster</h3>
-        <p>Spiny lobster pulled straight from the turquoise shallows — smaller and sweeter than its Atlantic cousin. Grilled, steamed, or broiled and served with butter and a squeeze of fresh lime.</p>
+        <p>Spiny lobster pulled straight from the turquoise shallows — smaller and sweeter than its Atlantic cousin. Grilled, steamed, or broiled with butter and a squeeze of fresh lime.</p>
         <div class="dish-where">
           <span class="dish-where-label">Where to try it</span>
           <div class="dish-spots">
@@ -1038,7 +1258,6 @@
       </div>
     </div>
 
-    <!-- PEAS N RICE -->
     <div class="dish-card fade-up">
       <div class="dish-img-wrap">
         <img src="Peas-n-Rice.jpg" alt="Peas and Rice"
@@ -1059,7 +1278,6 @@
       </div>
     </div>
 
-    <!-- CHICKEN SOUSE -->
     <div class="dish-card fade-up">
       <div class="dish-img-wrap">
         <img src="souse.jpg" alt="Sheep Tongue Souse"
@@ -1080,7 +1298,6 @@
       </div>
     </div>
 
-    <!-- GUAVA DUFF -->
     <div class="dish-card fade-up">
       <div class="dish-img-wrap">
         <img src="guava-duff.jpg" alt="Guava Duff Dessert"
@@ -1101,7 +1318,6 @@
       </div>
     </div>
 
-    <!-- RUM CAKE -->
     <div class="dish-card fade-up">
       <div class="dish-img-wrap">
         <img src="rum-cake.webp" alt="Rum Cake"
@@ -1121,9 +1337,9 @@
       </div>
     </div>
 
-  </div><!-- end dish-grid -->
+  </div>
 
-  <!-- ── ISLAND DRINKS ── -->
+  <!-- ISLAND DRINKS -->
   <div style="max-width:1200px; margin: 4rem auto 2rem; padding: 0 2rem;">
     <div style="display:flex; align-items:center; gap:1rem; margin-bottom:2rem;">
       <span style="font-family:var(--serif); font-size:1.5rem; color:var(--navy);">🍹 Island Drinks</span>
@@ -1166,7 +1382,7 @@
       <div class="drink-body">
         <div class="drink-name">Sky Juice</div>
         <div class="drink-type">Born at Arawak Cay</div>
-        <p>Gin, fresh coconut water, sweetened condensed milk, and nutmeg — the original backyard drink of the Bahamas, invented during Prohibition at Arawak Cay. Creamy, sweet, and deceivingly strong.</p>
+        <p>Gin, fresh coconut water, sweetened condensed milk, and nutmeg — the original backyard drink of the Bahamas. Creamy, sweet, and deceivingly strong.</p>
         <div class="drink-spots">
           <span>Try it at:</span>
           <a href="https://maps.google.com/?q=Arawak+Cay+Fish+Fry+Nassau" target="_blank">Arawak Cay Fish Fry</a>
@@ -1180,7 +1396,7 @@
       <div class="drink-body">
         <div class="drink-name">Yellow Bird</div>
         <div class="drink-type">Named for a calypso classic</div>
-        <p>Light rum, Galliano, crème de banana, pineapple and orange juice — a bright canary-yellow cocktail with a zingy citrus kick. A nod to the beloved Caribbean song of the same name.</p>
+        <p>Light rum, Galliano, crème de banana, pineapple and orange juice — a bright canary-yellow cocktail with a zingy citrus kick.</p>
         <div class="drink-spots">
           <span>Try it at:</span>
           <a href="https://maps.google.com/?q=Frankie+Gone+Bananas+Nassau" target="_blank">Frankie Gone Bananas</a>
@@ -1194,7 +1410,7 @@
       <div class="drink-body">
         <div class="drink-name">John Watling's Rum</div>
         <div class="drink-type">Bahamian Craft Rum</div>
-        <p>Small-batch rum distilled at Nassau's Buena Vista Estate using hand-harvested Bahamian sugarcane molasses, aged in American white oak. Visit the distillery for a free tour and tasting.</p>
+        <p>Small-batch rum distilled at Nassau's Buena Vista Estate using hand-harvested Bahamian sugarcane molasses, aged in American white oak. Free tour and tasting at the distillery.</p>
         <div class="drink-spots">
           <span>Try it at:</span>
           <a href="https://maps.google.com/?q=John+Watling's+Distillery+Nassau" target="_blank">John Watling's Distillery</a>
@@ -1207,7 +1423,7 @@
       <div class="drink-body">
         <div class="drink-name">Kalik Beer</div>
         <div class="drink-type">The Local Lager</div>
-        <p>The Bahamas' own brew — a light, crisp lager that's been a local institution since 1969. Its name comes from the sound of the cowbells in Junkanoo. Cold Kalik, warm sun, white sand: perfection.</p>
+        <p>The Bahamas' own brew — a light, crisp lager that's been a local institution since 1969. Its name comes from the sound of cowbells in Junkanoo. Cold Kalik, warm sun, white sand: perfection.</p>
         <div class="drink-spots">
           <span>Try it at:</span>
           <a href="https://maps.google.com/?q=Pirate+Republic+Brewing+Nassau" target="_blank">Pirate Republic Brewing Co.</a>
@@ -1216,7 +1432,7 @@
       </div>
     </div>
 
-  </div><!-- end drinks-grid -->
+  </div>
 
   <div style="text-align:center; padding: 3rem 2rem 0;">
     <p style="color:var(--muted); font-size:.9rem; max-width:480px; margin: 0 auto 1.5rem;">Our front desk team knows all the best spots — ask us for a personal recommendation or reservation help.</p>
@@ -1228,7 +1444,6 @@
 </section>
 
 <style>
-  /* ── DISH GRID ── */
   .dish-grid {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
@@ -1273,7 +1488,6 @@
   .dish-spots a:hover { color: var(--ocean-d); }
   .dish-spots a span { color: var(--muted); font-size:.75rem; }
 
-  /* ── DRINKS GRID ── */
   .drinks-grid {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
@@ -1311,7 +1525,7 @@
   .drink-spots a:hover { background: rgba(27,108,168,.18); }
 </style>
 
-<!-- Leaflet CSS (free, no API key) -->
+<!-- Leaflet CSS -->
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet@1.9.4/dist/leaflet.min.css">
 
 <!-- EXPLORE MAP -->
@@ -1322,7 +1536,6 @@
     <p style="color: rgba(255,255,255,.6); max-width: 520px; margin: 0 auto; line-height: 1.8;">Beaches, tours, restaurants, and grocery stores — all the local knowledge our team has gathered, mapped for you.</p>
   </div>
 
-  <!-- Category Filter -->
   <div style="display:flex; justify-content:center; gap:.75rem; flex-wrap:wrap; padding: 0 2rem 2.5rem;">
     <button class="map-cat-btn active" data-cat="all" onclick="filterMap('all',this)">
       <span class="material-icons" style="font-size:16px;vertical-align:middle;">public</span> All
@@ -1344,13 +1557,11 @@
     </button>
   </div>
 
-  <!-- Map + Sidebar layout -->
   <div id="map-shell" style="display:grid; grid-template-columns:340px 1fr; height:600px; max-width:100%;">
     <div id="place-list" style="overflow-y:auto; height:600px; background:#0a1624; border-top:1px solid rgba(255,255,255,.07);"></div>
     <div id="leaflet-map" style="width:100%; height:600px; z-index:1;"></div>
   </div>
 
-  <!-- Bottom bar -->
   <div style="background:#060F1A; padding:1.2rem 2rem; display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:1rem;">
     <span style="color:rgba(255,255,255,.5); font-size:.85rem; display:flex; align-items:center; gap:.5rem;">
       <span class="material-icons" style="color:var(--gold);font-size:18px;">location_on</span>
@@ -1391,7 +1602,6 @@
   }
   .place-directions:hover { color: #90CDF4; }
 
-  /* Leaflet popup */
   .leaflet-popup-content-wrapper {
     background: #ffffff !important;
     border: none !important;
@@ -1402,24 +1612,13 @@
   }
   .leaflet-popup-content { margin: 0 !important; }
   .leaflet-popup-tip { background: #ffffff !important; }
-  .leaflet-popup-close-button {
-    color: #aab !important;
-    font-size: 20px !important;
-    top: 6px !important; right: 8px !important;
-  }
+  .leaflet-popup-close-button { color: #aab !important; font-size: 20px !important; top: 6px !important; right: 8px !important; }
   .leaflet-popup-close-button:hover { color: #0C2340 !important; }
-  .leaflet-control-zoom a {
-    background: #0C2340 !important; color: #fff !important;
-    border-color: rgba(12,35,64,.2) !important; font-weight: 600 !important;
-  }
+  .leaflet-control-zoom a { background: #0C2340 !important; color: #fff !important; border-color: rgba(12,35,64,.2) !important; font-weight: 600 !important; }
   .leaflet-control-zoom a:hover { background: #1B6CA8 !important; }
-  .leaflet-control-attribution {
-    background: rgba(255,255,255,.8) !important;
-    color: #999 !important; font-size: .65rem !important;
-  }
+  .leaflet-control-attribution { background: rgba(255,255,255,.8) !important; color: #999 !important; font-size: .65rem !important; }
   .leaflet-control-attribution a { color: #1B6CA8 !important; }
 
-  /* Custom pin markers */
   .lf-marker {
     width: 36px; height: 36px; border-radius: 50%;
     display: flex; align-items: center; justify-content: center;
@@ -1447,37 +1646,31 @@
 <script src="https://cdn.jsdelivr.net/npm/leaflet@1.9.4/dist/leaflet.min.js"></script>
 <script>
 const PLACES = [
-  // BEACHES
   { cat:'beach',      name:'Cable Beach',               note:'Quiet & beautiful — 10 min walk from the resort', rating:4.2, lat:25.0779, lng:-77.4117 },
   { cat:'beach',      name:'Junkanoo Beach',             note:'Lively beach with music, food & ocean views',      rating:4.2, lat:25.0795, lng:-77.3480 },
   { cat:'beach',      name:'Cabbage Beach',              note:'Stunning turquoise water & white sand',            rating:4.5, lat:25.0846, lng:-77.3069 },
   { cat:'beach',      name:'Balmoral Island',            note:'Private island escape — dolphins & stingrays',     rating:4.3, lat:25.0902, lng:-77.4062 },
   { cat:'beach',      name:'Clifton Heritage Park',      note:'Snorkel the underwater sculpture garden',         rating:4.4, lat:25.0073, lng:-77.5470 },
-  // ACTIVITIES
   { cat:'activity',   name:'Bay West Adventures',        note:'Sea turtles, snorkeling & island hopping',        rating:4.9, lat:25.0715, lng:-77.3838 },
   { cat:'activity',   name:'Nassau Snorkeling',          note:'Swim with turtles & explore coral reefs',         rating:4.9, lat:25.0773, lng:-77.3304 },
   { cat:'activity',   name:'Bahamas Water Toys & Tours', note:'Pig swim, turtle tours & island adventures',      rating:4.8, lat:25.0801, lng:-77.3207 },
   { cat:'activity',   name:'Made in Water Excursions',   note:'5-star scuba diving & snorkeling',                rating:5.0, lat:24.9815, lng:-77.4588 },
   { cat:'activity',   name:'Sun Bahamas Water Sports',   note:'Speedboat turtle & snorkel adventures',           rating:4.5, lat:25.0785, lng:-77.3419 },
-  // RESTAURANTS — original + new west-end additions
   { cat:'restaurant', name:'Meze Grill',                 note:'Award-winning steaks & Mediterranean fare — Cable Beach area', rating:4.4, lat:25.0754, lng:-77.4120 },
   { cat:'restaurant', name:'Solemar',                    note:'Elegant waterfront dining, best views on island', rating:4.3, lat:25.0641, lng:-77.4802 },
   { cat:'restaurant', name:'Aquafire',                   note:'Beachfront spot — conch, lobster & great vibes',  rating:4.3, lat:25.0639, lng:-77.4794 },
   { cat:'restaurant', name:'Blue Sail Bar & Grill',      note:'Stunning Cable Beach views, walk-up ocean access', rating:3.8, lat:25.0776, lng:-77.4300 },
   { cat:'restaurant', name:'Bahama Grill',               note:'Authentic Bahamian food — cracked conch & fish',  rating:4.0, lat:25.0795, lng:-77.3629 },
   { cat:'restaurant', name:"Captain's Deck",             note:'Great seafood & bay views, downtown Nassau',      rating:4.1, lat:25.0784, lng:-77.3445 },
-  // NEW — West Nassau / Cable Beach restaurants
   { cat:'restaurant', name:'Cricket Club Restaurant & Pub', note:'Classic pub fare & conch chowder — right on W Bay St, very close to the resort', rating:4.2, lat:25.07814487113442, lng:-77.35856725961963 },
   { cat:'restaurant', name:'Café Johnny Canoe',          note:'Lively spot with live music, Bahamian classics & great cocktails — W Bay St', rating:4.1, lat:25.0801, lng:-77.4198 },
   { cat:'restaurant', name:'Lukka Kairi',                note:'Casual waterfront dining at Baha Mar — cracked conch, lobster & sunset views', rating:4.3, lat:25.079791343257018, lng:-77.34519013439751 },
   { cat:'restaurant', name:'The Poop Deck (West)',       note:'Beloved local institution for fresh seafood — second location, cable beach side', rating:4.4, lat:25.078393754020816, lng:-77.43105954538275 },
   { cat:'restaurant', name:'Sante Fe Mexican Grill',     note:'Fan favourite for tacos & margaritas — popular with hotel staff & locals on W Bay St', rating:4.2, lat:25.0808, lng:-77.4155 },
   { cat:'restaurant', name:'Baha Mar Grand Hyatt Pool Bar', note:'Laidback luxury — grab a Bahama Mama poolside at the grand resort next door', rating:4.5, lat:25.07279014047694, lng:-77.39592111591463 },
-  // GROCERY
   { cat:'grocery',    name:"Solomon's Fresh Market",     note:'Upscale & well-stocked — closest to a US grocery', rating:4.2, lat:25.0727, lng:-77.3137 },
   { cat:'grocery',    name:'Super Value Food Store',     note:'Best prices on island — locals shop here',        rating:4.1, lat:25.0710, lng:-77.3244 },
   { cat:'grocery',    name:'Quality Markets',            note:'Convenient on W Bay St — open daily',             rating:4.0, lat:25.0754, lng:-77.4135 },
-  // LANDMARKS
   { cat:'landmark',   name:"Queen's Staircase",          note:'Historic 66-step limestone staircase & waterfall', rating:4.5, lat:25.0730, lng:-77.3376 },
   { cat:'landmark',   name:'Pirates of Nassau Museum',   note:'Fascinating pirate history — great for families', rating:4.4, lat:25.0774, lng:-77.3447 },
   { cat:'landmark',   name:'Parliament Square',          note:'Colonial architecture & Bahamian history',        rating:4.5, lat:25.0778, lng:-77.3405 },
@@ -1494,47 +1687,28 @@ const CAT = {
 let currentCat = 'all';
 let leafMarkers = [];
 
-// ── FIX 1: Enable scrollWheelZoom ──
-const map = L.map('leaflet-map', {
-  center: [25.073, -77.41],
-  zoom: 13,
-  zoomControl: true,
-  scrollWheelZoom: true,   // ← was false, now true
-});
-
+const map = L.map('leaflet-map', { center: [25.073, -77.41], zoom: 13, zoomControl: true, scrollWheelZoom: true });
 L.tileLayer('https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png', {
   attribution: '© <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> © <a href="https://carto.com/">CARTO</a>',
-  subdomains: 'abcd',
-  maxZoom: 19,
+  subdomains: 'abcd', maxZoom: 19,
 }).addTo(map);
 
-// ── FIX 2: Correct SunFun Hotel pin — 642 W Bay St, Nassau ──
-// Verified coordinates for 642 West Bay Street (Cable Beach corridor)
 const RESORT_LAT = 25.073278842292073;
 const RESORT_LNG = -77.43926705202382;
 
-const resortIcon = L.divIcon({
-  html: '<div class="lf-resort">🏨</div>',
-  className: '', iconSize: [44,44], iconAnchor: [22,22],
-});
-L.marker([RESORT_LAT, RESORT_LNG], { icon: resortIcon })
-  .addTo(map)
+const resortIcon = L.divIcon({ html: '<div class="lf-resort">🏨</div>', className: '', iconSize: [44,44], iconAnchor: [22,22] });
+L.marker([RESORT_LAT, RESORT_LNG], { icon: resortIcon }).addTo(map)
   .bindPopup(`<div style="padding:14px 16px 12px;">
     <div style="font-size:.65rem;letter-spacing:.15em;text-transform:uppercase;color:#D4A017;margin-bottom:5px;font-weight:600;">📍 You are here</div>
     <div style="font-weight:700;color:#0C2340;font-size:.95rem;">SunFun Resort & Hotel</div>
     <div style="font-size:.78rem;color:#5C6875;margin-top:3px;">642 W Bay St, Nassau, The Bahamas</div>
     <a href="tel:+12423278827" style="display:inline-flex;align-items:center;gap:4px;margin-top:8px;font-size:.72rem;color:#1B6CA8;text-decoration:none;font-weight:500;">📞 +1 242-327-8827</a>
-  </div>`, { maxWidth: 260 })
-  .openPopup();
+  </div>`, { maxWidth: 260 }).openPopup();
 
 function makeIcon(cat) {
   const c = CAT[cat];
-  return L.divIcon({
-    html: `<div class="lf-marker" style="background:${c.color}cc;">${c.emoji}</div>`,
-    className: '', iconSize: [36,36], iconAnchor: [18,18], popupAnchor: [0,-20],
-  });
+  return L.divIcon({ html: `<div class="lf-marker" style="background:${c.color}cc;">${c.emoji}</div>`, className: '', iconSize: [36,36], iconAnchor: [18,18], popupAnchor: [0,-20] });
 }
-
 function popupHTML(place) {
   const c = CAT[place.cat];
   const stars = '★'.repeat(Math.round(place.rating)) + '☆'.repeat(5-Math.round(place.rating));
@@ -1543,28 +1717,19 @@ function popupHTML(place) {
     <div style="font-weight:700;color:#0C2340;font-size:.95rem;line-height:1.3;margin-bottom:4px;">${place.name}</div>
     <div style="font-size:.74rem;color:#5C6875;line-height:1.5;margin-bottom:7px;">${place.note}</div>
     <div style="font-size:.72rem;color:#D4A017;margin-bottom:10px;">${stars} <span style="color:#5C6875;">${place.rating.toFixed(1)}</span></div>
-    <a href="https://maps.google.com/?q=${encodeURIComponent(place.name+' Nassau Bahamas')}" target="_blank"
-      style="font-size:.7rem;letter-spacing:.08em;text-transform:uppercase;color:#1B6CA8;text-decoration:none;font-weight:500;">
-      Get directions ↗
-    </a>
+    <a href="https://maps.google.com/?q=${encodeURIComponent(place.name+' Nassau Bahamas')}" target="_blank" style="font-size:.7rem;letter-spacing:.08em;text-transform:uppercase;color:#1B6CA8;text-decoration:none;font-weight:500;">Get directions ↗</a>
   </div>`;
 }
-
 function addMarkers(cat) {
   leafMarkers.forEach(m => map.removeLayer(m));
   leafMarkers = [];
-  const filtered = PLACES.filter(p => cat === 'all' || p.cat === cat);
-  filtered.forEach((place, i) => {
-    const m = L.marker([place.lat, place.lng], { icon: makeIcon(place.cat) })
-      .addTo(map)
-      .bindPopup(popupHTML(place), { maxWidth: 270 });
+  PLACES.filter(p => cat === 'all' || p.cat === cat).forEach((place, i) => {
+    const m = L.marker([place.lat, place.lng], { icon: makeIcon(place.cat) }).addTo(map).bindPopup(popupHTML(place), { maxWidth: 270 });
     m.on('click', () => highlightItem(i));
     leafMarkers.push(m);
   });
 }
-
 function stars(r) { return '★'.repeat(Math.round(r)) + '☆'.repeat(5-Math.round(r)); }
-
 function renderList(cat) {
   const list = document.getElementById('place-list');
   const filtered = PLACES.filter(p => cat === 'all' || p.cat === cat);
@@ -1575,22 +1740,18 @@ function renderList(cat) {
       <div style="flex:1;min-width:0;">
         <div style="font-size:.62rem;letter-spacing:.1em;text-transform:uppercase;color:${c.color};margin-bottom:2px;">${c.label}</div>
         <div class="place-name">${p.name}</div>
-        <div style="font-size:.74rem;color:rgba(255,255,255,.45);display:flex;align-items:center;gap:5px;">
-          <span class="place-rating">${stars(p.rating)}</span><span>${p.rating.toFixed(1)}</span>
-        </div>
+        <div style="font-size:.74rem;color:rgba(255,255,255,.45);display:flex;align-items:center;gap:5px;"><span class="place-rating">${stars(p.rating)}</span><span>${p.rating.toFixed(1)}</span></div>
         <div style="font-size:.74rem;color:rgba(255,255,255,.4);margin-top:3px;line-height:1.45;">${p.note}</div>
         <a class="place-directions" href="https://maps.google.com/?q=${encodeURIComponent(p.name+' Nassau Bahamas')}" target="_blank">Directions ↗</a>
       </div>
     </div>`;
   }).join('');
 }
-
 function highlightItem(i) {
   document.querySelectorAll('.place-item').forEach(el => el.classList.remove('selected'));
   const el = document.getElementById('pitem-' + i);
   if (el) { el.classList.add('selected'); el.scrollIntoView({ behavior:'smooth', block:'nearest' }); }
 }
-
 function selectPlace(i) {
   highlightItem(i);
   const filtered = PLACES.filter(p => currentCat === 'all' || p.cat === currentCat);
@@ -1598,7 +1759,6 @@ function selectPlace(i) {
   map.flyTo([place.lat, place.lng], 15, { duration: 0.8 });
   setTimeout(() => { if (leafMarkers[i]) leafMarkers[i].openPopup(); }, 700);
 }
-
 function filterMap(cat, btn) {
   currentCat = cat;
   document.querySelectorAll('.map-cat-btn').forEach(b => b.classList.remove('active'));
@@ -1606,29 +1766,22 @@ function filterMap(cat, btn) {
   renderList(cat);
   addMarkers(cat);
   const filtered = PLACES.filter(p => cat === 'all' || p.cat === cat);
-  if (!filtered.length || cat === 'all') {
-    map.flyTo([25.072, -77.41], 13, { duration: 0.7 });
-  } else {
-    const bounds = L.latLngBounds(filtered.map(p => [p.lat, p.lng]));
-    map.flyToBounds(bounds, { padding: [50, 50], maxZoom: 14, duration: 0.8 });
-  }
+  if (!filtered.length || cat === 'all') { map.flyTo([25.072, -77.41], 13, { duration: 0.7 }); }
+  else { const bounds = L.latLngBounds(filtered.map(p => [p.lat, p.lng])); map.flyToBounds(bounds, { padding: [50, 50], maxZoom: 14, duration: 0.8 }); }
 }
-
-// Init
 addMarkers('all');
 renderList('all');
 
-// Robust dish image fallbacks
 const DISH_FALLBACKS = {
-  'Conch Salad':        'https://images.unsplash.com/photo-1512621776951-a57141f2eefd?w=600&q=80',
-  'Conch Chowder':      'https://images.unsplash.com/photo-1547592166-23ac45744acd?w=600&q=80',
-  'Cracked Conch':      'https://images.unsplash.com/photo-1585325701956-60dd9c8553bc?w=600&q=80',
-  'Stew Fish':          'https://images.unsplash.com/photo-1534080564583-6be75777b70a?w=600&q=80',
-  'Rock Lobster':       'https://images.unsplash.com/photo-1559737558-2f5a35f4523b?w=600&q=80',
-  'Peas and Rice':      'https://images.unsplash.com/photo-1596560548464-f010549b84d7?w=600&q=80',
-  'Chicken Souse':      'https://images.unsplash.com/photo-1547592166-23ac45744acd?w=600&q=80',
-  'Guava Duff Dessert': 'https://images.unsplash.com/photo-1578985545062-69928b1d9587?w=600&q=80',
-  'Rum Cake':           'https://images.unsplash.com/photo-1621303837174-89787a7d4729?w=600&q=80',
+  'Conch Salad':'https://images.unsplash.com/photo-1512621776951-a57141f2eefd?w=600&q=80',
+  'Conch Chowder':'https://images.unsplash.com/photo-1547592166-23ac45744acd?w=600&q=80',
+  'Cracked Conch':'https://images.unsplash.com/photo-1585325701956-60dd9c8553bc?w=600&q=80',
+  'Stew Fish':'https://images.unsplash.com/photo-1534080564583-6be75777b70a?w=600&q=80',
+  'Rock Lobster':'https://images.unsplash.com/photo-1559737558-2f5a35f4523b?w=600&q=80',
+  'Peas and Rice':'https://images.unsplash.com/photo-1596560548464-f010549b84d7?w=600&q=80',
+  'Chicken Souse':'https://images.unsplash.com/photo-1547592166-23ac45744acd?w=600&q=80',
+  'Guava Duff Dessert':'https://images.unsplash.com/photo-1578985545062-69928b1d9587?w=600&q=80',
+  'Rum Cake':'https://images.unsplash.com/photo-1621303837174-89787a7d4729?w=600&q=80',
 };
 document.querySelectorAll('.dish-img-wrap img').forEach(img => {
   img.addEventListener('error', function() {
@@ -1693,18 +1846,10 @@ document.querySelectorAll('.dish-img-wrap img').forEach(img => {
     document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
     btn.classList.add('active');
     document.querySelectorAll('.activity-card').forEach(card => {
-      if (cat === 'all' || card.dataset.category === cat) {
-        card.style.display = '';
-      } else {
-        card.style.display = 'none';
-      }
+      card.style.display = (cat === 'all' || card.dataset.category === cat) ? '' : 'none';
     });
-    document.querySelectorAll('.featured-card').forEach(card => {
-      if (cat === 'all' || card.dataset.category === cat) {
-        card.style.display = '';
-      } else {
-        card.style.display = 'none';
-      }
+    document.querySelectorAll('.exp-card').forEach(card => {
+      card.style.display = (cat === 'all' || card.dataset.category === cat) ? '' : 'none';
     });
   }
 
@@ -1716,8 +1861,8 @@ document.querySelectorAll('.dish-img-wrap img').forEach(img => {
       }
     });
   }, { threshold: 0.12 });
-
   document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
 </script>
 </body>
 </html>
+
