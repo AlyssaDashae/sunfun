@@ -248,13 +248,15 @@
 
     /* ── Pricing card ── */
     .pricing-card {
-      background: var(--color-navy);
+      background: var(--color-white);
       border-radius: var(--radius-lg);
       overflow: hidden;
+      border: 2px solid #90CDF4; /* light blue border to lift it off the background */
+      box-shadow: 0 8px 32px rgba(12, 35, 64, 0.14), 0 2px 8px rgba(12, 35, 64, 0.08);
     }
 
     .pricing-card__header {
-      background: var(--color-teal);
+      background: var(--color-navy);
       padding: 1.5rem 2rem;
       display: flex;
       align-items: center;
@@ -271,7 +273,7 @@
       font-size: 0.68rem;
       letter-spacing: 0.12em;
       text-transform: uppercase;
-      background: rgba(255,255,255,0.2);
+      background: rgba(255,255,255,0.15);
       color: var(--color-white);
       padding: 0.25rem 0.7rem;
       border-radius: 100px;
@@ -285,7 +287,7 @@
       align-items: center;
       justify-content: space-between;
       padding: 1.1rem 0;
-      border-bottom: 1px solid rgba(255,255,255,0.07);
+      border-bottom: 1px solid rgba(12, 35, 64, 0.07);
     }
 
     .pricing-row:last-child { border-bottom: none; }
@@ -297,42 +299,42 @@
     }
 
     .pricing-row__label .material-icons {
-      color: var(--color-gold);
+      color: var(--color-teal);
       font-size: 20px;
     }
 
-    .pricing-row__text { color: rgba(255,255,255,0.8); font-size: 0.9rem; }
-    .pricing-row__text small { display: block; font-size: 0.75rem; color: rgba(255,255,255,0.4); margin-top: 2px; }
+    .pricing-row__text { color: var(--color-navy); font-size: 0.9rem; }
+    .pricing-row__text small { display: block; font-size: 0.75rem; color: var(--color-muted); margin-top: 2px; }
 
     .pricing-row__price {
       font-family: var(--font-serif);
       font-size: 1.4rem;
-      color: var(--color-white);
+      color: var(--color-navy);
     }
 
     .pricing-row__price span {
       font-family: var(--font-sans);
       font-size: 0.75rem;
-      color: rgba(255,255,255,0.4);
+      color: var(--color-muted);
       display: block;
       text-align: right;
     }
 
     .pricing-card__note {
-      margin: 1.5rem 2rem 2rem;
-      background: rgba(255,255,255,0.05);
-      border-left: 3px solid var(--color-gold);
+      margin: 0.5rem 2rem 1.5rem;
+      background: rgba(27, 108, 168, 0.06);
+      border-left: 3px solid var(--color-teal);
       padding: 0.9rem 1.1rem;
       border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
       font-size: 0.82rem;
-      color: rgba(255,255,255,0.55);
+      color: var(--color-muted);
       line-height: 1.6;
     }
 
     .pricing-card__cta {
       display: block;
       margin: 0 2rem 2rem;
-      background: var(--color-coral);
+      background: var(--color-teal);
       color: var(--color-white);
       padding: 1rem;
       border-radius: var(--radius-sm);
@@ -345,7 +347,7 @@
       transition: background var(--transition);
     }
 
-    .pricing-card__cta:hover { background: #c54a2e; }
+    .pricing-card__cta:hover { background: #178a65; }
 
     /* ── Shuttle details ── */
     .shuttle-details { display: flex; flex-direction: column; gap: 1.5rem; }
@@ -992,7 +994,7 @@
 
       </div>
       <p class="pricing-card__note">
-        Example: 4 guests travelling one way = $25 + ($3 × 2) = <strong style="color:#fff;">$31</strong>
+        Example: 4 guests travelling one way = $25 + ($3 × 2) = <strong style="color:var(--color-navy);">$31</strong>
       </p>
       <a href="https://sunfunhotel.com/#contact-us" class="pricing-card__cta">Book My Transfer</a>
     </div>
