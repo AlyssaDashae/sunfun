@@ -1,0 +1,1111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Transportation — SunFun Resort & Hotel</title>
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+  <!-- Site styles (shared with all pages) -->
+  <link rel="stylesheet" href="styles.css">
+
+  <!-- Page-specific styles -->
+  <style>
+    /*
+     * transportation.html — page-specific styles
+     * Everything shared (nav, footer, buttons, fade-up, etc.)
+     * lives in styles.css. Only what's unique to this page lives here.
+     */
+
+    /* ── Hero ── */
+    .transport-hero {
+      position: relative;
+      height: 70vh;
+      min-height: 520px;
+      display: flex;
+      align-items: center;
+      overflow: hidden;
+      background: #0C2340;
+    }
+
+    .transport-hero__bg {
+      position: absolute;
+      inset: 0;
+      background-image: url('https://images.unsplash.com/photo-1570125909232-eb263c188f7e?w=1600&q=80');
+      background-size: cover;
+      background-position: center 60%;
+    }
+
+    .transport-hero__overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(
+        120deg,
+        rgba(6, 15, 26, 0.85) 0%,
+        rgba(6, 15, 26, 0.45) 60%,
+        rgba(6, 15, 26, 0.15) 100%
+      );
+    }
+
+    .transport-hero__content {
+      position: relative;
+      z-index: 2;
+      padding: 7rem 4rem 4rem;
+      max-width: 680px;
+    }
+
+    .transport-hero__eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.6rem;
+      font-size: 0.72rem;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--color-gold-light);
+      margin-bottom: 1.2rem;
+    }
+
+    .transport-hero__eyebrow::before {
+      content: '';
+      display: inline-block;
+      width: 32px;
+      height: 1px;
+      background: var(--color-gold-light);
+    }
+
+    .transport-hero__title {
+      font-family: var(--font-serif);
+      font-size: clamp(2.4rem, 5vw, 4rem);
+      color: var(--color-white);
+      line-height: 1.1;
+      margin-bottom: 1.2rem;
+      text-shadow: 0 2px 20px rgba(0,0,0,0.3);
+    }
+
+    .transport-hero__title em {
+      font-style: italic;
+      color: #fde68a;
+    }
+
+    .transport-hero__description {
+      font-size: 1rem;
+      color: rgba(255,255,255,0.82);
+      line-height: 1.85;
+      max-width: 480px;
+      margin-bottom: 2rem;
+      text-shadow: 0 1px 8px rgba(0,0,0,0.25);
+    }
+
+    .transport-hero__cta {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.8rem;
+      background: var(--color-white);
+      color: var(--color-navy);
+      padding: 0.9rem 2rem;
+      border-radius: var(--radius-sm);
+      font-size: 0.85rem;
+      font-weight: 600;
+      letter-spacing: 0.04em;
+      text-decoration: none;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.2);
+      transition: all var(--transition);
+    }
+
+    .transport-hero__cta:hover {
+      background: var(--color-gold-light);
+      color: var(--color-white);
+    }
+
+    /* ── Quick info strip ── */
+    .info-strip {
+      background: var(--color-navy);
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+    }
+
+    .info-strip__item {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      padding: 1.6rem 2.5rem;
+      border-right: 1px solid rgba(255,255,255,0.06);
+    }
+
+    .info-strip__item:last-child { border-right: none; }
+
+    .info-strip__icon {
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.07);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .info-strip__icon .material-icons {
+      color: var(--color-gold);
+      font-size: 22px;
+    }
+
+    .info-strip__label {
+      font-size: 0.68rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.4);
+      margin-bottom: 0.2rem;
+    }
+
+    .info-strip__value {
+      font-size: 0.92rem;
+      color: var(--color-white);
+      font-weight: 500;
+    }
+
+    /* ── Section layout ── */
+    .transport-section {
+      padding: var(--section-pad-v) var(--section-pad-h);
+      max-width: var(--max-width);
+      margin: 0 auto;
+    }
+
+    .transport-section--alt {
+      background: var(--color-sand);
+      max-width: 100%;
+      padding: var(--section-pad-v) 0;
+    }
+
+    .transport-section--alt .transport-section__inner {
+      max-width: var(--max-width);
+      margin: 0 auto;
+      padding: 0 var(--section-pad-h);
+    }
+
+    /* ── Service header ── */
+    .service-header {
+      display: flex;
+      align-items: flex-start;
+      gap: 1.5rem;
+      margin-bottom: 3rem;
+    }
+
+    .service-header__icon {
+      width: 64px;
+      height: 64px;
+      border-radius: var(--radius-md);
+      background: var(--color-navy);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .service-header__icon .material-icons {
+      color: var(--color-gold);
+      font-size: 30px;
+    }
+
+    .service-header__text { flex: 1; }
+
+    .service-header__tag {
+      display: inline-block;
+      font-size: 0.68rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--color-ocean);
+      background: rgba(27,108,168,0.08);
+      padding: 0.25rem 0.85rem;
+      border-radius: 100px;
+      margin-bottom: 0.6rem;
+    }
+
+    .service-header__title {
+      font-family: var(--font-serif);
+      font-size: clamp(1.6rem, 3vw, 2.2rem);
+      color: var(--color-navy);
+      margin-bottom: 0.5rem;
+    }
+
+    .service-header__subtitle {
+      color: var(--color-muted);
+      font-size: 0.95rem;
+      line-height: 1.7;
+    }
+
+    /* ── Shuttle layout: two columns ── */
+    .shuttle-layout {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 3rem;
+      align-items: start;
+    }
+
+    /* ── Pricing card ── */
+    .pricing-card {
+      background: var(--color-navy);
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+    }
+
+    .pricing-card__header {
+      background: var(--color-gold);
+      padding: 1.5rem 2rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .pricing-card__header-title {
+      font-family: var(--font-serif);
+      font-size: 1.2rem;
+      color: var(--color-navy);
+    }
+
+    .pricing-card__header-badge {
+      font-size: 0.68rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      background: rgba(12,35,64,0.15);
+      color: var(--color-navy);
+      padding: 0.25rem 0.7rem;
+      border-radius: 100px;
+      font-weight: 600;
+    }
+
+    .pricing-card__body { padding: 2rem; }
+
+    .pricing-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 1.1rem 0;
+      border-bottom: 1px solid rgba(255,255,255,0.07);
+    }
+
+    .pricing-row:last-child { border-bottom: none; }
+
+    .pricing-row__label {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+
+    .pricing-row__label .material-icons {
+      color: var(--color-gold);
+      font-size: 20px;
+    }
+
+    .pricing-row__text { color: rgba(255,255,255,0.8); font-size: 0.9rem; }
+    .pricing-row__text small { display: block; font-size: 0.75rem; color: rgba(255,255,255,0.4); margin-top: 2px; }
+
+    .pricing-row__price {
+      font-family: var(--font-serif);
+      font-size: 1.4rem;
+      color: var(--color-white);
+    }
+
+    .pricing-row__price span {
+      font-family: var(--font-sans);
+      font-size: 0.75rem;
+      color: rgba(255,255,255,0.4);
+      display: block;
+      text-align: right;
+    }
+
+    .pricing-card__note {
+      margin: 1.5rem 2rem 2rem;
+      background: rgba(255,255,255,0.05);
+      border-left: 3px solid var(--color-gold);
+      padding: 0.9rem 1.1rem;
+      border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+      font-size: 0.82rem;
+      color: rgba(255,255,255,0.55);
+      line-height: 1.6;
+    }
+
+    .pricing-card__cta {
+      display: block;
+      margin: 0 2rem 2rem;
+      background: var(--color-coral);
+      color: var(--color-white);
+      padding: 1rem;
+      border-radius: var(--radius-sm);
+      text-align: center;
+      font-size: 0.85rem;
+      font-weight: 500;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      text-decoration: none;
+      transition: background var(--transition);
+    }
+
+    .pricing-card__cta:hover { background: #c54a2e; }
+
+    /* ── Shuttle details ── */
+    .shuttle-details { display: flex; flex-direction: column; gap: 1.5rem; }
+
+    .shuttle-detail-card {
+      background: var(--color-white);
+      border: 1px solid rgba(12,35,64,0.08);
+      border-radius: var(--radius-md);
+      padding: 1.4rem 1.6rem;
+      display: flex;
+      gap: 1.1rem;
+      align-items: flex-start;
+      transition: box-shadow var(--transition);
+    }
+
+    .shuttle-detail-card:hover { box-shadow: var(--shadow-md); }
+
+    .shuttle-detail-card__icon {
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      background: rgba(27,108,168,0.08);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .shuttle-detail-card__icon .material-icons { color: var(--color-ocean); font-size: 22px; }
+
+    .shuttle-detail-card__title {
+      font-family: var(--font-serif);
+      font-size: 1rem;
+      color: var(--color-navy);
+      margin-bottom: 0.3rem;
+    }
+
+    .shuttle-detail-card__description {
+      font-size: 0.84rem;
+      color: var(--color-muted);
+      line-height: 1.7;
+    }
+
+    /* ── How it works steps ── */
+    .steps {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1px;
+      background: rgba(12,35,64,0.08);
+      border-radius: var(--radius-md);
+      overflow: hidden;
+      margin-top: 3rem;
+    }
+
+    .step {
+      background: var(--color-white);
+      padding: 2rem 1.5rem;
+      text-align: center;
+      position: relative;
+    }
+
+    .step__number {
+      font-family: var(--font-serif);
+      font-size: 2.5rem;
+      color: var(--color-sand-dark);
+      line-height: 1;
+      margin-bottom: 0.8rem;
+    }
+
+    .step__icon {
+      width: 52px;
+      height: 52px;
+      border-radius: 50%;
+      background: var(--color-navy);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 1rem;
+    }
+
+    .step__icon .material-icons { color: var(--color-gold); font-size: 24px; }
+
+    .step__title {
+      font-family: var(--font-serif);
+      font-size: 1rem;
+      color: var(--color-navy);
+      margin-bottom: 0.4rem;
+    }
+
+    .step__description {
+      font-size: 0.82rem;
+      color: var(--color-muted);
+      line-height: 1.7;
+    }
+
+    /* ── Rental section ── */
+    .rental-layout {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 3rem;
+      align-items: start;
+    }
+
+    .rental-image {
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      position: relative;
+      aspect-ratio: 4/3;
+    }
+
+    .rental-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .rental-image__label {
+      position: absolute;
+      bottom: 1rem;
+      left: 1rem;
+      background: rgba(12,35,64,0.85);
+      color: #fff;
+      font-size: 0.72rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      padding: 0.35rem 0.8rem;
+      border-radius: 2px;
+      backdrop-filter: blur(4px);
+    }
+
+    .rental-content { display: flex; flex-direction: column; gap: 1.5rem; }
+
+    .rental-intro {
+      font-size: 0.95rem;
+      color: var(--color-muted);
+      line-height: 1.85;
+    }
+
+    .rental-features {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1rem;
+    }
+
+    .rental-feature {
+      display: flex;
+      align-items: flex-start;
+      gap: 0.7rem;
+      padding: 1rem;
+      background: var(--color-white);
+      border-radius: var(--radius-md);
+      border: 1px solid rgba(12,35,64,0.07);
+    }
+
+    .rental-feature .material-icons {
+      color: var(--color-gold);
+      font-size: 20px;
+      flex-shrink: 0;
+      margin-top: 1px;
+    }
+
+    .rental-feature__title {
+      font-size: 0.85rem;
+      font-weight: 500;
+      color: var(--color-navy);
+      margin-bottom: 0.2rem;
+    }
+
+    .rental-feature__text {
+      font-size: 0.78rem;
+      color: var(--color-muted);
+      line-height: 1.5;
+    }
+
+    .rental-cta-group {
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+
+    /* ── FAQ ── */
+    .faq-list {
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+      border: 1px solid rgba(12,35,64,0.08);
+      border-radius: var(--radius-md);
+      overflow: hidden;
+    }
+
+    .faq-item {
+      border-bottom: 1px solid rgba(12,35,64,0.08);
+    }
+
+    .faq-item:last-child { border-bottom: none; }
+
+    .faq-item__question {
+      width: 100%;
+      background: none;
+      border: none;
+      padding: 1.3rem 1.6rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+      cursor: pointer;
+      text-align: left;
+      font-family: var(--font-serif);
+      font-size: 1rem;
+      color: var(--color-navy);
+      transition: background var(--transition);
+    }
+
+    .faq-item__question:hover { background: rgba(12,35,64,0.02); }
+
+    .faq-item__question .material-icons {
+      color: var(--color-gold);
+      font-size: 20px;
+      flex-shrink: 0;
+      transition: transform 0.3s ease;
+    }
+
+    .faq-item--open .faq-item__question .material-icons {
+      transform: rotate(180deg);
+    }
+
+    .faq-item__answer {
+      display: none;
+      padding: 0 1.6rem 1.3rem;
+      font-size: 0.88rem;
+      color: var(--color-muted);
+      line-height: 1.8;
+    }
+
+    .faq-item--open .faq-item__answer { display: block; }
+
+    /* ── CTA Banner ── */
+    .transport-cta-banner {
+      background: var(--color-navy);
+      padding: var(--section-pad-v) var(--section-pad-h);
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .transport-cta-banner::before {
+      content: '';
+      position: absolute;
+      top: -60px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 600px;
+      height: 600px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(27,108,168,0.25) 0%, transparent 70%);
+      pointer-events: none;
+    }
+
+    .transport-cta-banner__title {
+      font-family: var(--font-serif);
+      font-size: clamp(1.8rem, 4vw, 2.8rem);
+      color: var(--color-white);
+      margin-bottom: 1rem;
+    }
+
+    .transport-cta-banner__description {
+      color: rgba(255,255,255,0.65);
+      margin-bottom: 2.5rem;
+      font-size: 0.95rem;
+      max-width: 500px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .transport-cta-banner__actions {
+      display: flex;
+      gap: 1rem;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    /* ── Responsive ── */
+    @media (max-width: 900px) {
+      .shuttle-layout,
+      .rental-layout { grid-template-columns: 1fr; }
+      .steps { grid-template-columns: repeat(2, 1fr); }
+      .info-strip { grid-template-columns: 1fr; }
+      .info-strip__item { border-right: none; border-bottom: 1px solid rgba(255,255,255,0.06); }
+      .info-strip__item:last-child { border-bottom: none; }
+    }
+
+    @media (max-width: 600px) {
+      .transport-hero__content { padding: 5rem 1.5rem 3rem; }
+      .steps { grid-template-columns: 1fr; }
+      .rental-features { grid-template-columns: 1fr; }
+      .service-header { flex-direction: column; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ════════════════════════════════════════
+     NAVIGATION
+════════════════════════════════════════ -->
+<nav class="nav" role="navigation" aria-label="Main navigation">
+  <div class="nav__logo">
+    <a href="https://sunfunhotel.com">
+      <img src="https://sunfunhotel.com/assets/img/logo.png" alt="SunFun Resort & Hotel">
+    </a>
+  </div>
+
+  <ul class="nav__links">
+    <li><a href="https://sunfunhotel.com/#about-us"    class="nav__link">About</a></li>
+    <li><a href="https://sunfunhotel.com/#hotel-rooms" class="nav__link">Rooms</a></li>
+    <li><a href="explore.html"                         class="nav__link">Explore</a></li>
+    <li><a href="https://sunfunhotel.com/#our-dining"  class="nav__link">Dining</a></li>
+    <li><a href="transportation.html"                  class="nav__link nav__link--active">Transportation</a></li>
+    <li><a href="https://sunfunhotel.com/#contact-us"  class="nav__link">Contact</a></li>
+  </ul>
+
+  <div class="nav__mobile-actions">
+    <button
+      class="hamburger"
+      id="hamburger"
+      aria-label="Open navigation menu"
+      aria-expanded="false"
+      aria-controls="mobile-menu"
+    >
+      <span class="hamburger__bar"></span>
+      <span class="hamburger__bar"></span>
+      <span class="hamburger__bar"></span>
+    </button>
+  </div>
+
+  <a href="https://sunfunhotel.com/#contact-us" class="nav__book-btn">Book Now</a>
+</nav>
+
+
+<!-- ════════════════════════════════════════
+     MOBILE MENU
+════════════════════════════════════════ -->
+<div class="mobile-menu" id="mobile-menu" role="navigation" aria-label="Mobile navigation">
+  <ul class="mobile-menu__links">
+    <li><a href="https://sunfunhotel.com/#about-us"    class="mobile-menu__link">About</a></li>
+    <li><a href="https://sunfunhotel.com/#hotel-rooms" class="mobile-menu__link">Rooms</a></li>
+    <li><a href="explore.html"                         class="mobile-menu__link">Explore</a></li>
+    <li><a href="https://sunfunhotel.com/#our-dining"  class="mobile-menu__link">Dining</a></li>
+    <li><a href="transportation.html"                  class="mobile-menu__link mobile-menu__link--active">Transportation</a></li>
+    <li><a href="https://sunfunhotel.com/#contact-us"  class="mobile-menu__link">Contact</a></li>
+  </ul>
+  <a href="https://sunfunhotel.com/#contact-us" class="mobile-menu__book-btn">Book Now</a>
+</div>
+
+
+<!-- ════════════════════════════════════════
+     HERO
+════════════════════════════════════════ -->
+<section class="transport-hero">
+  <div class="transport-hero__bg" aria-hidden="true"></div>
+  <div class="transport-hero__overlay" aria-hidden="true"></div>
+  <div class="transport-hero__content">
+    <p class="transport-hero__eyebrow">SunFun Resort & Hotel</p>
+    <h1 class="transport-hero__title">Getting Around<br><em>Made Easy</em></h1>
+    <p class="transport-hero__description">From the moment you land at Lynden Pindling International Airport to the moment you check out — we've got your travel covered.</p>
+    <a href="#shuttle" class="transport-hero__cta">
+      <span class="material-icons" aria-hidden="true">directions_car</span>
+      View Our Services
+    </a>
+  </div>
+</section>
+
+
+<!-- ════════════════════════════════════════
+     QUICK INFO STRIP
+════════════════════════════════════════ -->
+<div class="info-strip" aria-label="Quick service overview">
+  <div class="info-strip__item">
+    <div class="info-strip__icon"><span class="material-icons" aria-hidden="true">flight_land</span></div>
+    <div>
+      <p class="info-strip__label">Airport Served</p>
+      <p class="info-strip__value">Lynden Pindling International (NAS)</p>
+    </div>
+  </div>
+  <div class="info-strip__item">
+    <div class="info-strip__icon"><span class="material-icons" aria-hidden="true">attach_money</span></div>
+    <div>
+      <p class="info-strip__label">Shuttle Starting From</p>
+      <p class="info-strip__value">$25 each way — up to 2 persons</p>
+    </div>
+  </div>
+  <div class="info-strip__item">
+    <div class="info-strip__icon"><span class="material-icons" aria-hidden="true">support_agent</span></div>
+    <div>
+      <p class="info-strip__label">Bookings</p>
+      <p class="info-strip__value">Via front desk · 24/7 support</p>
+    </div>
+  </div>
+</div>
+
+
+<!-- ════════════════════════════════════════
+     AIRPORT SHUTTLE
+════════════════════════════════════════ -->
+<section class="transport-section" id="shuttle" aria-label="Airport shuttle service">
+
+  <div class="service-header fade-up">
+    <div class="service-header__icon">
+      <span class="material-icons" aria-hidden="true">airport_shuttle</span>
+    </div>
+    <div class="service-header__text">
+      <span class="service-header__tag">Airport Transfers</span>
+      <h2 class="service-header__title">Airport Shuttle Service</h2>
+      <p class="service-header__subtitle">Door-to-door transfers between SunFun Resort and Lynden Pindling International Airport. No waiting in taxi lines, no guessing — just a smooth, stress-free ride.</p>
+    </div>
+  </div>
+
+  <div class="shuttle-layout">
+
+    <!-- Pricing -->
+    <div class="pricing-card fade-up" aria-label="Shuttle pricing">
+      <div class="pricing-card__header">
+        <h3 class="pricing-card__header-title">Transfer Rates</h3>
+        <span class="pricing-card__header-badge">Per Trip</span>
+      </div>
+      <div class="pricing-card__body">
+
+        <div class="pricing-row">
+          <div class="pricing-row__label">
+            <span class="material-icons" aria-hidden="true">group</span>
+            <div class="pricing-row__text">
+              Base rate
+              <small>Up to 2 persons</small>
+            </div>
+          </div>
+          <div class="pricing-row__price">
+            $25
+            <span>each way</span>
+          </div>
+        </div>
+
+        <div class="pricing-row">
+          <div class="pricing-row__label">
+            <span class="material-icons" aria-hidden="true">person_add</span>
+            <div class="pricing-row__text">
+              Additional guests
+              <small>Per extra person</small>
+            </div>
+          </div>
+          <div class="pricing-row__price">
+            +$3
+            <span>per person</span>
+          </div>
+        </div>
+
+        <div class="pricing-row">
+          <div class="pricing-row__label">
+            <span class="material-icons" aria-hidden="true">swap_horiz</span>
+            <div class="pricing-row__text">
+              Round trip
+              <small>2 persons</small>
+            </div>
+          </div>
+          <div class="pricing-row__price">
+            $50
+            <span>both ways</span>
+          </div>
+        </div>
+
+      </div>
+      <p class="pricing-card__note">
+        Example: 4 guests travelling one way = $25 + ($3 × 2) = <strong style="color:#fff;">$31</strong>
+      </p>
+      <a href="https://sunfunhotel.com/#contact-us" class="pricing-card__cta">Book My Transfer</a>
+    </div>
+
+    <!-- Details -->
+    <div class="shuttle-details fade-up">
+
+      <div class="shuttle-detail-card">
+        <div class="shuttle-detail-card__icon">
+          <span class="material-icons" aria-hidden="true">flight_land</span>
+        </div>
+        <div>
+          <h3 class="shuttle-detail-card__title">Airport Pickup</h3>
+          <p class="shuttle-detail-card__description">Your driver will be waiting in the arrivals hall with your name on a sign. Just clear customs and walk straight to your ride — no app, no confusion.</p>
+        </div>
+      </div>
+
+      <div class="shuttle-detail-card">
+        <div class="shuttle-detail-card__icon">
+          <span class="material-icons" aria-hidden="true">flight_takeoff</span>
+        </div>
+        <div>
+          <h3 class="shuttle-detail-card__title">Hotel Drop-off</h3>
+          <p class="shuttle-detail-card__description">We'll pick you up directly from the resort entrance and have you at the terminal with plenty of time to spare. Let the front desk know your flight time the evening before.</p>
+        </div>
+      </div>
+
+      <div class="shuttle-detail-card">
+        <div class="shuttle-detail-card__icon">
+          <span class="material-icons" aria-hidden="true">luggage</span>
+        </div>
+        <div>
+          <h3 class="shuttle-detail-card__title">Luggage Assistance</h3>
+          <p class="shuttle-detail-card__description">Our drivers will help load and unload your bags. If you're travelling with extra luggage or oversized items, just let us know when you book.</p>
+        </div>
+      </div>
+
+      <div class="shuttle-detail-card">
+        <div class="shuttle-detail-card__icon">
+          <span class="material-icons" aria-hidden="true">schedule</span>
+        </div>
+        <div>
+          <h3 class="shuttle-detail-card__title">Advance Booking Required</h3>
+          <p class="shuttle-detail-card__description">To guarantee your transfer, please book at least 24 hours in advance through the front desk or by calling us directly. Last-minute requests are welcome but subject to availability.</p>
+        </div>
+      </div>
+
+    </div>
+  </div><!-- /.shuttle-layout -->
+
+  <!-- How it works -->
+  <div class="fade-up">
+    <h3 style="font-family:var(--font-serif); font-size:1.4rem; color:var(--color-navy); margin-top:4rem; margin-bottom:0; text-align:center;">How It Works</h3>
+    <div class="steps" aria-label="Booking steps">
+      <div class="step">
+        <p class="step__number" aria-hidden="true">01</p>
+        <div class="step__icon"><span class="material-icons" aria-hidden="true">phone</span></div>
+        <h4 class="step__title">Contact Us</h4>
+        <p class="step__description">Call, email, or visit the front desk to arrange your transfer at least 24 hours ahead.</p>
+      </div>
+      <div class="step">
+        <p class="step__number" aria-hidden="true">02</p>
+        <div class="step__icon"><span class="material-icons" aria-hidden="true">event</span></div>
+        <h4 class="step__title">Confirm Details</h4>
+        <p class="step__description">Share your flight number, arrival time, and number of passengers so we can plan perfectly.</p>
+      </div>
+      <div class="step">
+        <p class="step__number" aria-hidden="true">03</p>
+        <div class="step__icon"><span class="material-icons" aria-hidden="true">directions_car</span></div>
+        <h4 class="step__title">We Pick You Up</h4>
+        <p class="step__description">Your driver meets you at arrivals with a name sign — no waiting, no guessing.</p>
+      </div>
+      <div class="step">
+        <p class="step__number" aria-hidden="true">04</p>
+        <div class="step__icon"><span class="material-icons" aria-hidden="true">hotel</span></div>
+        <h4 class="step__title">Arrive in Comfort</h4>
+        <p class="step__description">Relax and enjoy the Nassau scenery — you'll be at the resort in no time.</p>
+      </div>
+    </div>
+  </div>
+
+</section>
+
+
+<!-- ════════════════════════════════════════
+     RENTAL CARS
+════════════════════════════════════════ -->
+<div class="transport-section--alt" id="rentals" aria-label="Rental car service">
+  <div class="transport-section__inner">
+
+    <div class="service-header fade-up">
+      <div class="service-header__icon">
+        <span class="material-icons" aria-hidden="true">directions_car</span>
+      </div>
+      <div class="service-header__text">
+        <span class="service-header__tag">Rental Cars</span>
+        <h2 class="service-header__title">Explore Nassau on Your Terms</h2>
+        <p class="service-header__subtitle">Want to venture out on your own schedule? Our front desk team can arrange a rental car for you — perfect for day trips, beach hopping, or heading into downtown Nassau.</p>
+      </div>
+    </div>
+
+    <div class="rental-layout">
+
+      <div class="rental-image fade-up">
+        <img
+          src="https://images.unsplash.com/photo-1550355291-bbee04a92027?w=800&q=80"
+          alt="Rental car Nassau Bahamas"
+          onerror="this.src='https://images.unsplash.com/photo-1494976388531-d1058494cdd8?w=800&q=80'">
+        <span class="rental-image__label">Available through our front desk</span>
+      </div>
+
+      <div class="rental-content fade-up">
+        <p class="rental-intro">Skip the hassle of hunting for a rental company. Just ask at our front desk and we'll handle everything — booking, pickup coordination, and any questions along the way. It's one less thing to think about on your holiday.</p>
+
+        <div class="rental-features">
+
+          <div class="rental-feature">
+            <span class="material-icons" aria-hidden="true">support_agent</span>
+            <div>
+              <p class="rental-feature__title">Arranged by our team</p>
+              <p class="rental-feature__text">No need to search online — we handle the booking for you.</p>
+            </div>
+          </div>
+
+          <div class="rental-feature">
+            <span class="material-icons" aria-hidden="true">map</span>
+            <div>
+              <p class="rental-feature__title">Local knowledge included</p>
+              <p class="rental-feature__text">We'll point you to the best spots and routes around Nassau.</p>
+            </div>
+          </div>
+
+          <div class="rental-feature">
+            <span class="material-icons" aria-hidden="true">schedule</span>
+            <div>
+              <p class="rental-feature__title">Flexible durations</p>
+              <p class="rental-feature__text">Half day, full day, or multi-day — whatever suits your plans.</p>
+            </div>
+          </div>
+
+          <div class="rental-feature">
+            <span class="material-icons" aria-hidden="true">local_gas_station</span>
+            <div>
+              <p class="rental-feature__title">Ready to drive</p>
+              <p class="rental-feature__text">Vehicles are delivered ready to go so you can head straight out.</p>
+            </div>
+          </div>
+
+        </div>
+
+        <div class="rental-cta-group">
+          <a href="https://sunfunhotel.com/#contact-us" class="btn-primary">Enquire at Front Desk</a>
+          <a href="tel:+12423278827" class="btn-outline" style="color:var(--color-navy); border-color:rgba(12,35,64,0.3);">Call +1 242-327-8827</a>
+        </div>
+
+      </div>
+    </div><!-- /.rental-layout -->
+
+  </div>
+</div>
+
+
+<!-- ════════════════════════════════════════
+     FAQ
+════════════════════════════════════════ -->
+<section class="transport-section" aria-label="Frequently asked questions">
+  <div class="section-header fade-up" style="padding-top:0; text-align:left;">
+    <p class="section-tag">FAQ</p>
+    <h2 class="section-title">Common Questions</h2>
+  </div>
+
+  <div class="faq-list fade-up" id="faq-list">
+
+    <div class="faq-item">
+      <button class="faq-item__question" aria-expanded="false">
+        How far is the airport from the resort?
+        <span class="material-icons" aria-hidden="true">expand_more</span>
+      </button>
+      <div class="faq-item__answer">
+        Lynden Pindling International Airport (NAS) is approximately 20–30 minutes from SunFun Resort depending on traffic. Our shuttle makes the journey smooth and comfortable so you can start relaxing the moment you land.
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <button class="faq-item__question" aria-expanded="false">
+        How far in advance do I need to book the shuttle?
+        <span class="material-icons" aria-hidden="true">expand_more</span>
+      </button>
+      <div class="faq-item__answer">
+        We ask for at least 24 hours' notice to guarantee your transfer. That said, if your plans change last minute, give us a call and we'll do our best to accommodate you based on availability.
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <button class="faq-item__question" aria-expanded="false">
+        What if my flight is delayed?
+        <span class="material-icons" aria-hidden="true">expand_more</span>
+      </button>
+      <div class="faq-item__answer">
+        Not a problem — we track your flight. If your arrival is delayed, your driver will adjust accordingly. Just make sure you've provided your flight number when booking so we can monitor it in real time.
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <button class="faq-item__question" aria-expanded="false">
+        Can I pay for the shuttle on arrival?
+        <span class="material-icons" aria-hidden="true">expand_more</span>
+      </button>
+      <div class="faq-item__answer">
+        Yes — payment is made directly to the driver or at the front desk. We accept cash (USD or BSD) and card. If you'd prefer to settle it as part of your room billing, just let the front desk know.
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <button class="faq-item__question" aria-expanded="false">
+        Do I need an international driving licence to rent a car?
+        <span class="material-icons" aria-hidden="true">expand_more</span>
+      </button>
+      <div class="faq-item__answer">
+        In the Bahamas, visitors from the US, UK, and Canada can drive on their home licence for up to 3 months. If you're from another country, an International Driving Permit is recommended. Our front desk can advise based on where you're travelling from.
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <button class="faq-item__question" aria-expanded="false">
+        Which side of the road do you drive on in Nassau?
+        <span class="material-icons" aria-hidden="true">expand_more</span>
+      </button>
+      <div class="faq-item__answer">
+        The Bahamas drives on the left side of the road — the same as the UK, Australia, and the Caribbean. If you're from the US or Canada, take a moment to adjust before heading out. Our team is happy to give you a quick orientation.
+      </div>
+    </div>
+
+  </div>
+</section>
+
+
+<!-- ════════════════════════════════════════
+     CTA BANNER
+════════════════════════════════════════ -->
+<section class="transport-cta-banner" aria-label="Book your transport">
+  <h2 class="transport-cta-banner__title">Ready to Arrange Your Transfer?</h2>
+  <p class="transport-cta-banner__description">Contact our front desk and we'll have everything sorted before you even pack your bags.</p>
+  <div class="transport-cta-banner__actions">
+    <a href="https://sunfunhotel.com/#contact-us" class="btn-primary">Contact the Front Desk</a>
+    <a href="tel:+12423278827" class="btn-outline">Call +1 242-327-8827</a>
+  </div>
+</section>
+
+
+<!-- ════════════════════════════════════════
+     FOOTER
+════════════════════════════════════════ -->
+<footer class="footer">
+  <span>© 2025 SunFun Resort &amp; Hotel — Nassau, The Bahamas</span>
+  <nav class="footer__links" aria-label="Footer navigation">
+    <a href="https://sunfunhotel.com"               class="footer__link">Home</a>
+    <a href="https://sunfunhotel.com/#hotel-rooms"  class="footer__link">Rooms</a>
+    <a href="mailto:sunfunresortsbahamas@gmail.com" class="footer__link">Email Us</a>
+  </nav>
+</footer>
+
+
+<!-- Site scripts (shared — handles nav, fade-up observer) -->
+<script src="scripts.js"></script>
+
+<script>
+  /* FAQ accordion — transportation.html only */
+  (function initFaq() {
+    document.querySelectorAll('.faq-item__question').forEach(function (btn) {
+      btn.addEventListener('click', function () {
+        var item    = btn.closest('.faq-item');
+        var isOpen  = item.classList.contains('faq-item--open');
+
+        // Close all open items first
+        document.querySelectorAll('.faq-item--open').forEach(function (openItem) {
+          openItem.classList.remove('faq-item--open');
+          openItem.querySelector('.faq-item__question').setAttribute('aria-expanded', 'false');
+        });
+
+        // If it wasn't already open, open it
+        if (!isOpen) {
+          item.classList.add('faq-item--open');
+          btn.setAttribute('aria-expanded', 'true');
+        }
+      });
+    });
+  })();
+</script>
+
+</body>
+</html>
