@@ -254,7 +254,7 @@
     }
 
     .pricing-card__header {
-      background: var(--color-gold);
+      background: var(--color-teal);
       padding: 1.5rem 2rem;
       display: flex;
       align-items: center;
@@ -264,15 +264,15 @@
     .pricing-card__header-title {
       font-family: var(--font-serif);
       font-size: 1.2rem;
-      color: var(--color-navy);
+      color: var(--color-white);
     }
 
     .pricing-card__header-badge {
       font-size: 0.68rem;
       letter-spacing: 0.12em;
       text-transform: uppercase;
-      background: rgba(12,35,64,0.15);
-      color: var(--color-navy);
+      background: rgba(255,255,255,0.2);
+      color: var(--color-white);
       padding: 0.25rem 0.7rem;
       border-radius: 100px;
       font-weight: 600;
@@ -627,10 +627,186 @@
       flex-wrap: wrap;
     }
 
-    /* ── Responsive ── */
+    /* ── Car rental grid ── */
+    .car-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2rem;
+      margin-bottom: 2.5rem;
+    }
+
+    .car-card {
+      background: var(--color-white);
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      box-shadow: var(--shadow-sm);
+      transition: transform 0.3s, box-shadow 0.3s;
+    }
+
+    .car-card:hover {
+      transform: translateY(-5px);
+      box-shadow: var(--shadow-lg);
+    }
+
+    .car-card__image-wrap {
+      position: relative;
+      height: 220px;
+      overflow: hidden;
+    }
+
+    .car-card__image-wrap img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.5s;
+    }
+
+    .car-card:hover .car-card__image-wrap img { transform: scale(1.05); }
+
+    .car-card__badge {
+      position: absolute;
+      top: 1rem;
+      left: 1rem;
+      background: var(--color-teal);
+      color: #fff;
+      font-size: 0.65rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      padding: 0.3rem 0.75rem;
+      border-radius: 2px;
+      font-weight: 600;
+    }
+
+    .car-card__body { padding: 1.5rem; }
+
+    .car-card__header-row {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 1rem;
+      margin-bottom: 1.1rem;
+    }
+
+    .car-card__title {
+      font-family: var(--font-serif);
+      font-size: 1.3rem;
+      color: var(--color-navy);
+      margin-bottom: 0.2rem;
+    }
+
+    .car-card__year {
+      font-size: 0.78rem;
+      color: var(--color-muted);
+      letter-spacing: 0.04em;
+    }
+
+    .car-card__price {
+      text-align: right;
+      flex-shrink: 0;
+    }
+
+    .car-card__price-amount {
+      font-family: var(--font-serif);
+      font-size: 1.8rem;
+      color: var(--color-navy);
+      line-height: 1;
+    }
+
+    .car-card__price-unit {
+      display: block;
+      font-size: 0.75rem;
+      color: var(--color-muted);
+      margin-top: 2px;
+    }
+
+    .car-card__specs {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0.6rem;
+      margin-bottom: 1.1rem;
+      padding: 1rem;
+      background: var(--color-sand);
+      border-radius: var(--radius-sm);
+    }
+
+    .car-card__spec {
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+      font-size: 0.8rem;
+      color: var(--color-muted);
+    }
+
+    .car-card__spec .material-icons {
+      font-size: 16px;
+      color: var(--color-ocean);
+    }
+
+    .car-card__description {
+      font-size: 0.85rem;
+      color: var(--color-muted);
+      line-height: 1.75;
+      margin-bottom: 1.3rem;
+    }
+
+    .car-card__cta {
+      display: block;
+      background: var(--color-navy);
+      color: var(--color-white);
+      padding: 0.85rem;
+      border-radius: var(--radius-sm);
+      text-align: center;
+      font-size: 0.82rem;
+      font-weight: 500;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      text-decoration: none;
+      transition: background var(--transition);
+    }
+
+    .car-card__cta:hover { background: var(--color-ocean); }
+
+    /* ── Rental notes ── */
+    .rental-notes {
+      display: flex;
+      flex-direction: column;
+      gap: 0.8rem;
+      margin-bottom: 2rem;
+    }
+
+    .rental-note {
+      display: flex;
+      align-items: flex-start;
+      gap: 0.8rem;
+      background: var(--color-white);
+      border: 1px solid rgba(12,35,64,0.07);
+      border-radius: var(--radius-sm);
+      padding: 0.9rem 1.1rem;
+      font-size: 0.84rem;
+      color: var(--color-muted);
+      line-height: 1.6;
+    }
+
+    .rental-note .material-icons {
+      color: var(--color-teal);
+      font-size: 20px;
+      flex-shrink: 0;
+      margin-top: 1px;
+    }
+
+    .rental-note strong { color: var(--color-navy); }
+
+    .rental-cta-group {
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+
+    /* ── Responsive additions ── */
     @media (max-width: 900px) {
       .shuttle-layout,
-      .rental-layout { grid-template-columns: 1fr; }
+      .rental-layout,
+      .car-grid { grid-template-columns: 1fr; }
       .steps { grid-template-columns: repeat(2, 1fr); }
       .info-strip { grid-template-columns: 1fr; }
       .info-strip__item { border-right: none; border-bottom: 1px solid rgba(255,255,255,0.06); }
@@ -913,67 +1089,122 @@
       </div>
       <div class="service-header__text">
         <span class="service-header__tag">Rental Cars</span>
-        <h2 class="service-header__title">Explore Nassau on Your Terms</h2>
-        <p class="service-header__subtitle">Want to venture out on your own schedule? Our front desk team can arrange a rental car for you — perfect for day trips, beach hopping, or heading into downtown Nassau.</p>
+        <h2 class="service-header__title">Rent a Car Directly from Us</h2>
+        <p class="service-header__subtitle">Hit the road on your own schedule. We have two vehicles available to rent directly through the resort — no third-party booking, no hidden fees. Just pick up the keys and go.</p>
       </div>
     </div>
 
-    <div class="rental-layout">
+    <!-- Car cards -->
+    <div class="car-grid fade-up">
 
-      <div class="rental-image fade-up">
-        <img
-          src="https://images.unsplash.com/photo-1550355291-bbee04a92027?w=800&q=80"
-          alt="Rental car Nassau Bahamas"
-          onerror="this.src='https://images.unsplash.com/photo-1494976388531-d1058494cdd8?w=800&q=80'">
-        <span class="rental-image__label">Available through our front desk</span>
+      <!-- Nissan Note -->
+      <div class="car-card">
+        <div class="car-card__image-wrap">
+          <img
+            src="https://images.unsplash.com/photo-1541899481282-d53bffe3c35d?w=800&q=80"
+            alt="Nissan Note 2016"
+            onerror="this.src='https://images.unsplash.com/photo-1494976388531-d1058494cdd8?w=800&q=80'">
+          <span class="car-card__badge">Available</span>
+        </div>
+        <div class="car-card__body">
+          <div class="car-card__header-row">
+            <div>
+              <h3 class="car-card__title">Nissan Note</h3>
+              <p class="car-card__year">2016 · Compact Hatchback</p>
+            </div>
+            <div class="car-card__price">
+              <span class="car-card__price-amount">$70</span>
+              <span class="car-card__price-unit">/ day</span>
+            </div>
+          </div>
+          <div class="car-card__specs">
+            <div class="car-card__spec">
+              <span class="material-icons" aria-hidden="true">event_seat</span>
+              5 seats
+            </div>
+            <div class="car-card__spec">
+              <span class="material-icons" aria-hidden="true">settings</span>
+              Automatic
+            </div>
+            <div class="car-card__spec">
+              <span class="material-icons" aria-hidden="true">ac_unit</span>
+              Air con
+            </div>
+            <div class="car-card__spec">
+              <span class="material-icons" aria-hidden="true">local_gas_station</span>
+              Fuel efficient
+            </div>
+          </div>
+          <p class="car-card__description">A reliable, easy-to-drive compact — perfect for navigating Nassau's streets, heading to Cable Beach, or exploring the island at your own pace.</p>
+          <a href="https://sunfunhotel.com/#contact-us" class="car-card__cta">Reserve this Car</a>
+        </div>
       </div>
 
-      <div class="rental-content fade-up">
-        <p class="rental-intro">Skip the hassle of hunting for a rental company. Just ask at our front desk and we'll handle everything — booking, pickup coordination, and any questions along the way. It's one less thing to think about on your holiday.</p>
-
-        <div class="rental-features">
-
-          <div class="rental-feature">
-            <span class="material-icons" aria-hidden="true">support_agent</span>
-            <div>
-              <p class="rental-feature__title">Arranged by our team</p>
-              <p class="rental-feature__text">No need to search online — we handle the booking for you.</p>
-            </div>
-          </div>
-
-          <div class="rental-feature">
-            <span class="material-icons" aria-hidden="true">map</span>
-            <div>
-              <p class="rental-feature__title">Local knowledge included</p>
-              <p class="rental-feature__text">We'll point you to the best spots and routes around Nassau.</p>
-            </div>
-          </div>
-
-          <div class="rental-feature">
-            <span class="material-icons" aria-hidden="true">schedule</span>
-            <div>
-              <p class="rental-feature__title">Flexible durations</p>
-              <p class="rental-feature__text">Half day, full day, or multi-day — whatever suits your plans.</p>
-            </div>
-          </div>
-
-          <div class="rental-feature">
-            <span class="material-icons" aria-hidden="true">local_gas_station</span>
-            <div>
-              <p class="rental-feature__title">Ready to drive</p>
-              <p class="rental-feature__text">Vehicles are delivered ready to go so you can head straight out.</p>
-            </div>
-          </div>
-
+      <!-- Toyota Passo -->
+      <div class="car-card">
+        <div class="car-card__image-wrap">
+          <img
+            src="https://images.unsplash.com/photo-1533473359331-0135ef1b58bf?w=800&q=80"
+            alt="Toyota Passo 2016"
+            onerror="this.src='https://images.unsplash.com/photo-1494976388531-d1058494cdd8?w=800&q=80'">
+          <span class="car-card__badge">Available</span>
         </div>
-
-        <div class="rental-cta-group">
-          <a href="https://sunfunhotel.com/#contact-us" class="btn-primary">Enquire at Front Desk</a>
-          <a href="tel:+12423278827" class="btn-outline" style="color:var(--color-navy); border-color:rgba(12,35,64,0.3);">Call +1 242-327-8827</a>
+        <div class="car-card__body">
+          <div class="car-card__header-row">
+            <div>
+              <h3 class="car-card__title">Toyota Passo</h3>
+              <p class="car-card__year">2016 · Mini Hatchback</p>
+            </div>
+            <div class="car-card__price">
+              <span class="car-card__price-amount">$70</span>
+              <span class="car-card__price-unit">/ day</span>
+            </div>
+          </div>
+          <div class="car-card__specs">
+            <div class="car-card__spec">
+              <span class="material-icons" aria-hidden="true">event_seat</span>
+              5 seats
+            </div>
+            <div class="car-card__spec">
+              <span class="material-icons" aria-hidden="true">settings</span>
+              Automatic
+            </div>
+            <div class="car-card__spec">
+              <span class="material-icons" aria-hidden="true">ac_unit</span>
+              Air con
+            </div>
+            <div class="car-card__spec">
+              <span class="material-icons" aria-hidden="true">straighten</span>
+              Compact size
+            </div>
+          </div>
+          <p class="car-card__description">Small, nimble, and easy to park — the Passo is ideal for couples or solo travellers who want to explore Nassau without the fuss of a larger vehicle.</p>
+          <a href="https://sunfunhotel.com/#contact-us" class="car-card__cta">Reserve this Car</a>
         </div>
-
       </div>
-    </div><!-- /.rental-layout -->
+
+    </div><!-- /.car-grid -->
+
+    <!-- Rental notes -->
+    <div class="rental-notes fade-up">
+      <div class="rental-note">
+        <span class="material-icons" aria-hidden="true">info</span>
+        <p>Rentals are subject to availability — contact the front desk to check and reserve your preferred vehicle.</p>
+      </div>
+      <div class="rental-note">
+        <span class="material-icons" aria-hidden="true">drive_eta</span>
+        <p>In the Bahamas, driving is on the <strong>left side of the road</strong>. A valid driver's licence from your home country is accepted for visits up to 3 months.</p>
+      </div>
+      <div class="rental-note">
+        <span class="material-icons" aria-hidden="true">local_gas_station</span>
+        <p>Vehicles are returned with the same fuel level as pickup. The nearest petrol station will be pointed out at handover.</p>
+      </div>
+    </div>
+
+    <div class="rental-cta-group fade-up">
+      <a href="https://sunfunhotel.com/#contact-us" class="btn-primary">Reserve a Car</a>
+      <a href="tel:+12423278827" class="btn-outline" style="color:var(--color-navy); border-color:rgba(12,35,64,0.3);">Call +1 242-327-8827</a>
+    </div>
 
   </div>
 </div>
@@ -996,7 +1227,7 @@
         <span class="material-icons" aria-hidden="true">expand_more</span>
       </button>
       <div class="faq-item__answer">
-        Lynden Pindling International Airport (NAS) is approximately 5 minutes from SunFun Resort depending on traffic. Our shuttle makes the journey smooth and comfortable so you can start relaxing the moment you land.
+        Lynden Pindling International Airport (NAS) is approximately 20–30 minutes from SunFun Resort depending on traffic. Our shuttle makes the journey smooth and comfortable so you can start relaxing the moment you land.
       </div>
     </div>
 
