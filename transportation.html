@@ -14,11 +14,6 @@
 
   <!-- Page-specific styles -->
   <style>
-    /*
-     * transportation.html — page-specific styles
-     * Everything shared (nav, footer, buttons, fade-up, etc.)
-     * lives in styles.css. Only what's unique to this page lives here.
-     */
 
     /* ── Hero ── */
     .transport-hero {
@@ -34,20 +29,36 @@
     .transport-hero__bg {
       position: absolute;
       inset: 0;
-      background-image: url('https://images.unsplash.com/photo-1570125909232-eb263c188f7e?w=1600&q=80');
+      background-image: url('SHUTTLE.png');
       background-size: cover;
-      background-position: center 60%;
+      background-position: center 55%;
+      /* Slightly desaturate and darken the van photo for a polished editorial look */
+      filter: saturate(0.75) brightness(0.72);
+      transform: scale(1.04);
     }
 
     .transport-hero__overlay {
       position: absolute;
       inset: 0;
+      /* Strong left-to-right gradient so text is always readable,
+         fades to near-transparent on the right so the shuttle is visible */
       background: linear-gradient(
-        120deg,
-        rgba(6, 15, 26, 0.85) 0%,
-        rgba(6, 15, 26, 0.45) 60%,
-        rgba(6, 15, 26, 0.15) 100%
+        105deg,
+        rgba(6, 15, 26, 0.92) 0%,
+        rgba(6, 15, 26, 0.70) 40%,
+        rgba(6, 15, 26, 0.28) 72%,
+        rgba(6, 15, 26, 0.08) 100%
       );
+    }
+
+    /* Subtle vignette around edges */
+    .transport-hero__vignette {
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(ellipse at 0% 100%, rgba(6,15,26,0.55) 0%, transparent 55%),
+        radial-gradient(ellipse at 100% 0%, rgba(6,15,26,0.35) 0%, transparent 50%);
+      pointer-events: none;
     }
 
     .transport-hero__content {
@@ -82,7 +93,7 @@
       color: var(--color-white);
       line-height: 1.1;
       margin-bottom: 1.2rem;
-      text-shadow: 0 2px 20px rgba(0,0,0,0.3);
+      text-shadow: 0 2px 24px rgba(0,0,0,0.45);
     }
 
     .transport-hero__title em {
@@ -92,11 +103,11 @@
 
     .transport-hero__description {
       font-size: 1rem;
-      color: rgba(255,255,255,0.82);
+      color: rgba(255,255,255,0.85);
       line-height: 1.85;
       max-width: 480px;
       margin-bottom: 2rem;
-      text-shadow: 0 1px 8px rgba(0,0,0,0.25);
+      text-shadow: 0 1px 10px rgba(0,0,0,0.35);
     }
 
     .transport-hero__cta {
@@ -111,13 +122,37 @@
       font-weight: 600;
       letter-spacing: 0.04em;
       text-decoration: none;
-      box-shadow: 0 4px 20px rgba(0,0,0,0.2);
+      box-shadow: 0 4px 20px rgba(0,0,0,0.25);
       transition: all var(--transition);
     }
 
     .transport-hero__cta:hover {
       background: var(--color-gold-light);
       color: var(--color-white);
+    }
+
+    /* Badge overlaid bottom-right of hero showing it's the real shuttle */
+    .transport-hero__shuttle-badge {
+      position: absolute;
+      bottom: 2rem;
+      right: 2.5rem;
+      z-index: 3;
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+      background: rgba(6,15,26,0.65);
+      backdrop-filter: blur(8px);
+      border: 1px solid rgba(255,255,255,0.14);
+      border-radius: 100px;
+      padding: 0.5rem 1.1rem 0.5rem 0.6rem;
+      color: rgba(255,255,255,0.9);
+      font-size: 0.72rem;
+      letter-spacing: 0.08em;
+    }
+
+    .transport-hero__shuttle-badge .material-icons {
+      color: var(--color-gold);
+      font-size: 18px;
     }
 
     /* ── Quick info strip ── */
@@ -251,7 +286,7 @@
       background: var(--color-white);
       border-radius: var(--radius-lg);
       overflow: hidden;
-      border: 2px solid #90CDF4; /* light blue border to lift it off the background */
+      border: 2px solid #90CDF4;
       box-shadow: 0 8px 32px rgba(12, 35, 64, 0.14), 0 2px 8px rgba(12, 35, 64, 0.08);
     }
 
@@ -443,193 +478,7 @@
       line-height: 1.7;
     }
 
-    /* ── Rental section ── */
-    .rental-layout {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 3rem;
-      align-items: start;
-    }
-
-    .rental-image {
-      border-radius: var(--radius-lg);
-      overflow: hidden;
-      position: relative;
-      aspect-ratio: 4/3;
-    }
-
-    .rental-image img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-    }
-
-    .rental-image__label {
-      position: absolute;
-      bottom: 1rem;
-      left: 1rem;
-      background: rgba(12,35,64,0.85);
-      color: #fff;
-      font-size: 0.72rem;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      padding: 0.35rem 0.8rem;
-      border-radius: 2px;
-      backdrop-filter: blur(4px);
-    }
-
-    .rental-content { display: flex; flex-direction: column; gap: 1.5rem; }
-
-    .rental-intro {
-      font-size: 0.95rem;
-      color: var(--color-muted);
-      line-height: 1.85;
-    }
-
-    .rental-features {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 1rem;
-    }
-
-    .rental-feature {
-      display: flex;
-      align-items: flex-start;
-      gap: 0.7rem;
-      padding: 1rem;
-      background: var(--color-white);
-      border-radius: var(--radius-md);
-      border: 1px solid rgba(12,35,64,0.07);
-    }
-
-    .rental-feature .material-icons {
-      color: var(--color-gold);
-      font-size: 20px;
-      flex-shrink: 0;
-      margin-top: 1px;
-    }
-
-    .rental-feature__title {
-      font-size: 0.85rem;
-      font-weight: 500;
-      color: var(--color-navy);
-      margin-bottom: 0.2rem;
-    }
-
-    .rental-feature__text {
-      font-size: 0.78rem;
-      color: var(--color-muted);
-      line-height: 1.5;
-    }
-
-    .rental-cta-group {
-      display: flex;
-      gap: 1rem;
-      flex-wrap: wrap;
-    }
-
-    /* ── FAQ ── */
-    .faq-list {
-      display: flex;
-      flex-direction: column;
-      gap: 0;
-      border: 1px solid rgba(12,35,64,0.08);
-      border-radius: var(--radius-md);
-      overflow: hidden;
-    }
-
-    .faq-item {
-      border-bottom: 1px solid rgba(12,35,64,0.08);
-    }
-
-    .faq-item:last-child { border-bottom: none; }
-
-    .faq-item__question {
-      width: 100%;
-      background: none;
-      border: none;
-      padding: 1.3rem 1.6rem;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 1rem;
-      cursor: pointer;
-      text-align: left;
-      font-family: var(--font-serif);
-      font-size: 1rem;
-      color: var(--color-navy);
-      transition: background var(--transition);
-    }
-
-    .faq-item__question:hover { background: rgba(12,35,64,0.02); }
-
-    .faq-item__question .material-icons {
-      color: var(--color-gold);
-      font-size: 20px;
-      flex-shrink: 0;
-      transition: transform 0.3s ease;
-    }
-
-    .faq-item--open .faq-item__question .material-icons {
-      transform: rotate(180deg);
-    }
-
-    .faq-item__answer {
-      display: none;
-      padding: 0 1.6rem 1.3rem;
-      font-size: 0.88rem;
-      color: var(--color-muted);
-      line-height: 1.8;
-    }
-
-    .faq-item--open .faq-item__answer { display: block; }
-
-    /* ── CTA Banner ── */
-    .transport-cta-banner {
-      background: var(--color-navy);
-      padding: var(--section-pad-v) var(--section-pad-h);
-      text-align: center;
-      position: relative;
-      overflow: hidden;
-    }
-
-    .transport-cta-banner::before {
-      content: '';
-      position: absolute;
-      top: -60px;
-      left: 50%;
-      transform: translateX(-50%);
-      width: 600px;
-      height: 600px;
-      border-radius: 50%;
-      background: radial-gradient(circle, rgba(27,108,168,0.25) 0%, transparent 70%);
-      pointer-events: none;
-    }
-
-    .transport-cta-banner__title {
-      font-family: var(--font-serif);
-      font-size: clamp(1.8rem, 4vw, 2.8rem);
-      color: var(--color-white);
-      margin-bottom: 1rem;
-    }
-
-    .transport-cta-banner__description {
-      color: rgba(255,255,255,0.65);
-      margin-bottom: 2.5rem;
-      font-size: 0.95rem;
-      max-width: 500px;
-      margin-left: auto;
-      margin-right: auto;
-    }
-
-    .transport-cta-banner__actions {
-      display: flex;
-      gap: 1rem;
-      justify-content: center;
-      flex-wrap: wrap;
-    }
-
-    /* ── Car rental grid ── */
+    /* ── Car grid ── */
     .car-grid {
       display: grid;
       grid-template-columns: 1fr 1fr;
@@ -702,10 +551,7 @@
       letter-spacing: 0.04em;
     }
 
-    .car-card__price {
-      text-align: right;
-      flex-shrink: 0;
-    }
+    .car-card__price { text-align: right; flex-shrink: 0; }
 
     .car-card__price-amount {
       font-family: var(--font-serif);
@@ -739,10 +585,7 @@
       color: var(--color-muted);
     }
 
-    .car-card__spec .material-icons {
-      font-size: 16px;
-      color: var(--color-ocean);
-    }
+    .car-card__spec .material-icons { font-size: 16px; color: var(--color-ocean); }
 
     .car-card__description {
       font-size: 0.85rem;
@@ -789,36 +632,121 @@
       line-height: 1.6;
     }
 
-    .rental-note .material-icons {
-      color: var(--color-teal);
-      font-size: 20px;
-      flex-shrink: 0;
-      margin-top: 1px;
-    }
-
+    .rental-note .material-icons { color: var(--color-teal); font-size: 20px; flex-shrink: 0; margin-top: 1px; }
     .rental-note strong { color: var(--color-navy); }
 
-    .rental-cta-group {
+    .rental-cta-group { display: flex; gap: 1rem; flex-wrap: wrap; }
+
+    /* ── FAQ ── */
+    .faq-list {
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+      border: 1px solid rgba(12,35,64,0.08);
+      border-radius: var(--radius-md);
+      overflow: hidden;
+    }
+
+    .faq-item { border-bottom: 1px solid rgba(12,35,64,0.08); }
+    .faq-item:last-child { border-bottom: none; }
+
+    .faq-item__question {
+      width: 100%;
+      background: none;
+      border: none;
+      padding: 1.3rem 1.6rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+      cursor: pointer;
+      text-align: left;
+      font-family: var(--font-serif);
+      font-size: 1rem;
+      color: var(--color-navy);
+      transition: background var(--transition);
+    }
+
+    .faq-item__question:hover { background: rgba(12,35,64,0.02); }
+
+    .faq-item__question .material-icons {
+      color: var(--color-gold);
+      font-size: 20px;
+      flex-shrink: 0;
+      transition: transform 0.3s ease;
+    }
+
+    .faq-item--open .faq-item__question .material-icons { transform: rotate(180deg); }
+
+    .faq-item__answer {
+      display: none;
+      padding: 0 1.6rem 1.3rem;
+      font-size: 0.88rem;
+      color: var(--color-muted);
+      line-height: 1.8;
+    }
+
+    .faq-item--open .faq-item__answer { display: block; }
+
+    /* ── CTA Banner ── */
+    .transport-cta-banner {
+      background: var(--color-navy);
+      padding: var(--section-pad-v) var(--section-pad-h);
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .transport-cta-banner::before {
+      content: '';
+      position: absolute;
+      top: -60px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 600px;
+      height: 600px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(27,108,168,0.25) 0%, transparent 70%);
+      pointer-events: none;
+    }
+
+    .transport-cta-banner__title {
+      font-family: var(--font-serif);
+      font-size: clamp(1.8rem, 4vw, 2.8rem);
+      color: var(--color-white);
+      margin-bottom: 1rem;
+    }
+
+    .transport-cta-banner__description {
+      color: rgba(255,255,255,0.65);
+      margin-bottom: 2.5rem;
+      font-size: 0.95rem;
+      max-width: 500px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .transport-cta-banner__actions {
       display: flex;
       gap: 1rem;
+      justify-content: center;
       flex-wrap: wrap;
     }
 
-    /* ── Responsive additions ── */
+    /* ── Responsive ── */
     @media (max-width: 900px) {
       .shuttle-layout,
-      .rental-layout,
       .car-grid { grid-template-columns: 1fr; }
       .steps { grid-template-columns: repeat(2, 1fr); }
       .info-strip { grid-template-columns: 1fr; }
       .info-strip__item { border-right: none; border-bottom: 1px solid rgba(255,255,255,0.06); }
       .info-strip__item:last-child { border-bottom: none; }
+      .transport-hero__shuttle-badge { display: none; }
     }
 
     @media (max-width: 600px) {
       .transport-hero__content { padding: 5rem 1.5rem 3rem; }
       .steps { grid-template-columns: 1fr; }
-      .rental-features { grid-template-columns: 1fr; }
       .service-header { flex-direction: column; }
     }
   </style>
@@ -884,14 +812,22 @@
 <section class="transport-hero">
   <div class="transport-hero__bg" aria-hidden="true"></div>
   <div class="transport-hero__overlay" aria-hidden="true"></div>
+  <div class="transport-hero__vignette" aria-hidden="true"></div>
+
   <div class="transport-hero__content">
-    <p class="transport-hero__eyebrow">SunFun Resort & Hotel</p>
+    <p class="transport-hero__eyebrow">SunFun Resort &amp; Hotel</p>
     <h1 class="transport-hero__title">Getting Around<br><em>Made Easy</em></h1>
     <p class="transport-hero__description">From the moment you land at Lynden Pindling International Airport to the moment you check out — we've got your travel covered.</p>
     <a href="#shuttle" class="transport-hero__cta">
-      <span class="material-icons" aria-hidden="true">directions_car</span>
+      <span class="material-icons" aria-hidden="true">airport_shuttle</span>
       View Our Services
     </a>
+  </div>
+
+  <!-- Small floating badge bottom-right -->
+  <div class="transport-hero__shuttle-badge" aria-hidden="true">
+    <span class="material-icons">airport_shuttle</span>
+    Our official SunFun shuttle
   </div>
 </section>
 
@@ -936,7 +872,7 @@
     <div class="service-header__text">
       <span class="service-header__tag">Airport Transfers</span>
       <h2 class="service-header__title">Airport Shuttle Service</h2>
-      <p class="service-header__subtitle">Door-to-door transfers between SunFun Resort and Lynden Pindling International Airport. No waiting in taxi lines, no guessing — just a smooth, stress-free ride.</p>
+      <p class="service-header__subtitle">Door-to-door transfers between SunFun Resort and Lynden Pindling International Airport. No waiting in taxi lines, no guessing — just a smooth, stress-free ride in our own branded shuttle.</p>
     </div>
   </div>
 
@@ -1096,7 +1032,6 @@
       </div>
     </div>
 
-    <!-- Car cards -->
     <div class="car-grid fade-up">
 
       <!-- Nissan Note -->
@@ -1120,22 +1055,10 @@
             </div>
           </div>
           <div class="car-card__specs">
-            <div class="car-card__spec">
-              <span class="material-icons" aria-hidden="true">event_seat</span>
-              5 seats
-            </div>
-            <div class="car-card__spec">
-              <span class="material-icons" aria-hidden="true">settings</span>
-              Automatic
-            </div>
-            <div class="car-card__spec">
-              <span class="material-icons" aria-hidden="true">ac_unit</span>
-              Air con
-            </div>
-            <div class="car-card__spec">
-              <span class="material-icons" aria-hidden="true">local_gas_station</span>
-              Fuel efficient
-            </div>
+            <div class="car-card__spec"><span class="material-icons" aria-hidden="true">event_seat</span> 5 seats</div>
+            <div class="car-card__spec"><span class="material-icons" aria-hidden="true">settings</span> Automatic</div>
+            <div class="car-card__spec"><span class="material-icons" aria-hidden="true">ac_unit</span> Air con</div>
+            <div class="car-card__spec"><span class="material-icons" aria-hidden="true">local_gas_station</span> Fuel efficient</div>
           </div>
           <p class="car-card__description">A reliable, easy-to-drive compact — perfect for navigating Nassau's streets, heading to Cable Beach, or exploring the island at your own pace.</p>
           <a href="https://sunfunhotel.com/#contact-us" class="car-card__cta">Reserve this Car</a>
@@ -1163,22 +1086,10 @@
             </div>
           </div>
           <div class="car-card__specs">
-            <div class="car-card__spec">
-              <span class="material-icons" aria-hidden="true">event_seat</span>
-              5 seats
-            </div>
-            <div class="car-card__spec">
-              <span class="material-icons" aria-hidden="true">settings</span>
-              Automatic
-            </div>
-            <div class="car-card__spec">
-              <span class="material-icons" aria-hidden="true">ac_unit</span>
-              Air con
-            </div>
-            <div class="car-card__spec">
-              <span class="material-icons" aria-hidden="true">straighten</span>
-              Compact size
-            </div>
+            <div class="car-card__spec"><span class="material-icons" aria-hidden="true">event_seat</span> 5 seats</div>
+            <div class="car-card__spec"><span class="material-icons" aria-hidden="true">settings</span> Automatic</div>
+            <div class="car-card__spec"><span class="material-icons" aria-hidden="true">ac_unit</span> Air con</div>
+            <div class="car-card__spec"><span class="material-icons" aria-hidden="true">straighten</span> Compact size</div>
           </div>
           <p class="car-card__description">Small, nimble, and easy to park — the Passo is ideal for couples or solo travellers who want to explore Nassau without the fuss of a larger vehicle.</p>
           <a href="https://sunfunhotel.com/#contact-us" class="car-card__cta">Reserve this Car</a>
@@ -1187,7 +1098,6 @@
 
     </div><!-- /.car-grid -->
 
-    <!-- Rental notes -->
     <div class="rental-notes fade-up">
       <div class="rental-note">
         <span class="material-icons" aria-hidden="true">info</span>
@@ -1313,24 +1223,19 @@
 </footer>
 
 
-<!-- Site scripts (shared — handles nav, fade-up observer) -->
 <script src="scripts.js"></script>
 
 <script>
-  /* FAQ accordion — transportation.html only */
+  /* FAQ accordion */
   (function initFaq() {
     document.querySelectorAll('.faq-item__question').forEach(function (btn) {
       btn.addEventListener('click', function () {
-        var item    = btn.closest('.faq-item');
-        var isOpen  = item.classList.contains('faq-item--open');
-
-        // Close all open items first
+        var item   = btn.closest('.faq-item');
+        var isOpen = item.classList.contains('faq-item--open');
         document.querySelectorAll('.faq-item--open').forEach(function (openItem) {
           openItem.classList.remove('faq-item--open');
           openItem.querySelector('.faq-item__question').setAttribute('aria-expanded', 'false');
         });
-
-        // If it wasn't already open, open it
         if (!isOpen) {
           item.classList.add('faq-item--open');
           btn.setAttribute('aria-expanded', 'true');
