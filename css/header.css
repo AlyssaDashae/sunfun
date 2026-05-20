@@ -1,0 +1,427 @@
+
+/******************************* 
+    HEADER CSS STARTS 
+********************************/
+
+
+/*--Header Main--*/
+
+.header-logo {
+    padding: 22px 0;
+}
+.boxed .main-header{
+    max-width: 1200px;
+    margin-left: auto; margin-right: auto;
+}
+.header-wrap {     
+    display: inline-block;
+    vertical-align: middle;    
+    width: 100%;   
+    transition: all ease-out 0.4s;
+    -webkit-transition: all ease-in-out 0.4s;    
+}
+.main-header {
+    background-color: #fff;
+    display: inline-block;
+    width: 100%;
+    vertical-align: middle;  
+    position: relative;
+    //padding: 45px 0;
+    z-index: 11;
+
+    transition: all ease-out 0.4s;
+    -webkit-transition: all ease-out 0.4s; 
+}
+.primary-navbar > li, .top-right {
+    padding-top: 20px;
+    padding-bottom: 20px;
+    transition: all 0.2s ease-in-out 0s;
+    -webkit-transition: all 0.2s ease-in-out 0s;
+}
+.is-sticky.main-header {
+    padding: 0; 
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    border-bottom: 1px solid #f4f4f4;
+    z-index: 99;
+}
+
+#headerstyle .main-header { position: static; }
+/*Scoller*/
+.mCSB_inside > .mCSB_container, .mCustomScrollBox {
+    margin-right: 0;    
+}
+.navigation { position: static; z-index: 11; padding: 0; }
+.primary-navbar {
+    float: right;
+}
+.primary-navbar > li.dropdown > a.dropdown-toggle::before {
+    border: medium none;
+    font-family: 'Material Icons';
+    content: "";  
+    font-size: 22px;
+    position: absolute;
+    right: -20px;
+    top: 8px;
+}
+.primary-navbar > li + li {
+    margin: 0 0 0 16px;
+}
+.primary-navbar > li + li::before {
+    bottom: 0;
+    content: "-";
+    font-size: 28px;
+    left: -12px;
+    position: absolute;
+    top: 25%;
+    vertical-align: middle;
+}
+.primary-navbar li > a {
+    color: #000;
+}
+.primary-navbar > li > a {
+    font-size: 26px;
+    padding: 10px 0px;
+    position: relative;
+    text-transform: capitalize;
+}
+.primary-navbar li > a:hover, .primary-navbar li > a:focus, .primary-navbar > li.active > a, 
+.nav .open > a, .nav .open > a:hover, .nav .open > a:focus {
+    background-color: transparent; 
+}
+.navbar-toggle .icon-bar {
+    background-color: #000;
+}
+.navbar-toggle {
+    margin-right: 0;
+}
+.navigation .primary-navbar li .dropdown-menu {
+    border: 1px solid #000;
+    border-radius: 0;
+    box-shadow: none;
+    min-width: 200px;
+    padding: 10px 0;  
+    font-size: 16px;
+}
+.navigation .dropdown-menu > li {
+    position: relative;
+}
+.navigation .dropdown-menu > li.dropdown > a.dropdown-toggle:after {
+    border: medium none;
+    content: "\f067";
+    font-family: FontAwesome;
+    font-size: 10px;
+    position: absolute;
+    right: 25px;
+    top: 8px;
+
+    transition: all 0.4s ease-in-out 0s;
+    -webkit-transition: all 0.4s ease-in-out 0s;
+    -ms-transition: all 0.4s ease-in-out 0s;
+}
+.navigation .dropdown-menu > li.dropdown a:hover:after {
+    right: 10px;
+}
+/*---Header Navigation Megamenu---*/
+.primary-navbar .mega-dropdown {
+    position: static;
+}
+.primary-navbar .mega-dropdown-menu {
+    width: 100%;
+}
+.navigation .primary-navbar li .mega-dropdown-menu {
+    padding: 35px 15px;
+}
+.sub-list > ul {
+    padding: 0;
+}
+.sub-list > ul li a {
+    display: block;
+}
+.navigation .mega-dropdown-menu li > a {
+    color: #fff;
+    text-transform: capitalize;   
+}
+.navigation .mega-dropdown-menu li a:hover {
+    color: #a3a3a3;
+}
+.navigation .mega-dropdown-menu .flicker-feed img {
+    height: 73px;
+    width: 73px;
+}
+.mega-dropdown-menu .section-title {
+    border-bottom: 1px solid #a3a3a3;
+    margin-bottom: 20px;
+    padding-bottom: 20px;
+}
+.mega-dropdown-menu .blog-heading .blog-title {
+    width: 70%;
+}
+.mega-dropdown-menu .nav-2 .owl-nav {
+    top: -65px;
+}
+.mega-dropdown-menu .mega-dropdown-slider .hover {
+    position: absolute;
+    visibility: hidden;
+    top: 100%;
+    z-index: 1;
+    transition: all 0.3s ease-in-out 0s;
+    -webkit-transition: all 0.3s ease-in-out 0s;
+    -ms-transition: all 0.3s ease-in-out 0s;
+}
+.mega-dropdown-slider .hover .title-2 {
+    display: inline-block;
+    margin-bottom: 15px;
+    vertical-align: middle;
+}
+.mega-dropdown-slider .hover-effect-1:hover .hover {
+    top: 32%;
+    visibility: visible;
+}
+
+.book-now {
+    text-align: right;
+}
+.book-now .theme-btn {
+    margin-top: 20px;
+}
+/*--Header Main--*/
+
+
+/******************************* 
+    2 - HEADER CSS ENDS 
+********************************/
+
+
+/******************************* 
+  6 - RESPONSIVE STARTS 
+********************************/
+
+@media (min-width:768px) {
+    /*-- Header --*/
+    .navigation .primary-navbar li .dropdown-menu {
+        display: block;
+        opacity: 0;    
+        visibility: hidden;
+
+
+        transform: translateY(50px);
+        -webkit-transform: translateY(50px);
+        -ms-transform: translateY(50px);
+
+        transition: transform 0.3s ease 0s;
+        -webkit-transition: -webkit-transform 0.3s ease-in-out 0s;
+        -ms-transition: -ms-transform 0.3s ease 0s;
+
+        transition: all 0.3s ease 0s;
+        -webkit-transition: all 0.3s ease-in-out 0s;
+        -ms-transition: all 0.3s ease 0s;
+    }
+    .navigation .primary-navbar > li:hover > .dropdown-menu {
+        opacity: 1;    
+        visibility: visible;
+
+        transform: translateY(0px);   
+        -webkit-transform: translateY(0px);
+        -ms-transform: translateY(0px);
+    }
+    .navigation .dropdown-menu  li:hover > .dropdown-menu {
+        opacity: 1;        
+        visibility: visible;
+
+        transform: translateY(0px);
+        -webkit-transform: translateY(0px);
+        -ms-transform: translateY(0px);
+    }
+    .navigation .dropdown-menu > li .dropdown-menu {
+        left: 100%;       
+        top: 0;  
+        margin: 0;
+
+        transform: translateY(50px);
+        -webkit-transform: translateY(50px);
+        -ms-transform: translateY(50px);
+    }
+
+}
+@media (min-width:992px)and (max-width:1199px) {
+
+}
+@media (min-width:768px)and (max-width:1199px) {
+    /*header*/
+    .logo-title {
+        font-size: 10px;
+    }
+    .primary-navbar {
+        float: none;
+        text-align: center;
+        margin-bottom: 20px;
+    }  
+    .primary-navbar > li {
+        display: inline-block;
+        float: none;
+        padding: 0;
+    }    
+    .primary-navbar > li + li::before {
+        bottom: auto;   
+        font-size: 20px;   
+        top: -5px;
+    }
+    .header-logo {
+        text-align: center;
+    }
+
+    .primary-navbar > li > a {
+        padding: 0;
+        font-size: 20px;
+    }
+    .book-now {
+        position: absolute;
+        right: 0;
+    }
+
+
+}
+@media (min-width:768px)and (max-width:991px) {
+
+}
+@media (max-width:767px) {
+    /*-- Header Offcanvas --*/
+    .nav-trigger {
+        float: right;
+    }
+    .nav-trigger .toggle-icon {
+        background: transparent none repeat scroll 0 0;
+        border: 2px solid #000;
+        color: #000000;
+        cursor: pointer;
+        display: inline-block;
+        font-size: 14px;
+        height: 30px;
+        line-height: 25px;
+        margin: 5px 0;
+        text-align: center;
+        vertical-align: middle;
+        width: 30px;
+        z-index: 1;
+    }
+    .nav-trigger .toggle-icon:hover {
+        background-color: #000000;
+        color: #ffffff;
+    }
+    .header-wrap .navigation  {     
+        background: #ffffff none repeat scroll 0 0;  
+        border: 3px solid #000000;
+        display: inline-block;
+        padding: 0;
+        position: absolute;
+        top: -25px;  
+        right: 0;
+        vertical-align: middle;
+        width: 250px;
+        margin: 0;
+        max-height: 400px;
+        overflow: auto;   
+        opacity: 0;
+        visibility: hidden;
+        z-index: 11;
+
+        transform: translateX(300px);
+        -webkit-transform: translateX(300px);
+        -ms-transform: translateX(300px);
+
+        transition: all 0.4s ease-out 0s;
+        -webkit-transition: all 0.4s ease-out 0s;
+        -ms-transition: all 0.4s ease-out 0s;
+    }
+    .navigation.off-canvas {
+        opacity: 1;
+        visibility: visible;
+        transform: translateX(0px);
+        -webkit-transform: translateX(0px);
+        -ms-transform: translateX(0px);
+    }
+    .navigation .primary-navbar li.open .dropdown-menu {
+        display: block;
+        border: none;
+        padding: 0;
+        font-size: 14px;
+    }
+    .primary-navbar > li + li {
+        margin: 0;
+    }
+    .navigation .dropdown-menu > .dropdown .dropdown-menu li a {
+        margin-left: 20px;
+        padding-left: 10px;
+    }
+    .navigation .primary-navbar li.open .dropdown-menu .dropdown-menu {
+        padding: 0 0 0 15px;
+    }
+    .primary-navbar {
+        float: none;
+        margin: 0;
+    }
+    .off-canvas .nav-trigger .toggle-icon {
+        height: 25px;
+        left: 0;
+        line-height: inherit;
+        margin: auto;
+        position: absolute;
+        right: 0;
+        top: 0;
+        width: 25px;
+    }
+    .off-canvas nav {
+        padding-top: 30px;
+    } 
+    .navigation  li a .bubble {
+        left: 30px;
+        right: auto;
+    }
+    .primary-navbar > li {      
+        padding: 0 20px;
+    }
+    .primary-navbar > li.dropdown {
+        padding-right: 20px;
+    }
+    .primary-navbar > li.dropdown > a.dropdown-toggle::before {
+        right: 0;
+    }
+    .primary-navbar > li > a::after, .primary-navbar > li:hover > a::after, .primary-navbar > li:focus > a::after, .primary-navbar > li.active > a::after {
+        background: transparent;
+    }
+    .menu-block + .menu-block {
+        border: medium none;
+        margin-top: 30px;
+        min-height: auto;
+    }
+
+    /*-- Header --*/
+    .main-header {
+        padding: 25px 0;
+    }
+     .main-header.is-sticky {
+        padding: 15px 0;
+    }
+    .header-logo > a {
+        float: left;
+    }
+    .header-logo {
+        padding: 0;
+    }
+    .book-now {
+        clear: both;
+        text-align: right;
+    }
+}
+
+@media (max-width:320px) {
+
+}
+/******************************* 
+  6 - RESPONSIVE ENDS 
+********************************/
+
+

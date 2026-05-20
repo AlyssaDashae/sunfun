@@ -1,0 +1,16 @@
+/*----------------------------------Theme Colors Starts-------------------------------- */
+a:hover,
+a:active,
+a:focus {
+    color: #1abc9c;
+}
+.theme-clr, .sub-title, .primary-navbar li > a:hover, .primary-navbar li > a:focus, .primary-navbar > li > a.active, .nav .open > a, .nav .open > a:hover, .nav .open > a:focus {
+    color: #1abc9c;
+}
+.clr-btn, .btn-black:hover, .btn-black:focus {
+    background-color: #1abc9c;
+}
+.theme-mask:before {
+    background: rgba(26, 188, 156, 0.3) none repeat scroll 0 0;
+}
+/*------------------------Theme Colors Ends------------------------ */
