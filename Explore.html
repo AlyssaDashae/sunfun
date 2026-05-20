@@ -1,0 +1,859 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Explore Nassau — SunFun Resort & Hotel</title>
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+  <!-- Leaflet CSS -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet@1.9.4/dist/leaflet.min.css">
+
+  <!-- Site styles -->
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<!-- ════════════════════════════════════════
+     NAVIGATION
+════════════════════════════════════════ -->
+<nav class="nav" role="navigation" aria-label="Main navigation">
+  <div class="nav__logo">
+    <a href="https://sunfunhotel.com">
+      <img src="https://sunfunhotel.com/assets/img/logo.png" alt="SunFun Resort & Hotel">
+    </a>
+  </div>
+
+  <ul class="nav__links">
+    <li><a href="https://sunfunhotel.com/#about-us"    class="nav__link">About</a></li>
+    <li><a href="https://sunfunhotel.com/#hotel-rooms" class="nav__link">Rooms</a></li>
+    <li><a href="#"                                    class="nav__link nav__link--active">Explore</a></li>
+    <li><a href="https://sunfunhotel.com/#our-dining"  class="nav__link">Dining</a></li>
+    <li><a href="transportation.html"                  class="nav__link">Transportation</a></li>
+    <li><a href="https://sunfunhotel.com/#contact-us"  class="nav__link">Contact</a></li>
+  </ul>
+
+  <div class="nav__mobile-actions">
+    <button
+      class="hamburger"
+      id="hamburger"
+      aria-label="Open navigation menu"
+      aria-expanded="false"
+      aria-controls="mobile-menu"
+    >
+      <span class="hamburger__bar"></span>
+      <span class="hamburger__bar"></span>
+      <span class="hamburger__bar"></span>
+    </button>
+  </div>
+
+  <a href="https://sunfunhotel.com/#contact-us" class="nav__book-btn">Book Now</a>
+</nav>
+
+
+<!-- ════════════════════════════════════════
+     MOBILE MENU
+════════════════════════════════════════ -->
+<div class="mobile-menu" id="mobile-menu" role="navigation" aria-label="Mobile navigation">
+  <ul class="mobile-menu__links">
+    <li><a href="https://sunfunhotel.com/#about-us"    class="mobile-menu__link">About</a></li>
+    <li><a href="https://sunfunhotel.com/#hotel-rooms" class="mobile-menu__link">Rooms</a></li>
+    <li><a href="#"                                    class="mobile-menu__link mobile-menu__link--active">Explore Nassau</a></li>
+    <li><a href="https://sunfunhotel.com/#our-dining"  class="mobile-menu__link">Dining</a></li>
+    <li><a href="transportation.html"                  class="mobile-menu__link">Transportation</a></li>
+    <li><a href="https://sunfunhotel.com/#contact-us"  class="mobile-menu__link">Contact</a></li>
+  </ul>
+  <a href="https://sunfunhotel.com/#contact-us" class="mobile-menu__book-btn">Book Now</a>
+</div>
+
+
+<!-- ════════════════════════════════════════
+     HERO
+════════════════════════════════════════ -->
+<section class="hero">
+  <div class="hero__bg" aria-hidden="true"></div>
+  <div class="hero__overlay" aria-hidden="true"></div>
+
+  <div class="hero__content">
+    <p class="hero__eyebrow">Nassau, The Bahamas</p>
+    <h1 class="hero__title">Explore the<br><em>Island Life</em></h1>
+    <p class="hero__description">Crystal-clear waters, vibrant culture, and endless adventures await — all steps from your door at SunFun Resort.</p>
+    <a href="#adventures" class="hero__cta">
+      <span class="material-icons hero__cta-icon" aria-hidden="true">explore</span>
+      Discover Activities
+    </a>
+  </div>
+
+  <div class="hero__scroll-indicator" aria-hidden="true">
+    <div class="hero__scroll-line"></div>
+    Scroll
+  </div>
+</section>
+
+
+<!-- ════════════════════════════════════════
+     FILTER BAR
+════════════════════════════════════════ -->
+<div class="filter-bar" role="group" aria-label="Filter experiences by category">
+  <span class="filter-bar__label" id="filter-label">Filter by</span>
+  <button class="filter-btn filter-btn--active" data-category="all"       aria-labelledby="filter-label">All Experiences</button>
+  <button class="filter-btn"                    data-category="water"     aria-labelledby="filter-label">Water &amp; Beach</button>
+  <button class="filter-btn"                    data-category="adventure" aria-labelledby="filter-label">Adventure</button>
+  <button class="filter-btn"                    data-category="culture"   aria-labelledby="filter-label">Culture</button>
+  <button class="filter-btn"                    data-category="dining"    aria-labelledby="filter-label">Dining</button>
+</div>
+
+
+<!-- ════════════════════════════════════════
+     EXPERIENCES CAROUSEL
+════════════════════════════════════════ -->
+<section class="experiences" id="adventures" aria-label="Top Nassau experiences">
+  <div class="section-header fade-up">
+    <p class="section-tag">Top Picks</p>
+    <h2 class="section-title">Can't-Miss Nassau Experiences</h2>
+    <p class="section-subtitle">From swimming with pigs to snorkeling vivid coral reefs, here's what makes Nassau unforgettable.</p>
+  </div>
+
+  <div class="carousel">
+    <button class="carousel__arrow carousel__arrow--prev" id="exp-prev" aria-label="Previous slide">
+      <span class="material-icons" aria-hidden="true">chevron_left</span>
+    </button>
+    <button class="carousel__arrow carousel__arrow--next" id="exp-next" aria-label="Next slide">
+      <span class="material-icons" aria-hidden="true">chevron_right</span>
+    </button>
+
+    <div class="carousel__track-wrapper">
+      <div class="carousel__track" id="exp-track">
+
+        <article class="exp-card" data-category="water">
+          <img class="exp-card__image" src="https://images.unsplash.com/photo-1544551763-46a013bb70d5?w=800&q=80" alt="Snorkeling Nassau coral reefs">
+          <div class="exp-card__overlay">
+            <span class="exp-card__tag exp-card__tag--water">Water</span>
+            <h3 class="exp-card__title">Snorkel Nassau's Coral Reefs</h3>
+            <p class="exp-card__description">Dive into electric blue waters teeming with tropical fish, sea turtles, and vibrant coral gardens.</p>
+            <div class="exp-card__meta">
+              <span class="exp-card__meta-item"><span class="material-icons" aria-hidden="true">schedule</span> Half day</span>
+              <span class="exp-card__meta-item"><span class="material-icons" aria-hidden="true">directions_boat</span> Boat transfer</span>
+            </div>
+          </div>
+        </article>
+
+        <article class="exp-card" data-category="water">
+          <img class="exp-card__image"
+            src="DOLPHIN.webp"
+            alt="Dolphin Encounter Blue Lagoon Island"
+            onerror="this.src='https://images.unsplash.com/photo-1566438480900-0609be27a4be?w=800&q=80'">
+          <div class="exp-card__overlay">
+            <span class="exp-card__tag exp-card__tag--water">Water</span>
+            <h3 class="exp-card__title">Dolphin Encounters — Blue Lagoon Island</h3>
+            <p class="exp-card__description">Swim, kiss, and dance with Atlantic bottlenose dolphins at this award-winning ocean habitat. 25 min by ferry.</p>
+            <div class="exp-card__meta">
+              <span class="exp-card__meta-item"><span class="material-icons" aria-hidden="true">schedule</span> Half day</span>
+              <span class="exp-card__meta-item"><span class="material-icons" aria-hidden="true">directions_boat</span> Ferry included</span>
+            </div>
+            <a class="exp-card__ext-link" href="https://www.dolphinencounters.com/programs/dolphin-encounter" target="_blank" rel="noopener">Book at dolphinencounters.com ↗</a>
+          </div>
+        </article>
+
+        <article class="exp-card" data-category="adventure">
+          <img class="exp-card__image"
+            src="https://sunfunhotel.com/assets/img/blog-2.jpg"
+            alt="Swim with pigs"
+            onerror="this.src='https://images.unsplash.com/photo-1548199973-03cce0bbc87b?w=800&q=80'">
+          <div class="exp-card__overlay">
+            <span class="exp-card__tag exp-card__tag--adventure">Adventure</span>
+            <h3 class="exp-card__title">Swim with the Famous Pigs</h3>
+            <p class="exp-card__description">Meet the Bahamas' most beloved locals on a guided boat tour — an experience like no other.</p>
+            <div class="exp-card__meta">
+              <span class="exp-card__meta-item"><span class="material-icons" aria-hidden="true">schedule</span> Full day</span>
+              <span class="exp-card__meta-item"><span class="material-icons" aria-hidden="true">directions_boat</span> Boat departs Nassau</span>
+            </div>
+          </div>
+        </article>
+
+        <article class="exp-card" data-category="adventure">
+          <img class="exp-card__image"
+            src="https://cdn11.bigcommerce.com/s-kkcycdhlmf/images/stencil/1000x570/products/324/1212/Arial-View_Approved__42449.1652968516.png"
+            alt="Baha Bay Waterpark Nassau"
+            onerror="this.src='https://images.unsplash.com/photo-1555041469-a586c61ea9bc?w=800&q=80'">
+          <div class="exp-card__overlay">
+            <span class="exp-card__tag exp-card__tag--adventure">Adventure</span>
+            <h3 class="exp-card__title">Baha Bay Waterpark — Day Pass</h3>
+            <p class="exp-card__description">15 beachfront acres of thrills: water coasters, a 500,000-gallon wave pool, the Caribbean's only surf simulator &amp; lazy river. From $65.</p>
+            <div class="exp-card__meta">
+              <span class="exp-card__meta-item"><span class="material-icons" aria-hidden="true">schedule</span> Full day · 10am–5pm</span>
+            </div>
+            <a class="exp-card__ext-link" href="https://bahabay.bahamar.com/buy-tickets/" target="_blank" rel="noopener">Buy tickets at bahabay.com ↗</a>
+          </div>
+        </article>
+
+        <article class="exp-card" data-category="culture">
+          <img class="exp-card__image" src="fort-char.avif" alt="Nassau downtown heritage tour">
+          <div class="exp-card__overlay">
+            <span class="exp-card__tag exp-card__tag--culture">Culture</span>
+            <h3 class="exp-card__title">Nassau City &amp; Heritage Tour</h3>
+            <p class="exp-card__description">Explore colorful colonial architecture, the straw market, and Fort Fincastle with a local guide.</p>
+            <div class="exp-card__meta">
+              <span class="exp-card__meta-item"><span class="material-icons" aria-hidden="true">schedule</span> 3–4 hours</span>
+              <span class="exp-card__meta-item"><span class="material-icons" aria-hidden="true">group</span> Small group</span>
+            </div>
+          </div>
+        </article>
+
+        <article class="exp-card" data-category="adventure">
+          <img class="exp-card__image" src="sunset-diner.jpg" alt="Sunset sailing cruise Nassau">
+          <div class="exp-card__overlay">
+            <span class="exp-card__tag exp-card__tag--adventure">Adventure</span>
+            <h3 class="exp-card__title">Sunset Sailing Cruise</h3>
+            <p class="exp-card__description">Glide across Nassau Harbour as the sky turns gold and pink. Cocktails, sea breeze, and unforgettable views.</p>
+            <div class="exp-card__meta">
+              <span class="exp-card__meta-item"><span class="material-icons" aria-hidden="true">schedule</span> 2–3 hours</span>
+              <span class="exp-card__meta-item"><span class="material-icons" aria-hidden="true">local_bar</span> Cocktails included</span>
+            </div>
+          </div>
+        </article>
+
+        <article class="exp-card" data-category="culture">
+          <img class="exp-card__image" src="john-watling.webp" alt="John Watling's Rum Distillery Nassau">
+          <div class="exp-card__overlay">
+            <span class="exp-card__tag exp-card__tag--culture">Culture</span>
+            <h3 class="exp-card__title">John Watling's Distillery Tour</h3>
+            <p class="exp-card__description">Sip small-batch Bahamian rum aged in white oak at Nassau's stunning Buena Vista Estate. Free tour and tasting.</p>
+            <div class="exp-card__meta">
+              <span class="exp-card__meta-item"><span class="material-icons" aria-hidden="true">schedule</span> 1–2 hours</span>
+              <span class="exp-card__meta-item"><span class="material-icons" aria-hidden="true">attach_money</span> Free entry</span>
+            </div>
+            <a class="exp-card__ext-link" href="https://maps.google.com/?q=John+Watling's+Distillery+Nassau" target="_blank" rel="noopener">Get directions ↗</a>
+          </div>
+        </article>
+
+        <article class="exp-card" data-category="adventure">
+          <img class="exp-card__image"
+            src="parasail.jpg"
+            alt="Parasailing Nassau Cable Beach"
+            onerror="this.src='https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800&q=80'">
+          <div class="exp-card__overlay">
+            <span class="exp-card__tag exp-card__tag--adventure">Adventure</span>
+            <h3 class="exp-card__title">Parasailing over Nassau</h3>
+            <p class="exp-card__description">Soar 500 feet above the turquoise water for jaw-dropping aerial views of Cable Beach and the Nassau skyline.</p>
+            <div class="exp-card__meta">
+              <span class="exp-card__meta-item"><span class="material-icons" aria-hidden="true">schedule</span> 1 hour</span>
+              <span class="exp-card__meta-item"><span class="material-icons" aria-hidden="true">directions_boat</span> Boat-launched</span>
+            </div>
+          </div>
+        </article>
+
+        <!-- NEW: Ranch Resort Horseback Riding -->
+        <article class="exp-card" data-category="adventure">
+          <img class="exp-card__image"
+            src="Horse.jpg"
+            alt="Horseback riding on the beach — Ranch Resort & Spa Nassau">
+          <div class="exp-card__overlay">
+            <span class="exp-card__tag exp-card__tag--adventure">Adventure</span>
+            <h3 class="exp-card__title">Horseback Riding — Ranch Resort &amp; Spa</h3>
+            <p class="exp-card__description">Saddle up and ride along Nassau's shoreline with expert guides at Coral Harbour. Perfect for all skill levels — a truly unforgettable Bahamian experience.</p>
+            <div class="exp-card__meta">
+              <span class="exp-card__meta-item"><span class="material-icons" aria-hidden="true">schedule</span> Half day</span>
+              <span class="exp-card__meta-item"><span class="material-icons" aria-hidden="true">place</span> Coral Harbour</span>
+            </div>
+            <a class="exp-card__ext-link" href="https://ranchresortbahamas.com/horseback-riding/" target="_blank" rel="noopener">Book at ranchresortbahamas.com ↗</a>
+          </div>
+        </article>
+
+      </div><!-- /.carousel__track -->
+    </div><!-- /.carousel__track-wrapper -->
+
+    <div class="carousel__controls" aria-hidden="true">
+      <div class="carousel__dots" id="exp-dots"></div>
+      <div class="carousel__progress-bar">
+        <div class="carousel__progress-fill" id="exp-fill"></div>
+      </div>
+    </div>
+
+  </div><!-- /.carousel -->
+</section>
+
+
+<!-- ════════════════════════════════════════
+     ACTIVITIES GRID
+════════════════════════════════════════ -->
+<section class="activities" aria-label="All activities">
+  <div class="section-header section-header--sand fade-up">
+    <p class="section-tag">All Activities</p>
+    <h2 class="section-title">Plan Your Perfect Day</h2>
+    <p class="section-subtitle">Every experience can be arranged through our front desk — we'll handle transport, booking, and all the details.</p>
+  </div>
+
+  <div class="activities__grid" id="activities-grid">
+
+    <article class="activity-card fade-up" data-category="water">
+      <div class="activity-card__image-wrap">
+        <img class="activity-card__image" src="https://images.unsplash.com/photo-1559827260-dc66d52bef19?w=600&q=80" alt="Private beach access">
+        <span class="activity-card__badge">Water &amp; Beach</span>
+      </div>
+      <div class="activity-card__body">
+        <h3 class="activity-card__title">Private Beach Access</h3>
+        <p class="activity-card__description">Step onto our quiet stretch of powdery sand just moments from your room. Loungers, umbrellas, and turquoise views included.</p>
+        <div class="activity-card__footer">
+          <p class="activity-card__price"><strong>Complimentary</strong> for guests</p>
+          <a href="https://sunfunhotel.com/#contact-us" class="activity-card__link">Reserve <span class="material-icons" aria-hidden="true">arrow_forward</span></a>
+        </div>
+      </div>
+    </article>
+
+    <article class="activity-card fade-up" data-category="adventure">
+      <div class="activity-card__image-wrap">
+        <img class="activity-card__image" src="https://sunfunhotel.com/assets/img/blog-2.jpg" alt="Swim with pigs Bahamas">
+        <span class="activity-card__badge">Adventure</span>
+      </div>
+      <div class="activity-card__body">
+        <h3 class="activity-card__title">Swimming with the Pigs</h3>
+        <p class="activity-card__description">Board a boat to the famous pig beach, feed and swim alongside the friendly Bahamian pigs, then relax on a pristine sandbar.</p>
+        <div class="activity-card__footer">
+          <p class="activity-card__price">Ask at <strong>front desk</strong></p>
+          <a href="https://sunfunhotel.com/#contact-us" class="activity-card__link">Book <span class="material-icons" aria-hidden="true">arrow_forward</span></a>
+        </div>
+      </div>
+    </article>
+
+    <article class="activity-card fade-up" data-category="water">
+      <div class="activity-card__image-wrap">
+        <img class="activity-card__image" src="https://images.unsplash.com/photo-1544551763-46a013bb70d5?w=600&q=80" alt="Reef snorkeling tour Nassau">
+        <span class="activity-card__badge">Water &amp; Beach</span>
+      </div>
+      <div class="activity-card__body">
+        <h3 class="activity-card__title">Reef Snorkeling Tour</h3>
+        <p class="activity-card__description">Guided snorkel adventures over Nassau's stunning coral reefs. Spot sea turtles, rays, and tropical fish in crystal waters.</p>
+        <div class="activity-card__footer">
+          <p class="activity-card__price">Ask at <strong>front desk</strong></p>
+          <a href="https://sunfunhotel.com/#contact-us" class="activity-card__link">Book <span class="material-icons" aria-hidden="true">arrow_forward</span></a>
+        </div>
+      </div>
+    </article>
+
+    <article class="activity-card fade-up" data-category="culture">
+      <div class="activity-card__image-wrap">
+        <img class="activity-card__image" src="https://images.unsplash.com/photo-1528543606781-2f6e6857f318?w=600&q=80" alt="Nassau heritage tour">
+        <span class="activity-card__badge">Culture</span>
+      </div>
+      <div class="activity-card__body">
+        <h3 class="activity-card__title">Nassau Heritage Tour</h3>
+        <p class="activity-card__description">Discover colonial forts, the vibrant straw market, and Queen's Staircase with a knowledgeable local guide.</p>
+        <div class="activity-card__footer">
+          <p class="activity-card__price">Ask at <strong>front desk</strong></p>
+          <a href="https://sunfunhotel.com/#contact-us" class="activity-card__link">Book <span class="material-icons" aria-hidden="true">arrow_forward</span></a>
+        </div>
+      </div>
+    </article>
+
+    <article class="activity-card fade-up" data-category="culture">
+      <div class="activity-card__image-wrap">
+        <img class="activity-card__image" src="https://sunfunhotel.com/assets/img/blog-3.jpg" alt="Bahamian cooking class">
+        <span class="activity-card__badge">Culture</span>
+      </div>
+      <div class="activity-card__body">
+        <h3 class="activity-card__title">Bahamian Cooking Class</h3>
+        <p class="activity-card__description">Learn cracked conch, peas 'n' rice, and guava duff with a local chef. Small groups, hands-on, and absolutely delicious.</p>
+        <div class="activity-card__footer">
+          <p class="activity-card__price"><strong>Coming</strong> December</p>
+          <a href="https://sunfunhotel.com/#contact-us" class="activity-card__link">Join list <span class="material-icons" aria-hidden="true">arrow_forward</span></a>
+        </div>
+      </div>
+    </article>
+
+    <article class="activity-card fade-up" data-category="adventure">
+      <div class="activity-card__image-wrap">
+        <img class="activity-card__image" src="sunset-diner.jpg" alt="Sunset sailing cruise Nassau">
+        <span class="activity-card__badge">Adventure</span>
+      </div>
+      <div class="activity-card__body">
+        <h3 class="activity-card__title">Sunset Sailing Cruise</h3>
+        <p class="activity-card__description">Glide across Nassau Harbour as the sky turns gold and pink. Cocktails, sea breeze, and unforgettable views.</p>
+        <div class="activity-card__footer">
+          <p class="activity-card__price">Ask at <strong>front desk</strong></p>
+          <a href="https://sunfunhotel.com/#contact-us" class="activity-card__link">Book <span class="material-icons" aria-hidden="true">arrow_forward</span></a>
+        </div>
+      </div>
+    </article>
+
+    <article class="activity-card fade-up" data-category="water">
+      <div class="activity-card__image-wrap">
+        <img class="activity-card__image" src="kayaking.jpg" alt="Kayaking and paddleboarding Nassau">
+        <span class="activity-card__badge">Water &amp; Beach</span>
+      </div>
+      <div class="activity-card__body">
+        <h3 class="activity-card__title">Kayaking &amp; Paddleboarding</h3>
+        <p class="activity-card__description">Explore the calm turquoise waters at your own pace. Rentals and guided paddling available near the resort.</p>
+        <div class="activity-card__footer">
+          <p class="activity-card__price">Ask at <strong>front desk</strong></p>
+          <a href="https://sunfunhotel.com/#contact-us" class="activity-card__link">Enquire <span class="material-icons" aria-hidden="true">arrow_forward</span></a>
+        </div>
+      </div>
+    </article>
+
+    <!-- NEW: Ranch Resort Horseback Riding -->
+    <article class="activity-card fade-up" data-category="adventure">
+      <div class="activity-card__image-wrap">
+        <img class="activity-card__image" src="Horse.jpg" alt="Horseback riding Nassau Bahamas">
+        <span class="activity-card__badge">Adventure</span>
+      </div>
+      <div class="activity-card__body">
+        <h3 class="activity-card__title">Horseback Riding on the Beach</h3>
+        <p class="activity-card__description">Ride with expert guides along Nassau's coastline at the Ranch Resort &amp; Spa in Coral Harbour. Open to all skill levels — grooming sessions also available. Nassau's one and only equestrian experience.</p>
+        <div class="activity-card__footer">
+          <p class="activity-card__price">Book at <strong>ranchresortbahamas.com</strong></p>
+          <a href="https://ranchresortbahamas.com/horseback-riding/" target="_blank" rel="noopener" class="activity-card__link">Book ↗ <span class="material-icons" aria-hidden="true">arrow_forward</span></a>
+        </div>
+      </div>
+    </article>
+
+    <article class="activity-card fade-up" data-category="dining">
+      <div class="activity-card__image-wrap">
+        <img class="activity-card__image" src="https://images.unsplash.com/photo-1565299507177-b0ac66763828?w=600&q=80" alt="Coconut Café at SunFun Resort">
+        <span class="activity-card__badge">Dining</span>
+      </div>
+      <div class="activity-card__body">
+        <h3 class="activity-card__title">Coconut Café at the Resort</h3>
+        <p class="activity-card__description">From coconut French toast to honey garlic salmon bowls, our café serves island-inspired dishes all day long.</p>
+        <div class="activity-card__footer">
+          <p class="activity-card__price">Open <strong>daily</strong></p>
+          <a href="https://sunfunhotel.com/#our-dining" class="activity-card__link">See menu <span class="material-icons" aria-hidden="true">arrow_forward</span></a>
+        </div>
+      </div>
+    </article>
+
+  </div><!-- /.activities__grid -->
+</section>
+
+
+<!-- ════════════════════════════════════════
+     BEACH BANNER
+════════════════════════════════════════ -->
+<section class="beach-banner" aria-label="Private beach access">
+  <div class="beach-banner__bg" aria-hidden="true"></div>
+  <div class="beach-banner__content">
+    <div>
+      <h2 class="beach-banner__title">Steps from Our Door to <em>Paradise</em></h2>
+      <p class="beach-banner__description">SunFun Resort's private beach access means the Bahamas' legendary waters are always within reach — no driving, no crowds, no hassle.</p>
+      <ul class="beach-perks">
+        <li class="beach-perks__item"><span class="material-icons" aria-hidden="true">beach_access</span> Sun loungers &amp; umbrellas</li>
+        <li class="beach-perks__item"><span class="material-icons" aria-hidden="true">water</span> Calm, swimmable waters</li>
+        <li class="beach-perks__item"><span class="material-icons" aria-hidden="true">wb_sunny</span> Year-round sunshine</li>
+        <li class="beach-perks__item"><span class="material-icons" aria-hidden="true">support_agent</span> 24/7 team for excursion bookings</li>
+      </ul>
+      <a href="https://sunfunhotel.com/#contact-us" class="beach-banner__cta">Reserve Your Room</a>
+    </div>
+    <div class="beach-stats" aria-label="Key stats">
+      <div class="beach-stat"><p class="beach-stat__number">642</p><p class="beach-stat__label">West Bay St</p></div>
+      <div class="beach-stat"><p class="beach-stat__number">78°</p><p class="beach-stat__label">Avg water temp</p></div>
+      <div class="beach-stat"><p class="beach-stat__number">24/7</p><p class="beach-stat__label">Staff support</p></div>
+      <div class="beach-stat"><p class="beach-stat__number">5★</p><p class="beach-stat__label">Guest ratings</p></div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ════════════════════════════════════════
+     TASTE THE ISLANDS — DISHES & DRINKS
+════════════════════════════════════════ -->
+<section class="dining" id="taste-islands" aria-label="Bahamian food and drink">
+  <div class="section-header fade-up">
+    <p class="section-tag">Bahamian Food &amp; Drink</p>
+    <h2 class="section-title">Taste the Islands</h2>
+    <p class="section-subtitle">Nassau's food culture runs deep — shaped by African, Caribbean, and British roots. These are the dishes and drinks you simply cannot leave without trying.</p>
+  </div>
+
+  <!-- Dishes -->
+  <div class="section-divider">
+    <span class="section-divider__label">🍽️ Signature Dishes</span>
+    <div class="section-divider__line" aria-hidden="true"></div>
+  </div>
+
+  <div class="dish-grid">
+
+    <article class="dish-card fade-up">
+      <div class="dish-card__image-wrap">
+        <img class="dish-card__image" src="ConchSalad.webp" alt="Conch Salad" onerror="this.src='https://images.unsplash.com/photo-1512621776951-a57141f2eefd?w=600&q=80'">
+        <span class="dish-card__badge">🐚 National Dish</span>
+      </div>
+      <div class="dish-card__body">
+        <h3 class="dish-card__title">Fresh Conch Salad</h3>
+        <p class="dish-card__description">Raw conch tossed with diced tomatoes, onions, sweet peppers, scotch bonnet, and a bright squeeze of lime and orange juice. Served fresh — practically still from the sea.</p>
+        <div class="dish-card__where">
+          <span class="dish-card__where-label">Where to try it</span>
+          <div class="dish-card__spots">
+            <a class="dish-card__spot-link" href="https://maps.google.com/?q=Goldie's+Conch+House+Nassau" target="_blank" rel="noopener">Goldie's Conch House <span class="dish-card__spot-arrow">↗</span></a>
+            <a class="dish-card__spot-link" href="https://maps.google.com/?q=Twin+Brothers+Arawak+Cay+Nassau" target="_blank" rel="noopener">Twin Brothers — Arawak Cay <span class="dish-card__spot-arrow">↗</span></a>
+            <a class="dish-card__spot-link" href="https://maps.google.com/?q=Arawak+Cay+Fish+Fry+Nassau" target="_blank" rel="noopener">Arawak Cay Fish Fry <span class="dish-card__spot-arrow">↗</span></a>
+          </div>
+        </div>
+      </div>
+    </article>
+
+    <article class="dish-card fade-up">
+      <div class="dish-card__image-wrap">
+        <img class="dish-card__image" src="conchchowder.jpeg" alt="Conch Chowder" onerror="this.src='https://images.unsplash.com/photo-1547592166-23ac45744acd?w=600&q=80'">
+        <span class="dish-card__badge">🍜 Island Classic</span>
+      </div>
+      <div class="dish-card__body">
+        <h3 class="dish-card__title">Conch Chowder</h3>
+        <p class="dish-card__description">Hearty tomato-based soup packed with conch, potatoes, root vegetables, and island spices. Served piping hot with a side of Johnny Cake to soak it all up.</p>
+        <div class="dish-card__where">
+          <span class="dish-card__where-label">Where to try it</span>
+          <div class="dish-card__spots">
+            <a class="dish-card__spot-link" href="https://maps.google.com/?q=Cricket+Club+Restaurant+West+Bay+Street+Nassau" target="_blank" rel="noopener">Cricket Club Restaurant &amp; Pub <span class="dish-card__spot-arrow">↗</span></a>
+            <a class="dish-card__spot-link" href="https://maps.google.com/?q=The+Poop+Deck+Nassau" target="_blank" rel="noopener">The Poop Deck <span class="dish-card__spot-arrow">↗</span></a>
+            <a class="dish-card__spot-link" href="https://maps.google.com/?q=Mckenzie's+Fresh+Fish+Conch+Nassau" target="_blank" rel="noopener">McKenzie's Fresh Fish &amp; Conch <span class="dish-card__spot-arrow">↗</span></a>
+          </div>
+        </div>
+      </div>
+    </article>
+
+    <article class="dish-card fade-up">
+      <div class="dish-card__image-wrap">
+        <img class="dish-card__image" src="cracked-conch.jpg" alt="Cracked Conch" onerror="this.src='https://images.unsplash.com/photo-1585325701956-60dd9c8553bc?w=600&q=80'">
+        <span class="dish-card__badge">🔥 Local Favourite</span>
+      </div>
+      <div class="dish-card__body">
+        <h3 class="dish-card__title">Cracked Conch</h3>
+        <p class="dish-card__description">Conch meat tenderized with a mallet, dipped in seasoned batter, and deep-fried to golden perfection. Crispy outside, tender inside — served with peas 'n' rice and coleslaw.</p>
+        <div class="dish-card__where">
+          <span class="dish-card__where-label">Where to try it</span>
+          <div class="dish-card__spots">
+            <a class="dish-card__spot-link" href="https://maps.google.com/?q=Lukka+Kairi+Nassau" target="_blank" rel="noopener">Lukka Kairi <span class="dish-card__spot-arrow">↗</span></a>
+            <a class="dish-card__spot-link" href="https://maps.google.com/?q=The+Poop+Deck+Nassau" target="_blank" rel="noopener">The Poop Deck <span class="dish-card__spot-arrow">↗</span></a>
+            <a class="dish-card__spot-link" href="https://maps.google.com/?q=Twin+Brothers+Arawak+Cay+Nassau" target="_blank" rel="noopener">Twin Brothers <span class="dish-card__spot-arrow">↗</span></a>
+          </div>
+        </div>
+      </div>
+    </article>
+
+    <article class="dish-card fade-up">
+      <div class="dish-card__image-wrap">
+        <img class="dish-card__image" src="stew-fish.jpg" alt="Stew Fish" onerror="this.src='https://images.unsplash.com/photo-1534080564583-6be75777b70a?w=600&q=80'">
+        <span class="dish-card__badge">🐟 Sunday Classic</span>
+      </div>
+      <div class="dish-card__body">
+        <h3 class="dish-card__title">Bahamian Stew Fish</h3>
+        <p class="dish-card__description">Fresh grouper or snapper marinated in lime, then simmered in a rich tomato-based sauce with onions, thyme, and island spices. Best eaten with Johnny Cake on the side.</p>
+        <div class="dish-card__where">
+          <span class="dish-card__where-label">Where to try it</span>
+          <div class="dish-card__spots">
+            <a class="dish-card__spot-link" href="https://maps.google.com/?q=Café+Johnny+Canoe+Nassau" target="_blank" rel="noopener">Café Johnny Canoe <span class="dish-card__spot-arrow">↗</span></a>
+            <a class="dish-card__spot-link" href="https://maps.google.com/?q=Nesbitt's+Restaurant+Nassau" target="_blank" rel="noopener">Nesbitt's Restaurant &amp; Lounge <span class="dish-card__spot-arrow">↗</span></a>
+            <a class="dish-card__spot-link" href="https://maps.google.com/?q=Bahama+Grill+Nassau" target="_blank" rel="noopener">Bahama Grill <span class="dish-card__spot-arrow">↗</span></a>
+          </div>
+        </div>
+      </div>
+    </article>
+
+    <article class="dish-card fade-up">
+      <div class="dish-card__image-wrap">
+        <img class="dish-card__image" src="lobster.webp" alt="Rock Lobster" onerror="this.src='https://images.unsplash.com/photo-1559737558-2f5a35f4523b?w=600&q=80'">
+        <span class="dish-card__badge">🦞 Prized Delicacy</span>
+      </div>
+      <div class="dish-card__body">
+        <h3 class="dish-card__title">Rock Lobster</h3>
+        <p class="dish-card__description">Spiny lobster pulled straight from the turquoise shallows — smaller and sweeter than its Atlantic cousin. Grilled, steamed, or broiled with butter and a squeeze of fresh lime.</p>
+        <div class="dish-card__where">
+          <span class="dish-card__where-label">Where to try it</span>
+          <div class="dish-card__spots">
+            <a class="dish-card__spot-link" href="https://maps.google.com/?q=The+Poop+Deck+Nassau" target="_blank" rel="noopener">The Poop Deck <span class="dish-card__spot-arrow">↗</span></a>
+            <a class="dish-card__spot-link" href="https://maps.google.com/?q=Solemar+Nassau" target="_blank" rel="noopener">Solemar <span class="dish-card__spot-arrow">↗</span></a>
+            <a class="dish-card__spot-link" href="https://maps.google.com/?q=Aquafire+Nassau" target="_blank" rel="noopener">Aquafire <span class="dish-card__spot-arrow">↗</span></a>
+          </div>
+        </div>
+      </div>
+    </article>
+
+    <article class="dish-card fade-up">
+      <div class="dish-card__image-wrap">
+        <img class="dish-card__image" src="Peas-n-Rice.jpg" alt="Peas and Rice" onerror="this.src='https://images.unsplash.com/photo-1536304993881-ff86e0c9c4d1?w=600&q=80'">
+        <span class="dish-card__badge">🍚 Island Staple</span>
+      </div>
+      <div class="dish-card__body">
+        <h3 class="dish-card__title">Peas 'n' Rice</h3>
+        <p class="dish-card__description">Pigeon peas cooked down with rice, tomatoes, thyme, and sweet peppers — the essential side dish of the Bahamas. You'll find it on virtually every local plate, and for good reason.</p>
+        <div class="dish-card__where">
+          <span class="dish-card__where-label">Where to try it</span>
+          <div class="dish-card__spots">
+            <a class="dish-card__spot-link" href="https://maps.google.com/?q=Arawak+Cay+Fish+Fry+Nassau" target="_blank" rel="noopener">Arawak Cay Fish Fry <span class="dish-card__spot-arrow">↗</span></a>
+            <a class="dish-card__spot-link" href="https://maps.google.com/?q=Nesbitt's+Restaurant+Nassau" target="_blank" rel="noopener">Nesbitt's Restaurant <span class="dish-card__spot-arrow">↗</span></a>
+            <a class="dish-card__spot-link" href="https://maps.google.com/?q=Lukka+Kairi+Nassau" target="_blank" rel="noopener">Lukka Kairi <span class="dish-card__spot-arrow">↗</span></a>
+          </div>
+        </div>
+      </div>
+    </article>
+
+    <article class="dish-card fade-up">
+      <div class="dish-card__image-wrap">
+        <img class="dish-card__image" src="souse.jpg" alt="Sheep Tongue Souse" onerror="this.src='https://images.unsplash.com/photo-1569050467447-ce54b3bbc37d?w=600&q=80'">
+        <span class="dish-card__badge">🍲 Comfort Food</span>
+      </div>
+      <div class="dish-card__body">
+        <h3 class="dish-card__title">Sheep Tongue Souse</h3>
+        <p class="dish-card__description">The Bahamian answer to soup — slow-cooked chicken in a tangy broth of onions, lime, potatoes, and warm spices. A breakfast staple on weekends and a go-to hangover cure for locals.</p>
+        <div class="dish-card__where">
+          <span class="dish-card__where-label">Where to try it</span>
+          <div class="dish-card__spots">
+            <a class="dish-card__spot-link" href="https://maps.google.com/?q=Nesbitt's+Restaurant+Nassau" target="_blank" rel="noopener">Nesbitt's Restaurant &amp; Lounge <span class="dish-card__spot-arrow">↗</span></a>
+            <a class="dish-card__spot-link" href="https://maps.google.com/?q=Café+Johnny+Canoe+Nassau" target="_blank" rel="noopener">Café Johnny Canoe <span class="dish-card__spot-arrow">↗</span></a>
+            <a class="dish-card__spot-link" href="https://maps.google.com/?q=Cricket+Club+Restaurant+West+Bay+Street+Nassau" target="_blank" rel="noopener">Cricket Club Restaurant &amp; Pub <span class="dish-card__spot-arrow">↗</span></a>
+          </div>
+        </div>
+      </div>
+    </article>
+
+    <article class="dish-card fade-up">
+      <div class="dish-card__image-wrap">
+        <img class="dish-card__image" src="guava-duff.jpg" alt="Guava Duff Dessert" onerror="this.src='https://images.unsplash.com/photo-1578985545062-69928b1d9587?w=600&q=80'">
+        <span class="dish-card__badge">🍮 Must-Try Dessert</span>
+      </div>
+      <div class="dish-card__body">
+        <h3 class="dish-card__title">Guava Duff</h3>
+        <p class="dish-card__description">Soft dough rolled with guava paste, boiled, sliced, and crowned with a warm rum or brandy butter sauce. The iconic Bahamian dessert — sweet, pillowy, and totally unforgettable.</p>
+        <div class="dish-card__where">
+          <span class="dish-card__where-label">Where to try it</span>
+          <div class="dish-card__spots">
+            <a class="dish-card__spot-link" href="https://maps.google.com/?q=Graycliff+Restaurant+Nassau" target="_blank" rel="noopener">Graycliff Hotel &amp; Restaurant <span class="dish-card__spot-arrow">↗</span></a>
+            <a class="dish-card__spot-link" href="https://maps.google.com/?q=Café+Johnny+Canoe+Nassau" target="_blank" rel="noopener">Café Johnny Canoe <span class="dish-card__spot-arrow">↗</span></a>
+            <a class="dish-card__spot-link" href="https://maps.google.com/?q=The+New+Duff+Nassau" target="_blank" rel="noopener">The New Duff <span class="dish-card__spot-arrow">↗</span></a>
+          </div>
+        </div>
+      </div>
+    </article>
+
+    <article class="dish-card fade-up">
+      <div class="dish-card__image-wrap">
+        <img class="dish-card__image" src="rum-cake.webp" alt="Rum Cake" onerror="this.src='https://images.unsplash.com/photo-1621303837174-89787a7d4729?w=600&q=80'">
+        <span class="dish-card__badge">🎂 Take-Home Treat</span>
+      </div>
+      <div class="dish-card__body">
+        <h3 class="dish-card__title">Bahamian Rum Cake</h3>
+        <p class="dish-card__description">A dense, moist cake soaked in Ole Nassau rum, available in pineapple, coconut, banana, and chocolate flavors. The Bahamas Rum Cake Factory is the definitive stop for this classic souvenir.</p>
+        <div class="dish-card__where">
+          <span class="dish-card__where-label">Where to try it</span>
+          <div class="dish-card__spots">
+            <a class="dish-card__spot-link" href="https://maps.google.com/?q=Bahamas+Rum+Cake+Factory+Nassau" target="_blank" rel="noopener">Bahamas Rum Cake Factory <span class="dish-card__spot-arrow">↗</span></a>
+            <a class="dish-card__spot-link" href="https://maps.google.com/?q=Graycliff+Chocolatier+Nassau" target="_blank" rel="noopener">Graycliff Chocolatier <span class="dish-card__spot-arrow">↗</span></a>
+          </div>
+        </div>
+      </div>
+    </article>
+
+  </div><!-- /.dish-grid -->
+
+  <!-- Drinks -->
+  <div class="section-divider" style="margin-top: 4rem;">
+    <span class="section-divider__label">🍹 Island Drinks</span>
+    <div class="section-divider__line" aria-hidden="true"></div>
+  </div>
+
+  <div class="drinks-grid">
+
+    <article class="drink-card fade-up">
+      <div class="drink-card__icon" style="background: linear-gradient(135deg, #F97316, #FB923C);" aria-hidden="true">🍹</div>
+      <div class="drink-card__body">
+        <h3 class="drink-card__name">Goombay Smash</h3>
+        <p class="drink-card__type">The Bahamian Signature</p>
+        <p class="drink-card__description">Coconut rum, apricot brandy, pineapple juice, and orange juice — named after the island's own music and dance tradition. No two bars make it exactly the same.</p>
+        <div class="drink-card__spots">
+          <span class="drink-card__spots-label">Try it at:</span>
+          <a class="drink-card__spot-link" href="https://maps.google.com/?q=Twin+Brothers+Nassau" target="_blank" rel="noopener">Twin Brothers</a>
+          <a class="drink-card__spot-link" href="https://maps.google.com/?q=Lukka+Kairi+Nassau" target="_blank" rel="noopener">Lukka Kairi</a>
+        </div>
+      </div>
+    </article>
+
+    <article class="drink-card fade-up">
+      <div class="drink-card__icon" style="background: linear-gradient(135deg, #DC2626, #F87171);" aria-hidden="true">🌅</div>
+      <div class="drink-card__body">
+        <h3 class="drink-card__name">Bahama Mama</h3>
+        <p class="drink-card__type">The Classic</p>
+        <p class="drink-card__description">Dark rum, coconut liqueur, coffee liqueur, pineapple and orange juice — vibrant, fruity, and completely synonymous with a Bahamian beach day. Often served frozen.</p>
+        <div class="drink-card__spots">
+          <span class="drink-card__spots-label">Try it at:</span>
+          <a class="drink-card__spot-link" href="https://maps.google.com/?q=Grand+Hyatt+Baha+Mar+Nassau" target="_blank" rel="noopener">Grand Hyatt Baha Mar</a>
+          <a class="drink-card__spot-link" href="https://maps.google.com/?q=Blue+Sail+Bar+Nassau" target="_blank" rel="noopener">Blue Sail Bar</a>
+        </div>
+      </div>
+    </article>
+
+    <article class="drink-card fade-up">
+      <div class="drink-card__icon" style="background: linear-gradient(135deg, #0891B2, #22D3EE);" aria-hidden="true">🥥</div>
+      <div class="drink-card__body">
+        <h3 class="drink-card__name">Sky Juice</h3>
+        <p class="drink-card__type">Born at Arawak Cay</p>
+        <p class="drink-card__description">Gin, fresh coconut water, sweetened condensed milk, and nutmeg — the original backyard drink of the Bahamas. Creamy, sweet, and deceivingly strong.</p>
+        <div class="drink-card__spots">
+          <span class="drink-card__spots-label">Try it at:</span>
+          <a class="drink-card__spot-link" href="https://maps.google.com/?q=Arawak+Cay+Fish+Fry+Nassau" target="_blank" rel="noopener">Arawak Cay Fish Fry</a>
+          <a class="drink-card__spot-link" href="https://maps.google.com/?q=Goldie's+Conch+House+Nassau" target="_blank" rel="noopener">Goldie's Conch House</a>
+        </div>
+      </div>
+    </article>
+
+    <article class="drink-card fade-up">
+      <div class="drink-card__icon" style="background: linear-gradient(135deg, #CA8A04, #FDE047);" aria-hidden="true">🐦</div>
+      <div class="drink-card__body">
+        <h3 class="drink-card__name">Yellow Bird</h3>
+        <p class="drink-card__type">Named for a calypso classic</p>
+        <p class="drink-card__description">Light rum, Galliano, crème de banana, pineapple and orange juice — a bright canary-yellow cocktail with a zingy citrus kick.</p>
+        <div class="drink-card__spots">
+          <span class="drink-card__spots-label">Try it at:</span>
+          <a class="drink-card__spot-link" href="https://maps.google.com/?q=Frankie+Gone+Bananas+Nassau" target="_blank" rel="noopener">Frankie Gone Bananas</a>
+          <a class="drink-card__spot-link" href="https://maps.google.com/?q=The+Poop+Deck+Nassau" target="_blank" rel="noopener">The Poop Deck</a>
+        </div>
+      </div>
+    </article>
+
+    <article class="drink-card fade-up">
+      <div class="drink-card__icon" style="background: linear-gradient(135deg, #7C3AED, #A78BFA);" aria-hidden="true">🥃</div>
+      <div class="drink-card__body">
+        <h3 class="drink-card__name">John Watling's Rum</h3>
+        <p class="drink-card__type">Bahamian Craft Rum</p>
+        <p class="drink-card__description">Small-batch rum distilled at Nassau's Buena Vista Estate using hand-harvested Bahamian sugarcane molasses, aged in American white oak. Free tour and tasting at the distillery.</p>
+        <div class="drink-card__spots">
+          <span class="drink-card__spots-label">Try it at:</span>
+          <a class="drink-card__spot-link" href="https://maps.google.com/?q=John+Watling's+Distillery+Nassau" target="_blank" rel="noopener">John Watling's Distillery</a>
+        </div>
+      </div>
+    </article>
+
+    <article class="drink-card fade-up">
+      <div class="drink-card__icon" style="background: linear-gradient(135deg, #065F46, #34D399);" aria-hidden="true">🍺</div>
+      <div class="drink-card__body">
+        <h3 class="drink-card__name">Kalik Beer</h3>
+        <p class="drink-card__type">The Local Lager</p>
+        <p class="drink-card__description">The Bahamas' own brew — a light, crisp lager that's been a local institution since 1969. Its name comes from the sound of cowbells in Junkanoo. Cold Kalik, warm sun, white sand: perfection.</p>
+        <div class="drink-card__spots">
+          <span class="drink-card__spots-label">Try it at:</span>
+          <a class="drink-card__spot-link" href="https://maps.google.com/?q=Pirate+Republic+Brewing+Nassau" target="_blank" rel="noopener">Pirate Republic Brewing Co.</a>
+          <a class="drink-card__spot-link" href="https://maps.google.com/?q=Arawak+Cay+Fish+Fry+Nassau" target="_blank" rel="noopener">Arawak Cay Fish Fry</a>
+        </div>
+      </div>
+    </article>
+
+  </div><!-- /.drinks-grid -->
+
+  <div class="dining__ask-cta">
+    <p class="dining__ask-cta-text">Our front desk team knows all the best spots — ask us for a personal recommendation or reservation help.</p>
+    <a href="https://sunfunhotel.com/#contact-us" class="dining__ask-btn">
+      <span class="material-icons" aria-hidden="true">support_agent</span> Ask Our Team
+    </a>
+  </div>
+
+</section>
+
+
+<!-- ════════════════════════════════════════
+     EXPLORE MAP
+════════════════════════════════════════ -->
+<section class="explore-map" id="explore-map" aria-label="Interactive Nassau map">
+  <div class="explore-map__header">
+    <p class="section-tag section-tag--light">Nassau Explorer</p>
+    <h2 class="section-title section-title--light">Everything Around You</h2>
+    <p class="section-subtitle section-subtitle--light">Beaches, tours, restaurants, and grocery stores — all the local knowledge our team has gathered, mapped for you.</p>
+  </div>
+
+  <!-- data-category is read by scripts.js to wire up click handlers -->
+  <div class="explore-map__filters" role="group" aria-label="Filter map by category">
+    <button class="map-filter-btn map-filter-btn--active" data-category="all">      <span class="material-icons" aria-hidden="true">public</span>              All         </button>
+    <button class="map-filter-btn"                        data-category="beach">    <span class="material-icons" aria-hidden="true">beach_access</span>         Beaches     </button>
+    <button class="map-filter-btn"                        data-category="activity"> <span class="material-icons" aria-hidden="true">kayaking</span>              Activities  </button>
+    <button class="map-filter-btn"                        data-category="restaurant"><span class="material-icons" aria-hidden="true">restaurant</span>           Restaurants </button>
+    <button class="map-filter-btn"                        data-category="grocery">  <span class="material-icons" aria-hidden="true">local_grocery_store</span>  Grocery     </button>
+    <button class="map-filter-btn"                        data-category="landmark"> <span class="material-icons" aria-hidden="true">account_balance</span>       Landmarks   </button>
+  </div>
+
+  <div class="explore-map__shell">
+    <div class="explore-map__list" id="place-list" aria-label="Places list" tabindex="0"></div>
+    <div class="explore-map__canvas" id="leaflet-map" aria-label="Map"></div>
+  </div>
+
+  <div class="explore-map__footer">
+    <span class="explore-map__footer-item">
+      <span class="material-icons" aria-hidden="true">location_on</span>
+      SunFun Resort — 642 W Bay St, Nassau, The Bahamas
+    </span>
+    <span class="explore-map__footer-item">
+      <span class="material-icons" aria-hidden="true">support_agent</span>
+      Ask our front desk to arrange any excursion or transport
+    </span>
+    <a href="tel:+12423278827" class="explore-map__phone-link">
+      <span class="material-icons" aria-hidden="true">call</span> +1 242-327-8827
+    </a>
+  </div>
+</section>
+
+
+<!-- ════════════════════════════════════════
+     INSIDER TIPS
+════════════════════════════════════════ -->
+<section class="tips" aria-label="Insider tips from our team">
+  <div class="section-header section-header--left fade-up">
+    <p class="section-tag">Insider Tips</p>
+    <h2 class="section-title">From Our Local Team</h2>
+  </div>
+  <div class="tips__grid">
+    <div class="tip-card fade-up">
+      <p class="tip-card__number" aria-hidden="true">01</p>
+      <h3 class="tip-card__title">Best time to snorkel</h3>
+      <p class="tip-card__description">Head out between 8–11am for calmest waters and best visibility before afternoon breezes pick up.</p>
+    </div>
+    <div class="tip-card fade-up">
+      <p class="tip-card__number" aria-hidden="true">02</p>
+      <h3 class="tip-card__title">Book excursions early</h3>
+      <p class="tip-card__description">Pig swimming tours fill up fast — ask the front desk to reserve your spot the evening before.</p>
+    </div>
+    <div class="tip-card fade-up">
+      <p class="tip-card__number" aria-hidden="true">03</p>
+      <h3 class="tip-card__title">Cash for the market</h3>
+      <p class="tip-card__description">The Nassau Straw Market is best navigated with small bills in hand. ATMs nearby on Bay Street.</p>
+    </div>
+    <div class="tip-card fade-up">
+      <p class="tip-card__number" aria-hidden="true">04</p>
+      <h3 class="tip-card__title">Sunset from Cable Beach</h3>
+      <p class="tip-card__description">A 10-minute walk west brings you to one of the most spectacular sunset views in the Caribbean.</p>
+    </div>
+  </div>
+</section>
+
+
+<!-- ════════════════════════════════════════
+     BOOK BANNER
+════════════════════════════════════════ -->
+<section class="book-banner" aria-label="Book your stay">
+  <h2 class="book-banner__title">Ready for Your Nassau Adventure?</h2>
+  <p class="book-banner__description">Book directly with SunFun Resort for the best rates, private beach access, and our full concierge service.</p>
+  <div class="book-banner__actions">
+    <a href="https://sunfunhotel.com/#contact-us" class="btn-primary">Book Your Stay</a>
+    <a href="tel:+12423278827" class="btn-outline">Call +1 242-327-8827</a>
+  </div>
+</section>
+
+
+<!-- ════════════════════════════════════════
+     FOOTER
+════════════════════════════════════════ -->
+<footer class="footer">
+  <span>© 2025 SunFun Resort &amp; Hotel — Nassau, The Bahamas</span>
+  <nav class="footer__links" aria-label="Footer navigation">
+    <a href="https://sunfunhotel.com"               class="footer__link">Home</a>
+    <a href="https://sunfunhotel.com/#hotel-rooms"  class="footer__link">Rooms</a>
+    <a href="mailto:sunfunresortsbahamas@gmail.com" class="footer__link">Email Us</a>
+  </nav>
+</footer>
+
+
+<!-- Leaflet JS -->
+<script src="https://cdn.jsdelivr.net/npm/leaflet@1.9.4/dist/leaflet.min.js"></script>
+
+<!-- Site scripts -->
+<script src="scripts.js"></script>
+
+</body>
+</html>
