@@ -614,7 +614,7 @@ a   { color: inherit; }
   overflow: hidden;
   cursor: pointer;
   background: #0a1624;
-  aspect-ratio: 3 / 4;
+  height: 420px;
 }
 
 .exp-card__image {
