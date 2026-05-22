@@ -1,0 +1,1290 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="SunFun Resort & Hotel — Nassau, The Bahamas">
+    <title>SUNFUN RESORT &amp; HOTEL</title>
+
+    <!-- Favicons -->
+    <link rel="icon" type="image/png" sizes="32x32" href="assets/ico/favicon-32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="assets/ico/favicon-16.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="assets/ico/apple-touch-icon.png">
+
+    <!-- Fonts — preconnect first for speed -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+
+    <!-- Material Icons — defer non-critical icon font -->
+    <link rel="preload" href="https://fonts.googleapis.com/icon?family=Material+Icons" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"></noscript>
+
+    <!-- Critical CSS only in <head> — rest loads after -->
+    <link href="assets/plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="assets/plugins/woothemes-FlexSlider/flexslider.css" rel="stylesheet">
+    <link href="assets/css/header.css" rel="stylesheet">
+    <link href="assets/css/style.css" rel="stylesheet">
+
+    <!-- Non-critical CSS deferred -->
+    <link rel="preload" href="assets/plugins/font-awesome/css/font-awesome.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <link rel="preload" href="assets/plugins/material-design-iconic-font/css/material-design-iconic-font.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <link rel="preload" href="assets/plugins/bootstrap-select/dist/css/bootstrap-select.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <link rel="preload" href="assets/plugins/datepicker/css/datepicker.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <link rel="preload" href="assets/plugins/malihu-custom-scrollbar-plugin-master/jquery.mCustomScrollbar.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+
+    <!-- Leaflet CSS deferred (only needed near bottom of page) -->
+    <link rel="preload" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" as="style" onload="this.onload=null;this.rel='stylesheet'" crossorigin>
+
+    <!-- Preload hero images so first slide shows instantly -->
+    <link rel="preload" as="image" href="assets/img/DeluxeOutside.jpg">
+
+    <style>
+      /* ═══════════════════════════════════════════
+         DESIGN TOKENS — match Explore page
+      ═══════════════════════════════════════════ */
+      :root {
+        --color-navy:       #0C2340;
+        --color-navy-deep:  #060F1A;
+        --color-ocean:      #1B6CA8;
+        --color-gold:       #C8922A;
+        --color-gold-light: #D4A017;
+        --color-sand:       #FAF6EE;
+        --color-white:      #FFFFFF;
+        --color-muted:      #5C6875;
+        --font-serif: 'Playfair Display', Georgia, serif;
+        --font-sans:  'DM Sans', sans-serif;
+        --radius-sm: 4px;
+        --transition: 0.2s ease;
+      }
+
+      body { padding-top: 0 !important; }
+      .wrapper { padding-top: 76px; }
+
+      /* ═══════════════════════════════════════════
+         NAV
+      ═══════════════════════════════════════════ */
+      .sf-nav {
+        position: fixed;
+        top: 0; left: 0; right: 0;
+        z-index: 1000;
+        display: grid;
+        grid-template-columns: auto 1fr auto;
+        align-items: center;
+        gap: 1rem;
+        padding: 0.75rem 2.5rem;
+        background: rgba(255,255,255,0.97);
+        backdrop-filter: blur(10px);
+        border-bottom: 1px solid rgba(0,0,0,0.07);
+        box-shadow: 0 2px 16px rgba(0,0,0,0.06);
+        font-family: var(--font-sans);
+      }
+
+      .sf-nav__logo img { height: 60px; width: auto; display: block; }
+
+      .sf-nav__links {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        list-style: none;
+        margin: 0; padding: 0;
+        flex-wrap: wrap;
+      }
+
+      .sf-nav__links li { display: flex; align-items: center; }
+
+      .sf-nav__links li:not(:last-child)::after {
+        content: '–';
+        color: #aaa;
+        margin: 0 0.55rem;
+        font-size: 0.85rem;
+      }
+
+      .sf-nav__link {
+        color: #333 !important;
+        text-decoration: none !important;
+        font-size: 0.95rem !important;
+        font-weight: 400 !important;
+        letter-spacing: 0.01em !important;
+        white-space: nowrap !important;
+        transition: color var(--transition) !important;
+        font-family: var(--font-sans) !important;
+      }
+
+      .sf-nav__link:hover { color: var(--color-gold) !important; text-decoration: none !important; }
+
+      .sf-nav__book-btn {
+        background: #111 !important;
+        color: #fff !important;
+        padding: 0.7rem 1.8rem !important;
+        border-radius: var(--radius-sm) !important;
+        font-size: 0.95rem !important;
+        font-weight: 600 !important;
+        letter-spacing: 0.04em !important;
+        text-decoration: none !important;
+        white-space: nowrap !important;
+        border: none !important;
+        cursor: pointer !important;
+        transition: background var(--transition) !important;
+        font-family: var(--font-sans) !important;
+      }
+
+      .sf-nav__book-btn:hover { background: #333 !important; color: #fff !important; text-decoration: none !important; }
+
+      .sf-nav__mobile-actions { display: none; align-items: center; }
+
+      .sf-hamburger {
+        display: none;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        width: 40px; height: 40px;
+        background: none; border: none;
+        cursor: pointer; padding: 6px;
+        border-radius: var(--radius-sm);
+      }
+
+      .sf-hamburger__bar {
+        display: block;
+        width: 22px; height: 2px;
+        background: #333; border-radius: 2px;
+        transition: all 0.3s ease;
+        transform-origin: center;
+      }
+
+      .sf-hamburger__bar:not(:last-child) { margin-bottom: 5px; }
+
+      .sf-hamburger--open .sf-hamburger__bar:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+      .sf-hamburger--open .sf-hamburger__bar:nth-child(2) { opacity: 0; transform: scaleX(0); }
+      .sf-hamburger--open .sf-hamburger__bar:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+      .sf-mobile-menu {
+        display: none;
+        position: fixed;
+        top: 76px; left: 0; right: 0;
+        background: rgba(255,255,255,0.98);
+        backdrop-filter: blur(12px);
+        border-bottom: 1px solid rgba(0,0,0,0.08);
+        box-shadow: 0 8px 30px rgba(12,35,64,0.12);
+        z-index: 999;
+        padding: 1rem 0;
+      }
+
+      .sf-mobile-menu--open { display: block; }
+
+      .sf-mobile-menu__links { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; }
+
+      .sf-mobile-menu__link {
+        display: block;
+        padding: 0.85rem 2rem;
+        color: #333;
+        text-decoration: none;
+        font-size: 0.95rem;
+        font-family: var(--font-sans);
+        border-bottom: 1px solid rgba(0,0,0,0.05);
+        transition: background 0.15s, color 0.15s;
+      }
+
+      .sf-mobile-menu__link:hover { background: rgba(200,146,42,0.06); color: var(--color-gold); text-decoration: none; }
+
+      .sf-mobile-menu__book-btn {
+        display: block;
+        margin: 1rem 2rem 0;
+        background: #111; color: #fff;
+        padding: 0.75rem 1.5rem;
+        border-radius: var(--radius-sm);
+        font-size: 0.85rem; font-weight: 500;
+        letter-spacing: 0.04em;
+        text-decoration: none; text-align: center;
+        font-family: var(--font-sans);
+        transition: background var(--transition);
+      }
+
+      .sf-mobile-menu__book-btn:hover { background: #333; color: #fff; }
+
+      /* ═══════════════════════════════════════════
+         HERO SLIDESHOW
+      ═══════════════════════════════════════════ */
+      .sf-hero {
+        position: relative;
+        height: calc(100vh - 76px - 90px);
+        min-height: 420px;
+        overflow: hidden;
+        font-family: var(--font-sans);
+      }
+
+      .sf-hero__slides { position: absolute; inset: 0; }
+
+      .sf-hero__slide {
+        position: absolute;
+        inset: 0;
+        background-size: cover;
+        background-position: center;
+        opacity: 0;
+        transition: opacity 1.2s ease;
+        will-change: opacity;
+      }
+
+      .sf-hero__slide--active { opacity: 1; }
+
+      .sf-hero__slide--1 { background-image: url('assets/img/DeluxeOutside.jpg'); }
+      .sf-hero__slide--2 { background-image: url('assets/img/outsidepool.jpg'); }
+      .sf-hero__slide--3 { background-image: url('assets/img/gallery-1.jpg'); }
+      .sf-hero__slide--4 { background-image: url('assets/img/gallery-3.jpg'); }
+
+      .sf-hero__overlay {
+        position: absolute; inset: 0;
+        background: linear-gradient(135deg, rgba(8,20,40,0.75) 0%, rgba(8,20,40,0.38) 60%, rgba(8,20,40,0.12) 100%);
+        z-index: 1;
+      }
+
+      .sf-hero__content {
+        position: relative; z-index: 2;
+        padding: 2rem 4rem 3rem;
+        max-width: 680px;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+      }
+
+      .sf-hero__eyebrow {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.6rem;
+        font-size: 0.85rem;
+        letter-spacing: 0.22em;
+        text-transform: uppercase;
+        color: var(--color-gold-light);
+        margin-bottom: 1.2rem;
+      }
+
+      .sf-hero__eyebrow::before {
+        content: '';
+        display: inline-block;
+        width: 32px; height: 1px;
+        background: var(--color-gold-light);
+      }
+
+      .sf-hero__title {
+        font-family: var(--font-serif);
+        font-size: clamp(3.2rem, 6.5vw, 5.5rem);
+        color: var(--color-white);
+        line-height: 1.1;
+        margin-bottom: 1.2rem;
+        text-shadow: 0 2px 20px rgba(0,0,0,0.3);
+      }
+
+      .sf-hero__title em { font-style: italic; color: #fde68a; }
+
+      .sf-hero__desc {
+        font-size: 1.15rem;
+        color: rgba(255,255,255,0.85);
+        line-height: 1.85;
+        max-width: 500px;
+        margin-bottom: 2.2rem;
+        text-shadow: 0 1px 8px rgba(0,0,0,0.25);
+      }
+
+      .sf-hero__cta {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.8rem;
+        background: var(--color-white);
+        color: var(--color-navy);
+        padding: 1.1rem 2.4rem;
+        border-radius: var(--radius-sm);
+        font-size: 1rem;
+        font-weight: 700;
+        letter-spacing: 0.04em;
+        text-decoration: none;
+        box-shadow: 0 4px 20px rgba(0,0,0,0.2);
+        transition: all var(--transition);
+        align-self: flex-start;
+        font-family: var(--font-sans);
+      }
+
+      .sf-hero__cta:hover { background: var(--color-gold-light); color: var(--color-white); text-decoration: none; }
+
+      .sf-hero__dots {
+        position: absolute;
+        bottom: 2.5rem;
+        left: 50%;
+        transform: translateX(-50%);
+        z-index: 3;
+        display: flex;
+        gap: 8px;
+      }
+
+      .sf-hero__dot {
+        width: 8px; height: 8px;
+        border-radius: 50%;
+        background: rgba(255,255,255,0.4);
+        border: none; cursor: pointer; padding: 0;
+        transition: background 0.3s, transform 0.3s;
+      }
+
+      .sf-hero__dot--active { background: var(--color-gold-light); transform: scale(1.4); }
+
+      .sf-hero__arrow {
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        z-index: 3;
+        width: 44px; height: 44px;
+        border-radius: 50%;
+        border: 1px solid rgba(255,255,255,0.3);
+        background: rgba(255,255,255,0.1);
+        backdrop-filter: blur(4px);
+        color: #fff;
+        cursor: pointer;
+        display: flex; align-items: center; justify-content: center;
+        transition: background var(--transition);
+      }
+
+      .sf-hero__arrow:hover { background: rgba(255,255,255,0.25); }
+      .sf-hero__arrow--prev { left: 1.5rem; }
+      .sf-hero__arrow--next { right: 1.5rem; }
+
+      .sf-hero__scroll {
+        position: absolute;
+        bottom: 2rem; right: 2.5rem;
+        z-index: 3;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 0.4rem;
+        font-family: var(--font-sans);
+        font-size: 0.68rem;
+        letter-spacing: 0.15em;
+        text-transform: uppercase;
+        color: rgba(255,255,255,0.5);
+      }
+
+      .sf-hero__scroll-line {
+        width: 1px; height: 40px;
+        background: linear-gradient(to bottom, rgba(255,255,255,0.5), transparent);
+        animation: scrollPulse 1.8s ease-in-out infinite;
+      }
+
+      @keyframes scrollPulse {
+        0%,100% { opacity: 0; transform: scaleY(0.5) translateY(-10px); }
+        50%      { opacity: 1; transform: scaleY(1) translateY(0); }
+      }
+
+      /* ═══════════════════════════════════════════
+         BOOKING BAR — bold, full-width statement
+      ═══════════════════════════════════════════ */
+      /* ═══════════════════════════════════════════
+         BOOKING BAR — clean white underline style
+      ═══════════════════════════════════════════ */
+      .sf-booking {
+        background: var(--color-navy);
+        font-family: var(--font-sans);
+        position: relative;
+        z-index: 10;
+      }
+
+      /* hide headline/subline */
+      .sf-booking__headline,
+      .sf-booking__subline { display: none; }
+
+      .sf-booking__inner {
+        max-width: 1200px;
+        margin: 0 auto;
+        display: grid;
+        grid-template-columns: 1fr 1fr 148px 148px 148px auto;
+        align-items: stretch;
+        gap: 0;
+      }
+
+      .sf-booking__field {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        padding: 1.4rem 2rem;
+        border-right: 1px solid rgba(255,255,255,0.08);
+        min-height: 88px;
+      }
+
+      .sf-booking__field--narrow {
+        padding: 1.4rem 1.6rem;
+      }
+
+      .sf-booking__label {
+        font-size: 0.72rem !important;
+        letter-spacing: 0.18em !important;
+        text-transform: uppercase !important;
+        color: rgba(255,255,255,0.45) !important;
+        font-weight: 600 !important;
+        margin-bottom: 0.5rem !important;
+        display: block !important;
+        font-family: var(--font-sans) !important;
+      }
+
+      .sf-booking__input {
+        height: 36px;
+        padding: 0;
+        border: none;
+        border-bottom: 1px solid rgba(255,255,255,0.2);
+        border-radius: 0;
+        background: transparent;
+        color: #fff !important;
+        font-size: 1rem !important;
+        font-family: var(--font-sans) !important;
+        font-weight: 500;
+        transition: border-color var(--transition);
+        outline: none;
+        width: 100%;
+      }
+
+      .sf-booking__input:focus {
+        border-bottom-color: var(--color-gold);
+      }
+
+      .sf-booking__input::-webkit-calendar-picker-indicator {
+        filter: invert(1); opacity: 0.4; cursor: pointer;
+      }
+
+      .sf-booking__input::placeholder {
+        color: rgba(255,255,255,0.25);
+        font-style: italic;
+      }
+
+      .sf-booking__counter {
+        display: flex;
+        align-items: center;
+        height: 36px;
+        border-bottom: 1px solid rgba(255,255,255,0.2);
+        background: transparent;
+        gap: 0;
+        transition: border-color var(--transition);
+      }
+
+      .sf-booking__counter:focus-within {
+        border-bottom-color: var(--color-gold);
+      }
+
+      .sf-booking__counter-btn {
+        width: 28px; height: 28px;
+        background: rgba(255,255,255,0.1);
+        border: none;
+        border-radius: 50%;
+        color: rgba(255,255,255,0.8);
+        font-size: 1.1rem !important;
+        cursor: pointer;
+        transition: background var(--transition), color var(--transition);
+        display: flex; align-items: center; justify-content: center;
+        flex-shrink: 0;
+        font-family: var(--font-sans);
+        line-height: 1;
+      }
+
+      .sf-booking__counter-btn:hover {
+        background: var(--color-gold);
+        color: var(--color-navy);
+      }
+
+      .sf-booking__counter-val {
+        flex: 1;
+        text-align: center;
+        color: #fff !important;
+        font-size: 1.1rem !important;
+        font-family: var(--font-sans) !important;
+        font-weight: 600;
+        user-select: none;
+      }
+
+      .sf-booking__btn {
+        background: var(--color-gold);
+        color: var(--color-navy);
+        border: none;
+        font-size: 0.82rem !important;
+        font-weight: 800 !important;
+        letter-spacing: 0.14em;
+        text-transform: uppercase;
+        cursor: pointer;
+        font-family: var(--font-sans) !important;
+        transition: background var(--transition);
+        white-space: nowrap;
+        padding: 0 2.4rem;
+        align-self: stretch;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        min-width: 180px;
+      }
+
+      .sf-booking__btn:hover {
+        background: var(--color-gold-light);
+      }
+
+      /* ═══════════════════════════════════════════
+         RESPONSIVE
+      ═══════════════════════════════════════════ */
+      @media (max-width: 768px) {
+        .sf-nav { padding: 1rem 1.5rem; grid-template-columns: auto 1fr auto; }
+        .sf-nav__links, .sf-nav__book-btn { display: none; }
+        .sf-hamburger, .sf-nav__mobile-actions { display: flex; }
+        .sf-hero__content { padding: 2rem 1.5rem; }
+        .sf-hero__arrow { display: none; }
+        .sf-booking__inner { grid-template-columns: 1fr 1fr; }
+        .sf-booking__field { border-right: none; border-bottom: 1px solid rgba(255,255,255,0.08); }
+        .sf-booking__btn { grid-column: 1 / -1; min-height: 54px; }
+        .sf-hero { height: calc(100vh - 76px - 160px); }
+      }
+
+      @media (max-width: 480px) {
+        .sf-booking__inner { grid-template-columns: 1fr; }
+      }
+
+      #map { width:100%; min-height:360px; border-radius:6px; }
+    </style>
+
+
+
+    <style>
+      /* ── NAV font size fix — beats style.css body:14px ── */
+      nav.sf-nav ul.sf-nav__links li a.sf-nav__link {
+        font-size: 15px !important;
+        font-family: 'DM Sans', sans-serif !important;
+        color: #333 !important;
+        font-weight: 400 !important;
+        text-transform: none !important;
+        letter-spacing: 0 !important;
+        line-height: normal !important;
+        text-decoration: none !important;
+        background: transparent !important;
+        padding: 0 !important;
+      }
+      nav.sf-nav ul.sf-nav__links li a.sf-nav__link:hover {
+        color: #C8922A !important;
+        background: transparent !important;
+      }
+      nav.sf-nav button.sf-nav__book-btn {
+        font-size: 15px !important;
+        font-family: 'DM Sans', sans-serif !important;
+        font-weight: 600 !important;
+      }
+
+      /* ── Booking bar font sizes — beats style.css ── */
+      .sf-booking .sf-booking__label {
+        font-size: 0.82rem !important;
+        letter-spacing: 0.15em !important;
+        color: rgba(255,255,255,0.6) !important;
+        font-family: 'DM Sans', sans-serif !important;
+        font-weight: 700 !important;
+        text-transform: uppercase !important;
+      }
+      .sf-booking .sf-booking__input {
+        font-size: 1.05rem !important;
+        font-weight: 600 !important;
+        color: #fff !important;
+        font-family: 'DM Sans', sans-serif !important;
+      }
+      .sf-booking .sf-booking__counter-val {
+        font-size: 1.25rem !important;
+        color: #fff !important;
+        font-family: 'DM Sans', sans-serif !important;
+        font-weight: 700 !important;
+      }
+      .sf-booking .sf-booking__counter-btn {
+        font-size: 1.3rem !important;
+        color: rgba(255,255,255,0.9) !important;
+        font-weight: 700 !important;
+      }
+      .sf-booking button.sf-booking__btn {
+        font-size: 0.95rem !important;
+        font-family: 'DM Sans', sans-serif !important;
+        font-weight: 900 !important;
+        letter-spacing: 0.14em !important;
+        color: #0C2340 !important;
+        background: #C8922A !important;
+      }
+      .sf-booking button.sf-booking__btn:hover {
+        background: #D4A017 !important;
+        color: #0C2340 !important;
+      }
+
+      /* ── Remove white gap below hero ── */
+      .sf-hero + .sf-booking {
+        margin-top: 0 !important;
+        padding-top: 0 !important;
+      }
+      .wrapper {
+        padding-top: 76px !important;
+      }
+    </style>
+  </head>
+  <body id="home-page" class="wide">
+
+    <!-- PRELOADER -->
+    <div id="loading"><div class="spinner"><div class="cube1"></div><div class="cube2"></div></div></div>
+
+    <!-- ══════════════════════════════════
+         NAV
+    ══════════════════════════════════ -->
+    <nav class="sf-nav" role="navigation" aria-label="Main navigation">
+      <div class="sf-nav__logo">
+        <a href="index.html"><img src="assets/img/logo.png" alt="SunFun Resort & Hotel"></a>
+      </div>
+
+      <ul class="sf-nav__links">
+        <li><a href="#about-us"           class="sf-nav__link">About</a></li>
+        <li><a href="#hotel-gallery"      class="sf-nav__link">Gallery</a></li>
+        <li><a href="#hotel-rooms"        class="sf-nav__link">Rooms</a></li>
+        <li><a href="#testimonials"       class="sf-nav__link">Testimonials</a></li>
+        <li><a href="#our-dining"         class="sf-nav__link">Dining</a></li>
+        <li><a href="explore.html"        class="sf-nav__link">Explore</a></li>
+        <li><a href="transportation.html" class="sf-nav__link">Transportation</a></li>
+        <li><a href="#contact-us"         class="sf-nav__link">Contact</a></li>
+      </ul>
+
+      <div class="sf-nav__mobile-actions">
+        <button class="sf-hamburger" id="sf-hamburger" aria-label="Open menu" aria-expanded="false">
+          <span class="sf-hamburger__bar"></span>
+          <span class="sf-hamburger__bar"></span>
+          <span class="sf-hamburger__bar"></span>
+        </button>
+      </div>
+
+      <button class="sf-nav__book-btn" id="nav-book-now"
+              data-be-url="https://hotels.cloudbeds.com/reservation/GqPR7r">
+        Book Now
+      </button>
+    </nav>
+
+    <!-- Mobile Menu -->
+    <div class="sf-mobile-menu" id="sf-mobile-menu" role="navigation">
+      <ul class="sf-mobile-menu__links">
+        <li><a href="#about-us"           class="sf-mobile-menu__link">About</a></li>
+        <li><a href="#hotel-gallery"      class="sf-mobile-menu__link">Gallery</a></li>
+        <li><a href="#hotel-rooms"        class="sf-mobile-menu__link">Rooms</a></li>
+        <li><a href="#testimonials"       class="sf-mobile-menu__link">Testimonials</a></li>
+        <li><a href="#our-dining"         class="sf-mobile-menu__link">Dining</a></li>
+        <li><a href="explore.html"        class="sf-mobile-menu__link">Explore Nassau</a></li>
+        <li><a href="transportation.html" class="sf-mobile-menu__link">Transportation</a></li>
+        <li><a href="#contact-us"         class="sf-mobile-menu__link">Contact</a></li>
+      </ul>
+      <a href="#contact-us" class="sf-mobile-menu__book-btn">Book Now</a>
+    </div>
+
+    <!-- Cloudbeds — deferred so it doesn't block page render -->
+    <script defer src="https://hotels.cloudbeds.com/widget/load/GqPR7r/immersive"></script>
+
+    <main class="wrapper">
+
+      <!-- ══════════════════════════════════
+           HERO SLIDESHOW
+      ══════════════════════════════════ -->
+      <section class="sf-hero">
+        <div class="sf-hero__slides">
+          <div class="sf-hero__slide sf-hero__slide--1 sf-hero__slide--active"></div>
+          <div class="sf-hero__slide sf-hero__slide--2"></div>
+          <div class="sf-hero__slide sf-hero__slide--3"></div>
+          <div class="sf-hero__slide sf-hero__slide--4"></div>
+        </div>
+
+        <div class="sf-hero__overlay" aria-hidden="true"></div>
+
+        <div class="sf-hero__content">
+          <p class="sf-hero__eyebrow">Nassau, The Bahamas</p>
+          <h1 class="sf-hero__title">Embrace<br><em>Island Life</em></h1>
+          <p class="sf-hero__desc">Golden beaches, turquoise waters, and island joy — find it all at SunFun Resort in Nassau.</p>
+          <a href="#hotel-rooms" class="sf-hero__cta">
+            <span class="material-icons" style="font-size:18px;" aria-hidden="true">hotel</span>
+            View Rooms
+          </a>
+        </div>
+
+        <button class="sf-hero__arrow sf-hero__arrow--prev" id="hero-prev" aria-label="Previous slide">
+          <span class="material-icons">chevron_left</span>
+        </button>
+        <button class="sf-hero__arrow sf-hero__arrow--next" id="hero-next" aria-label="Next slide">
+          <span class="material-icons">chevron_right</span>
+        </button>
+
+        <div class="sf-hero__dots" id="hero-dots" aria-hidden="true"></div>
+
+        <div class="sf-hero__scroll" aria-hidden="true">
+          <div class="sf-hero__scroll-line"></div>
+          Scroll
+        </div>
+      </section>
+
+      <!-- ══════════════════════════════════
+           BOOKING BAR
+      ══════════════════════════════════ -->
+      <section class="sf-booking" aria-label="Check availability">
+        <h2 class="sf-booking__headline">Ready to Book Your <em>Nassau Escape?</em></h2>
+        <p class="sf-booking__subline">Book direct &amp; get the best rates — guaranteed</p>
+        <div class="sf-booking__inner">
+
+          <div class="sf-booking__field">
+            <label class="sf-booking__label" for="sf-checkin">Check In</label>
+            <input id="sf-checkin" type="date" class="sf-booking__input" required>
+          </div>
+
+          <div class="sf-booking__field">
+            <label class="sf-booking__label" for="sf-checkout">Check Out</label>
+            <input id="sf-checkout" type="date" class="sf-booking__input" required>
+          </div>
+
+          <div class="sf-booking__field sf-booking__field--narrow">
+            <label class="sf-booking__label">Adults</label>
+            <div class="sf-booking__counter" role="group" aria-label="Adults">
+              <button class="sf-booking__counter-btn" data-target="sf-adults" data-delta="-1" aria-label="Decrease adults">−</button>
+              <span class="sf-booking__counter-val" id="sf-adults" aria-live="polite">2</span>
+              <button class="sf-booking__counter-btn" data-target="sf-adults" data-delta="1" aria-label="Increase adults">+</button>
+            </div>
+          </div>
+
+          <div class="sf-booking__field sf-booking__field--narrow">
+            <label class="sf-booking__label">Children</label>
+            <div class="sf-booking__counter" role="group" aria-label="Children">
+              <button class="sf-booking__counter-btn" data-target="sf-children" data-delta="-1" aria-label="Decrease children">−</button>
+              <span class="sf-booking__counter-val" id="sf-children" aria-live="polite">0</span>
+              <button class="sf-booking__counter-btn" data-target="sf-children" data-delta="1" aria-label="Increase children">+</button>
+            </div>
+          </div>
+
+          <div class="sf-booking__field sf-booking__field--narrow">
+            <label class="sf-booking__label" for="sf-promo">Promo Code</label>
+            <input id="sf-promo" type="text" class="sf-booking__input" placeholder="Optional">
+          </div>
+
+          <button id="sf-booking-submit" class="sf-booking__btn" type="button">Check Availability</button>
+        </div>
+      </section>
+
+      <article>
+
+        <!-- About Us -->
+        <section id="about-us" class="sec-space our-feature text-center">
+          <div class="container theme-container">
+            <div class="title-wrap">
+              <h4 class="sub-title">Island Escape</h4>
+              <h2 class="section-title">Feel the Bahamas Vibe</h2>
+              <p>Let the music, flavors, and warm breezes of Nassau carry you into the heart of island life. SunFun Resort is where fun and relaxation meet.</p>
+            </div>
+            <div class="row">
+              <div class="col-sm-4 details">
+                <i class="material-icons theme-clr">airplanemode_active</i>
+                <h3 class="title-1">Private Beach Access</h3>
+                <p>Step onto our quiet stretch of sand—turquoise water and loungers just moments from your room.</p>
+              </div>
+              <div class="col-sm-4 details">
+                <i class="material-icons theme-clr">explore</i>
+                <h3 class="title-1">Island Excursions, Booked Here</h3>
+                <p>Snorkeling reefs, swimming with pigs, island tours—we'll arrange trusted guides and easy pickup.</p>
+              </div>
+              <div class="col-sm-4 details">
+                <i class="material-icons theme-clr">room_service</i>
+                <h3 class="title-1">Professional, Friendly Team</h3>
+                <p>Local experts ready 24/7 with tips, transport, and anything you need to unwind in Nassau.</p>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- Gallery -->
+        <section id="hotel-gallery" class="gallery-wrap">
+          <div class="gallery-bg">
+            <div class="container theme-container">
+              <div class="col-md-8 col-md-offset-2 gallery-slider">
+                <div class="rel-div">
+                  <div class="gallery-flexslider flexslider">
+                    <ul class="slides">
+                      <li><img src="assets/img/gallery-1.jpg" alt="gallery" loading="lazy"></li>
+                      <li><img src="assets/img/gallery-3.jpg" alt="gallery" loading="lazy"></li>
+                      <li><img src="assets/img/gallery-4.jpg" alt="gallery" loading="lazy"></li>
+                    </ul>
+                  </div>
+                  <div class="flexslider-nav">
+                    <span class="prev"><i class="material-icons arrow">details</i><i class="material-icons dash">remove</i></span>
+                    <span class="next"><i class="material-icons dash">remove</i><i class="material-icons arrow">details</i></span>
+                  </div>
+                </div>
+                <div class="all-photo">
+                  <a href="#" class="theme-btn btn-1">See All Photo <i class="material-icons">keyboard_arrow_right</i><span class="border-effect"></span></a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- Hotel Rooms -->
+        <section id="hotel-rooms" class="hotel-wrap">
+          <div class="container theme-container">
+            <div class="title-wrap">
+              <h4 class="sub-title">What We Got</h4>
+              <h2 class="section-title">Hotel Rooms</h2>
+            </div>
+          </div>
+          <div class="hotel-rooms">
+            <div class="container theme-container rel-div">
+              <div class="hotel-flexslider row">
+                <ul class="slides">
+                  <li>
+                    <div class="col-md-7"><div class="flexslider"><img src="assets/img/DeluxeOutside.jpg" alt="Super Deluxe Outside" loading="lazy"></div></div>
+                    <div class="col-md-5 hotel-detail">
+                      <h4 class="sub-title">Room Dimensions</h4>
+                      <h2 class="section-title white-clr fsz-56">Super Deluxe Outside</h2>
+                      <ul>
+                        <li>Spacious room for added convenience</li>
+                        <li>Accommodates up to 3 guests, includes kitchen</li>
+                        <li>Microwave, fridge, A/C, TV, hair dryer, iron (from front desk)</li>
+                        <li>Exclusive beach access steps from your room</li>
+                      </ul>
+                      <div class="price-tag">
+                        <span class="start-frm theme-clr font-2">From <span class="fsz-34">150 $</span> <i class="material-icons">keyboard_arrow_right</i></span>
+                        <a href="#" class="theme-btn clr-btn">Book Now</a>
+                      </div>
+                    </div>
+                  </li>
+                  <li>
+                    <div class="col-md-7"><div class="flexslider"><img src="assets/img/StandardInside.png" alt="Standard Attic Inside" loading="lazy"></div></div>
+                    <div class="col-md-5 hotel-detail">
+                      <h4 class="sub-title">Room Dimensions</h4>
+                      <h2 class="section-title white-clr fsz-56">Standard Attic Inside</h2>
+                      <ul>
+                        <li>Spacious attic-level rooms</li>
+                        <li>Accommodates up to 2 guests</li>
+                        <li>Microwave, fridge, A/C, TV, hair dryer, iron (from front desk)</li>
+                        <li>Exclusive beach access steps from your room</li>
+                      </ul>
+                      <div class="price-tag">
+                        <span class="start-frm theme-clr font-2">From <span class="fsz-34">100 $</span> <i class="material-icons">keyboard_arrow_right</i></span>
+                        <a href="#" class="theme-btn clr-btn">Book Now</a>
+                      </div>
+                    </div>
+                  </li>
+                  <li>
+                    <div class="col-md-7"><div class="flexslider"><img src="assets/img/KingInside.jpg" alt="King Inside" loading="lazy"></div></div>
+                    <div class="col-md-5 hotel-detail">
+                      <h4 class="sub-title">Room Dimensions</h4>
+                      <h2 class="section-title white-clr fsz-56">King Inside</h2>
+                      <ul>
+                        <li>Spacious room for added convenience</li>
+                        <li>Accommodates up to 3 guests</li>
+                        <li>Microwave, fridge, A/C, TV, hair dryer, iron (from front desk)</li>
+                        <li>Exclusive beach access steps from your room</li>
+                      </ul>
+                      <div class="price-tag">
+                        <span class="start-frm theme-clr font-2">From <span class="fsz-34">110 $</span> <i class="material-icons">keyboard_arrow_right</i></span>
+                        <a href="#" class="theme-btn clr-btn">Book Now</a>
+                      </div>
+                    </div>
+                  </li>
+                  <li>
+                    <div class="col-md-7"><div class="flexslider"><img src="assets/img/DeluxeInside.jpg" alt="Deluxe Inside" loading="lazy"></div></div>
+                    <div class="col-md-5 hotel-detail">
+                      <h4 class="sub-title">Room Dimensions</h4>
+                      <h2 class="section-title white-clr fsz-56">Deluxe Inside</h2>
+                      <ul>
+                        <li>Spacious room for added convenience</li>
+                        <li>Accommodates up to 4 guests</li>
+                        <li>Microwave, fridge, A/C, TV, hair dryer, iron (from front desk)</li>
+                        <li>Exclusive beach access steps from your room</li>
+                      </ul>
+                      <div class="price-tag">
+                        <span class="start-frm theme-clr font-2">From <span class="fsz-34">130 $</span> <i class="material-icons">keyboard_arrow_right</i></span>
+                        <a href="#" class="theme-btn clr-btn">Book Now</a>
+                      </div>
+                    </div>
+                  </li>
+                  <li>
+                    <div class="col-md-7"><div class="flexslider"><img src="assets/img/KingInsideSuite.jpg" alt="King Inside Suite" loading="lazy"></div></div>
+                    <div class="col-md-5 hotel-detail">
+                      <h4 class="sub-title">Room Dimensions</h4>
+                      <h2 class="section-title white-clr fsz-56">King Inside Suite</h2>
+                      <ul>
+                        <li>Spacious room for added convenience</li>
+                        <li>Accommodates up to 6 guests</li>
+                        <li>A/C, WiFi, cable TV, microwave</li>
+                        <li>Exclusive beach access steps from your room</li>
+                      </ul>
+                      <div class="price-tag">
+                        <span class="start-frm theme-clr font-2">From <span class="fsz-34">130 $</span> <i class="material-icons">keyboard_arrow_right</i></span>
+                        <a href="#" class="theme-btn clr-btn">Book Now</a>
+                      </div>
+                    </div>
+                  </li>
+                </ul>
+              </div>
+              <div class="flexslider-nav">
+                <span class="prev"><i class="material-icons arrow">details</i><i class="material-icons dash">remove</i></span>
+                <span class="next"><i class="material-icons dash">remove</i><i class="material-icons arrow">details</i></span>
+              </div>
+              <div class="all-photo">
+                <a href="#" class="theme-btn btn-1">Open Gallery <i class="material-icons">keyboard_arrow_right</i><span class="border-effect"></span></a>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- Blog -->
+        <section id="press" class="home-blog">
+          <div class="container theme-container">
+            <div class="title-wrap">
+              <h4 class="sub-title">Watch Us</h4>
+              <h2 class="section-title">Latest Blog Post</h2>
+            </div>
+          </div>
+          <div class="blog-bg">
+            <div class="container theme-container rel-div">
+              <div class="blog-flexslider row">
+                <ul class="slides">
+                  <li>
+                    <div class="col-md-5 blog-detail">
+                      <h4 class="sub-title">Games &amp; Activities</h4>
+                      <h2 class="section-title white-clr fsz-48">Family Fun by the Pool</h2>
+                      <p>Make it a friendly match: set up Connect 4 near the water, take a swim, then play another round. We've got the games, towels, and seating—ask our team and we'll set you up.</p>
+                      <div class="all-photo"><a href="#" class="theme-btn btn-1">read more <i class="material-icons">keyboard_arrow_right</i><span class="border-effect"></span></a></div>
+                    </div>
+                    <div class="col-md-7"><div class="flexslider"><img src="assets/img/outsidepool.jpg" alt="Family Fun by the Pool" loading="lazy"></div></div>
+                  </li>
+                  <li>
+                    <div class="col-md-5 blog-detail">
+                      <h4 class="sub-title">Games &amp; Activities</h4>
+                      <h2 class="section-title white-clr fsz-48">Swim with the Pigs</h2>
+                      <p>Make a splash with the Bahamas' most famous locals. We'll book your boat tour—meet, feed, and swim alongside the friendly pigs.</p>
+                      <div class="all-photo"><a href="#" class="theme-btn btn-1">read more <i class="material-icons">keyboard_arrow_right</i><span class="border-effect"></span></a></div>
+                    </div>
+                    <div class="col-md-7"><div class="flexslider"><img src="assets/img/blog-2.jpg" alt="Swim with the Pigs" loading="lazy"></div></div>
+                  </li>
+                  <li>
+                    <div class="col-md-5 blog-detail">
+                      <h4 class="sub-title">Experiences · Coming December</h4>
+                      <h2 class="section-title white-clr fsz-48">Island Cooking Class</h2>
+                      <p>Learn Bahamian flavors with a local chef—cracked conch, peas 'n' rice, and guava duff. Limited spots, ask the front desk to join the early list.</p>
+                      <div class="all-photo"><a href="#" class="theme-btn btn-1">read more <i class="material-icons">keyboard_arrow_right</i><span class="border-effect"></span></a></div>
+                    </div>
+                    <div class="col-md-7"><div class="flexslider"><img src="assets/img/blog-3.jpg" alt="Island Cooking Class" loading="lazy"></div></div>
+                  </li>
+                </ul>
+              </div>
+              <div class="flexslider-nav">
+                <span class="prev"><i class="material-icons arrow">details</i><i class="material-icons dash">remove</i></span>
+                <span class="next"><i class="material-icons dash">remove</i><i class="material-icons arrow">details</i></span>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- Testimonials -->
+        <section id="testimonials" class="testimonial-wrap">
+          <div class="container theme-container">
+            <div class="col-md-10 col-md-offset-1 testimonial-slider">
+              <div class="rel-div">
+                <div class="testimonial-flexslider flexslider">
+                  <ul class="slides">
+                    <li>
+                      <div class="title-wrap">
+                        <h4 class="sub-title">What People Say</h4>
+                        <h2 class="section-title">Testimonials</h2>
+                        <p class="font-2">Perfect island escape! The private beach was quiet and gorgeous, and the rooms were spotless with cool A/C. Our family felt welcomed from the moment we arrived.</p>
+                        <div class="auther"><a class="font-1 fsz-16" href="#">Monique R.</a><span class="block-inline font-2 fsz-18">05-28-2025</span></div>
+                      </div>
+                    </li>
+                    <li>
+                      <div class="title-wrap">
+                        <h4 class="sub-title">What People Say</h4>
+                        <h2 class="section-title">Testimonials</h2>
+                        <p class="font-2">We celebrated our anniversary at SunFun and the team made it unforgettable. They booked our snorkeling excursion and sunset cruise—pure Bahamian magic!</p>
+                        <div class="auther"><a class="font-1 fsz-16" href="#">Evan &amp; Tasha</a><span class="block-inline font-2 fsz-18">06-11-2025</span></div>
+                      </div>
+                    </li>
+                    <li>
+                      <div class="title-wrap">
+                        <h4 class="sub-title">What People Say</h4>
+                        <h2 class="section-title">Testimonials</h2>
+                        <p class="font-2">Friendly, professional staff and a great location for exploring Nassau. Fast Wi-Fi, comfy beds, and that easy beach access—couldn't ask for more.</p>
+                        <div class="auther"><a class="font-1 fsz-16" href="#">Sam B.</a><span class="block-inline font-2 fsz-18">07-02-2025</span></div>
+                      </div>
+                    </li>
+                  </ul>
+                </div>
+                <div class="flexslider-nav">
+                  <span class="prev"><i class="material-icons arrow">details</i><i class="material-icons dash">remove</i></span>
+                  <span class="next"><i class="material-icons dash">remove</i><i class="material-icons arrow">details</i></span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- Dining -->
+        <section id="our-dining" class="dining-wrap">
+          <div class="container theme-container">
+            <div class="title-wrap">
+              <h4 class="sub-title">Join us at the Cafe</h4>
+              <h2 class="section-title">The Coconut Cafe</h2>
+            </div>
+            <div class="dining-content">
+              <ul class="nav theme-tabs" id="coconut-tabs">
+                <li class="active"><a href="#" data-target="#breakfast">Breakfast</a></li>
+                <li><a href="#" data-target="#lunch">Lunch</a></li>
+              </ul>
+              <div id="coconut-menus">
+                <div class="coconut-menu" id="breakfast">
+                  <div class="dining-item"><h3 class="title-1">Breakfast Wrap</h3><p>Roasted potatoes, scrambled eggs, cheddar cheese, and crispy bacon on a whole wheat tortilla.</p><p class="price font-2">$12</p></div>
+                  <div class="dining-item"><h3 class="title-1">Coconut French Toast</h3><p>Thick cut bread soaked in coconut custard, topped with coconut flakes and powdered sugar. <em>(+Bacon $3)</em></p><p class="price font-2">$10</p></div>
+                  <div class="dining-item"><h3 class="title-1">Caramelized Apple Oats</h3><p>Creamy brown sugar oats topped with caramelized apple chunks and a drizzle of honey.</p><p class="price font-2">$7</p></div>
+                  <div class="dining-item"><h3 class="title-1">Avocado Toast</h3><p>Smashed avocado with pickled onions, jalapeños, and flakey sea salt on sourdough. <em>(+Scrambled Eggs $4)</em></p><p class="price font-2">$10</p></div>
+                  <div class="dining-item"><h3 class="title-1">Breakfast Stack</h3><p>Scrambled eggs, ham or turkey, American cheese, lettuce, tomato, and mayo or mustard on white bread.</p><p class="price font-2">$13</p></div>
+                  <div class="dining-item"><h3 class="title-1">Paradise Oats</h3><p>Creamy brown sugar oats topped with fresh blueberries, coconut flakes, granola, and a drizzle of honey.</p><p class="price font-2">$9</p></div>
+                </div>
+                <div class="coconut-menu" id="lunch" style="display:none;">
+                  <div class="dining-item"><h3 class="title-1">Shrimp Caesar Wrap</h3><p>Grilled shrimp, crisp romaine, parmesan, and croutons in Caesar dressing, wrapped in a spinach tortilla.</p><p class="price font-2">$16</p></div>
+                  <div class="dining-item"><h3 class="title-1">The Coconut Club</h3><p>Turkey, ham, bacon, cheddar, lettuce, tomato &amp; garlic butter on toasted white bread.</p><p class="price font-2">$17</p></div>
+                  <div class="dining-item"><h3 class="title-1">Tuna Tiki Wrap</h3><p>Chilled tuna salad in a whole wheat tortilla with crisp romaine and juicy tomatoes.</p><p class="price font-2">$12</p></div>
+                  <div class="dining-item"><h3 class="title-1">Caesar Salad</h3><p>Shredded romaine, croutons, and shaved parmesan with Caesar dressing. <em>(+Chicken $4) (+Shrimp $6)</em></p><p class="price font-2">$10</p></div>
+                  <div class="dining-item"><h3 class="title-1">Honey Garlic Salmon Bowl</h3><p>Jasmine rice with honey garlic–glazed salmon, sautéed vegetables, and a vegetable slaw. <em>(+Shrimp $6)</em></p><p class="price font-2">$22</p></div>
+                  <div class="dining-item"><h3 class="title-1">Chicken Pesto Panini</h3><p>Chicken breast, mozzarella, and sliced tomato on a wheat sub with basil pesto spread.</p><p class="price font-2">$15</p></div>
+                  <div class="dining-item"><h3 class="title-1">Grilled Chicken Bowl</h3><p>Jasmine rice with grilled chicken, black beans, roasted corn, lettuce, and avocado-lime sauce. <em>(+Shrimp $6)</em></p><p class="price font-2">$18</p></div>
+                  <div class="dining-item"><h3 class="title-1">Sweet Potato Bowl</h3><p>Roasted chickpeas, sweet potatoes, purple cabbage, broccoli, zucchini, and bell peppers with house-made aioli. <em>(+Chicken $4) (+Shrimp $6)</em></p><p class="price font-2">$16</p></div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <style>
+            #coconut-menus .coconut-menu{display:flex;flex-wrap:wrap;gap:20px 30px;}
+            #coconut-menus .dining-item{width:calc(50% - 15px);margin:0;background:transparent;border:0;}
+            @media(max-width:767px){#coconut-menus .dining-item{width:100%;}}
+            #coconut-tabs{margin-bottom:18px;}
+            #coconut-tabs > li > a{cursor:pointer;}
+          </style>
+          <script>
+            (function(){
+              var tabs = document.querySelectorAll('#coconut-tabs li a');
+              tabs.forEach(function(a){
+                a.addEventListener('click', function(e){
+                  e.preventDefault();
+                  tabs.forEach(function(x){ x.parentElement.classList.remove('active'); });
+                  a.parentElement.classList.add('active');
+                  var target = a.getAttribute('data-target');
+                  document.querySelectorAll('.coconut-menu').forEach(function(sec){
+                    sec.style.display = (sec.id && ('#'+sec.id) === target) ? 'flex' : 'none';
+                  });
+                });
+              });
+            })();
+          </script>
+        </section>
+
+        <!-- Contact -->
+        <section id="contact-us" class="contact-us">
+          <div class="container theme-container">
+            <div class="col-md-7 theme-box"><div id="map"></div></div>
+            <div class="col-md-5 contact-detail">
+              <h4 class="sub-title">Information</h4>
+              <h2 class="section-title white-clr">Contact Us</h2>
+              <div class="address">
+                <h4 class="sub-title fsz-12">Visit Us</h4>
+                <p class="font-3 fsz-40">642 W Bay St, Nassau, The Bahamas</p>
+                <h4 class="sub-title fsz-12">Mail Us</h4>
+                <div class="font-3 fsz-40">sunfunresortsbahamas@gmail.com</div>
+                <div class="font-3 fsz-40">P.O. Box CB12156</div>
+                <div class="font-3 fsz-40">Nassau, Bahamas</div>
+                <h4 class="sub-title fsz-12">Call Us</h4>
+                <p class="font-3 fsz-40">+1 242-327-8827</p>
+              </div>
+            </div>
+          </div>
+        </section>
+
+      </article>
+
+      <!-- Footer -->
+      <footer class="footer-wrap">
+        <section class="footer-1">
+          <div class="container theme-container">
+            <div class="row">
+              <div class="col-md-8">
+                <ul class="nav navbar-nav primary-navbar font-2">
+                  <li><a href="#about-us">About Us</a></li>
+                  <li><a href="#hotel-gallery">Gallery</a></li>
+                  <li><a href="#hotel-rooms">Rooms</a></li>
+                  <li><a href="#testimonials">Testimonials</a></li>
+                  <li><a href="#our-dining">Dining</a></li>
+                  <li><a href="#contact-us">Contact Us</a></li>
+                </ul>
+                <p>Copyright 2025 SunFun Hotel &amp; Resort All Rights Reserved Designed by TE</p>
+              </div>
+              <div class="col-md-4 socia-link">
+                <p class="font-2"><a href="#">sunfunresortsbahamas@gmail.com</a></p>
+                <ul class="list-inline">
+                  <li><a href="#" class="fa fa-facebook"></a></li>
+                  <li><a href="#" class="fa fa-twitter"></a></li>
+                  <li><a href="#" class="fa fa-instagram"></a></li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </section>
+      </footer>
+      <div id="to-top" class="to-top"><i class="material-icons">keyboard_arrow_up</i></div>
+    </main>
+
+    <!-- JS — all deferred so nothing blocks page paint -->
+    <script defer src="assets/plugins/main-jquery/jquery-2.2.4.min.js"></script>
+    <script defer src="assets/plugins/bootstrap/js/bootstrap.min.js"></script>
+    <script defer src="assets/plugins/bootstrap-select/dist/js/bootstrap-select.min.js"></script>
+    <script defer src="assets/plugins/datepicker/js/bootstrap-datepicker.js"></script>
+    <script defer src="assets/js/isotope.pkgd.min.js"></script>
+    <script defer src="assets/plugins/woothemes-FlexSlider/jquery.flexslider-min.js"></script>
+    <script defer src="assets/plugins/malihu-custom-scrollbar-plugin-master/js/minified/jquery.mCustomScrollbar.min.js"></script>
+    <script defer src="assets/js/theme.js"></script>
+
+    <!-- Leaflet — deferred, only needed for the map at the bottom -->
+    <script defer src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" crossorigin=""></script>
+    <script defer src="https://unpkg.com/leaflet-control-geocoder@2.4.0/dist/Control.Geocoder.js"></script>
+
+    <script>
+      /* ── Mobile Nav ── */
+      (function(){
+        var btn  = document.getElementById('sf-hamburger');
+        var menu = document.getElementById('sf-mobile-menu');
+        if (!btn || !menu) return;
+        btn.addEventListener('click', function(){
+          var open = menu.classList.contains('sf-mobile-menu--open');
+          if (open) {
+            menu.classList.remove('sf-mobile-menu--open');
+            btn.classList.remove('sf-hamburger--open');
+            btn.setAttribute('aria-expanded','false');
+          } else {
+            menu.classList.add('sf-mobile-menu--open');
+            btn.classList.add('sf-hamburger--open');
+            btn.setAttribute('aria-expanded','true');
+          }
+        });
+        menu.querySelectorAll('a').forEach(function(a){
+          a.addEventListener('click', function(){
+            menu.classList.remove('sf-mobile-menu--open');
+            btn.classList.remove('sf-hamburger--open');
+            btn.setAttribute('aria-expanded','false');
+          });
+        });
+      })();
+
+      /* ── Hero Slideshow ── */
+      (function(){
+        var slides  = document.querySelectorAll('.sf-hero__slide');
+        var dotsEl  = document.getElementById('hero-dots');
+        var prevBtn = document.getElementById('hero-prev');
+        var nextBtn = document.getElementById('hero-next');
+        var current = 0;
+        var total   = slides.length;
+        var timer   = null;
+
+        function goTo(n) {
+          slides[current].classList.remove('sf-hero__slide--active');
+          current = (n + total) % total;
+          slides[current].classList.add('sf-hero__slide--active');
+          dotsEl.querySelectorAll('.sf-hero__dot').forEach(function(d,i){
+            d.classList.toggle('sf-hero__dot--active', i === current);
+          });
+        }
+
+        function next() { goTo(current + 1); }
+        function prev() { goTo(current - 1); }
+        function start() { timer = setInterval(next, 5000); }
+        function stop()  { clearInterval(timer); }
+
+        for (var i = 0; i < total; i++) {
+          var dot = document.createElement('button');
+          dot.className = 'sf-hero__dot' + (i === 0 ? ' sf-hero__dot--active' : '');
+          dot.setAttribute('aria-label', 'Go to slide ' + (i+1));
+          (function(idx){ dot.addEventListener('click', function(){ stop(); goTo(idx); start(); }); })(i);
+          dotsEl.appendChild(dot);
+        }
+
+        prevBtn.addEventListener('click', function(){ stop(); prev(); start(); });
+        nextBtn.addEventListener('click', function(){ stop(); next(); start(); });
+        start();
+      })();
+
+      /* ── Guest Counters ── */
+      (function(){
+        document.querySelectorAll('.sf-booking__counter-btn').forEach(function(btn){
+          btn.addEventListener('click', function(){
+            var id  = btn.getAttribute('data-target');
+            var el  = document.getElementById(id);
+            if (!el) return;
+            var val = parseInt(el.textContent, 10) + parseInt(btn.getAttribute('data-delta'), 10);
+            el.textContent = Math.max(id === 'sf-adults' ? 1 : 0, Math.min(10, val));
+          });
+        });
+      })();
+
+      /* ── Map (waits for Leaflet to load) ── */
+      window.addEventListener('load', function(){
+        var el = document.getElementById('map');
+        if (!el || !window.L) return;
+        var COORDS = [25.073291472487877, -77.4392280316996];
+        var map = L.map('map', { scrollWheelZoom: false }).setView(COORDS, 18);
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+          attribution: '&copy; OpenStreetMap contributors'
+        }).addTo(map);
+        L.marker(COORDS).addTo(map)
+          .bindPopup('<strong>Sun Fun Resort &amp; Hotel</strong><br>642 W Bay St, Nassau')
+          .openPopup();
+      });
+
+      /* ── Booking Bar ── */
+      (function(){
+        var BE_URL = 'https://hotels.cloudbeds.com/reservation/GqPR7r';
+
+        function openCloudbeds(url) {
+          var launcher = document.querySelector('[data-be-url]');
+          if (launcher) {
+            launcher.setAttribute('data-be-url', url);
+            launcher.dispatchEvent(new MouseEvent('click', { bubbles: true }));
+          } else {
+            window.open(url, '_blank', 'noopener');
+          }
+        }
+
+        document.querySelectorAll('#hotel-rooms .hotel-detail .theme-btn.clr-btn').forEach(function(btn){
+          btn.setAttribute('data-be-url', BE_URL);
+          btn.addEventListener('click', function(e){
+            e.preventDefault(); e.stopPropagation();
+            openCloudbeds(BE_URL);
+          });
+        });
+
+        function toMDY(iso){ var p=iso.split('-'); return parseInt(p[1],10)+'/'+parseInt(p[2],10)+'/'+p[0]; }
+
+        document.addEventListener('click', function(ev){
+          if (ev.target.closest && ev.target.closest('#sf-booking-submit')) {
+            ev.stopPropagation();
+            if (ev.stopImmediatePropagation) ev.stopImmediatePropagation();
+          }
+        }, true);
+
+        var submit = document.getElementById('sf-booking-submit');
+        if (submit) {
+          submit.addEventListener('click', function(e){
+            e.preventDefault();
+            var ci = document.getElementById('sf-checkin').value;
+            var co = document.getElementById('sf-checkout').value;
+            if (!ci || !co) { alert('Please select both dates.'); return; }
+            if (new Date(co) <= new Date(ci)) { alert('Check-out must be after check-in.'); return; }
+            var adults   = parseInt(document.getElementById('sf-adults').textContent,10) || 2;
+            var children = parseInt(document.getElementById('sf-children').textContent,10) || 0;
+            var promo = (document.getElementById('sf-promo') || {}).value || '';
+            var url = BE_URL
+              + '?date_format=m/d/Y'
+              + '&widget_date='    + encodeURIComponent(toMDY(ci))
+              + '&widget_date_to=' + encodeURIComponent(toMDY(co))
+              + '&adults='         + adults
+              + '&children='       + children
+              + (promo ? '&coupon=' + encodeURIComponent(promo) : '');
+            window.open(url, '_blank', 'noopener');
+          });
+        }
+      })();
+    </script>
+  </body>
+</html>
