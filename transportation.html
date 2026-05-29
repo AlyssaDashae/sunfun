@@ -5,15 +5,146 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Transportation — SunFun Resort & Hotel</title>
 
-  <!-- Google Fonts -->
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
-  <!-- Site styles (shared with all pages) -->
+  <!-- Cloudbeds Immersive Experience — must be in head -->
+  <script
+    type="text/javascript"
+    data-cookieconsent="ignore"
+    src="https://static1.cloudbeds.com/booking-engine/latest/static/js/immersive-experience/cb-immersive-experience.js">
+  </script>
+
+  <!-- Site styles -->
   <link rel="stylesheet" href="styles.css">
 
-  <!-- Page-specific styles -->
   <style>
+    /* ── Unified Nav ── */
+    :root {
+      --color-navy: #0C2340;
+      --color-navy-deep: #060F1A;
+      --color-gold: #C8922A;
+      --color-gold-light: #D4A017;
+      --color-white: #FFFFFF;
+      --font-sans: 'DM Sans', sans-serif;
+      --radius-sm: 4px;
+      --transition: 0.2s ease;
+    }
+    .sf-nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 1000;
+      display: grid;
+      grid-template-columns: auto 1fr auto;
+      align-items: center;
+      gap: 1rem;
+      padding: 0.75rem 2.5rem;
+      background: rgba(255,255,255,0.97);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid rgba(0,0,0,0.07);
+      box-shadow: 0 2px 16px rgba(0,0,0,0.06);
+      font-family: var(--font-sans);
+    }
+    .sf-nav__logo { margin-left: 1rem; }
+    .sf-nav__logo img { height: 60px; width: auto; display: block; }
+    .sf-nav__links {
+      display: flex; align-items: center; justify-content: center;
+      list-style: none; margin: 0; padding: 0; flex-wrap: wrap;
+    }
+    .sf-nav__links li { display: flex; align-items: center; }
+    .sf-nav__links li:not(:last-child)::after {
+      content: '–'; color: #aaa; margin: 0 0.55rem; font-size: 0.85rem;
+    }
+    .sf-nav__link {
+      color: #333 !important; text-decoration: none !important;
+      font-size: 0.95rem !important; font-weight: 400 !important;
+      letter-spacing: 0.01em !important; white-space: nowrap !important;
+      transition: color var(--transition) !important;
+      font-family: var(--font-sans) !important;
+    }
+    .sf-nav__link:hover { color: var(--color-gold) !important; }
+    .sf-nav__link--active { color: var(--color-gold) !important; font-weight: 600 !important; }
+    .sf-nav__book-btn {
+      background: #111 !important; color: #fff !important;
+      padding: 0.7rem 1.8rem !important; border-radius: var(--radius-sm) !important;
+      font-size: 0.95rem !important; font-weight: 600 !important;
+      letter-spacing: 0.04em !important; text-decoration: none !important;
+      white-space: nowrap !important; border: none !important;
+      cursor: pointer !important; font-family: var(--font-sans) !important;
+      transition: background var(--transition) !important;
+    }
+    .sf-nav__book-btn:hover { background: #333 !important; color: #fff !important; }
+    .sf-nav__mobile-actions { display: none; align-items: center; }
+    .sf-hamburger {
+      display: none; flex-direction: column; justify-content: center;
+      align-items: center; width: 40px; height: 40px;
+      background: none; border: none; cursor: pointer; padding: 6px;
+      border-radius: var(--radius-sm);
+    }
+    .sf-hamburger__bar {
+      display: block; width: 22px; height: 2px;
+      background: #333; border-radius: 2px;
+      transition: all 0.3s ease; transform-origin: center;
+    }
+    .sf-hamburger__bar:not(:last-child) { margin-bottom: 5px; }
+    .sf-hamburger--open .sf-hamburger__bar:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+    .sf-hamburger--open .sf-hamburger__bar:nth-child(2) { opacity: 0; transform: scaleX(0); }
+    .sf-hamburger--open .sf-hamburger__bar:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+    .sf-mobile-menu {
+      display: none; position: fixed;
+      top: 76px; left: 0; right: 0;
+      background: rgba(255,255,255,0.98);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(0,0,0,0.08);
+      box-shadow: 0 8px 30px rgba(12,35,64,0.12);
+      z-index: 999; padding: 1rem 0;
+    }
+    .sf-mobile-menu--open { display: block; }
+    .sf-mobile-menu__links { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; }
+    .sf-mobile-menu__link {
+      display: block; padding: 0.85rem 2rem; color: #333;
+      text-decoration: none; font-size: 0.95rem;
+      font-family: var(--font-sans);
+      border-bottom: 1px solid rgba(0,0,0,0.05);
+      transition: background 0.15s, color 0.15s;
+    }
+    .sf-mobile-menu__link:hover { background: rgba(200,146,42,0.06); color: var(--color-gold); }
+    .sf-mobile-menu__book-btn {
+      display: block; margin: 1rem 2rem 0;
+      background: #111; color: #fff;
+      padding: 0.75rem 1.5rem; border-radius: var(--radius-sm);
+      font-size: 0.85rem; font-weight: 500; letter-spacing: 0.04em;
+      text-decoration: none; text-align: center;
+      font-family: var(--font-sans); transition: background var(--transition);
+    }
+    .sf-mobile-menu__book-btn:hover { background: #333; color: #fff; }
+
+    body { padding-top: 76px !important; }
+
+    .sf-footer {
+      background: var(--color-navy-deep, #060F1A);
+      padding: 2rem 2.5rem;
+      display: flex; flex-wrap: wrap;
+      align-items: center; justify-content: space-between; gap: 1rem;
+      font-family: var(--font-sans);
+    }
+    .sf-footer p { color: rgba(255,255,255,0.4); font-size: 0.8rem; margin: 0; }
+    .sf-footer__links { display: flex; gap: 1.5rem; flex-wrap: wrap; }
+    .sf-footer__link {
+      color: rgba(255,255,255,0.55); font-size: 0.88rem;
+      text-decoration: none; transition: color var(--transition);
+    }
+    .sf-footer__link:hover { color: var(--color-gold-light, #D4A017); }
+
+    @media (max-width: 768px) {
+      .sf-nav__links { display: none; }
+      .sf-nav__book-btn { display: none !important; }
+      .sf-nav__mobile-actions { display: flex; }
+      .sf-hamburger { display: flex; }
+    }
 
     /* ── Hero ── */
     .transport-hero {
@@ -29,12 +160,13 @@
     .transport-hero__bg {
       position: absolute;
       inset: 0;
-      background-image: url('SHUTTLE.png');
+      background-image: url('image/SHUTTLE.png');
       background-size: cover;
-      background-position: center 55%;
+      background-position: center center;
+      background-repeat: no-repeat;
       /* Slightly desaturate and darken the van photo for a polished editorial look */
       filter: saturate(0.75) brightness(0.72);
-      transform: scale(1.04);
+      transform: scale(1.0);
     }
 
     .transport-hero__overlay {
@@ -119,7 +251,7 @@
       padding: 0.9rem 2rem;
       border-radius: var(--radius-sm);
       font-size: 0.85rem;
-      font-weight: 600;
+      font-weight: 700;
       letter-spacing: 0.04em;
       text-decoration: none;
       box-shadow: 0 4px 20px rgba(0,0,0,0.25);
@@ -127,8 +259,8 @@
     }
 
     .transport-hero__cta:hover {
-      background: var(--color-gold-light);
-      color: var(--color-white);
+      background: var(--color-gold);
+      color: var(--color-navy);
     }
 
     /* Badge overlaid bottom-right of hero showing it's the real shuttle */
@@ -369,20 +501,20 @@
     .pricing-card__cta {
       display: block;
       margin: 0 2rem 2rem;
-      background: var(--color-teal);
-      color: var(--color-white);
+      background: var(--color-gold);
+      color: var(--color-navy);
       padding: 1rem;
       border-radius: var(--radius-sm);
       text-align: center;
       font-size: 0.85rem;
-      font-weight: 500;
+      font-weight: 700;
       letter-spacing: 0.06em;
       text-transform: uppercase;
       text-decoration: none;
       transition: background var(--transition);
     }
 
-    .pricing-card__cta:hover { background: #178a65; }
+    .pricing-card__cta:hover { background: var(--color-gold-light); }
 
     /* ── Shuttle details ── */
     .shuttle-details { display: flex; flex-direction: column; gap: 1.5rem; }
@@ -596,20 +728,20 @@
 
     .car-card__cta {
       display: block;
-      background: var(--color-navy);
-      color: var(--color-white);
+      background: var(--color-gold);
+      color: var(--color-navy);
       padding: 0.85rem;
       border-radius: var(--radius-sm);
       text-align: center;
       font-size: 0.82rem;
-      font-weight: 500;
+      font-weight: 700;
       letter-spacing: 0.06em;
       text-transform: uppercase;
       text-decoration: none;
       transition: background var(--transition);
     }
 
-    .car-card__cta:hover { background: var(--color-ocean); }
+    .car-card__cta:hover { background: var(--color-gold-light); }
 
     /* ── Rental notes ── */
     .rental-notes {
@@ -749,6 +881,26 @@
       .steps { grid-template-columns: 1fr; }
       .service-header { flex-direction: column; }
     }
+    /* ── Button colour overrides for this page ── */
+    .btn-primary {
+      background: var(--color-gold) !important;
+      color: var(--color-navy) !important;
+      font-weight: 700 !important;
+    }
+    .btn-primary:hover {
+      background: var(--color-gold-light) !important;
+      color: var(--color-navy) !important;
+    }
+    .btn-outline {
+      background: var(--color-navy) !important;
+      color: var(--color-white) !important;
+      border-color: var(--color-navy) !important;
+      font-weight: 600 !important;
+    }
+    .btn-outline:hover {
+      background: #0a1c35 !important;
+      color: var(--color-white) !important;
+    }
   </style>
 </head>
 <body>
@@ -756,53 +908,41 @@
 <!-- ════════════════════════════════════════
      NAVIGATION
 ════════════════════════════════════════ -->
-<nav class="nav" role="navigation" aria-label="Main navigation">
-  <div class="nav__logo">
-    <a href="https://sunfunhotel.com">
-      <img src="https://sunfunhotel.com/assets/img/logo.png" alt="SunFun Resort & Hotel">
+<nav class="sf-nav" role="navigation" aria-label="Main navigation">
+  <div class="sf-nav__logo">
+    <a href="index.html">
+      <img src="assets/img/logo.png" alt="SunFun Resort & Hotel">
     </a>
   </div>
-
-  <ul class="nav__links">
-    <li><a href="https://sunfunhotel.com/#about-us"    class="nav__link">About</a></li>
-    <li><a href="https://sunfunhotel.com/#hotel-rooms" class="nav__link">Rooms</a></li>
-    <li><a href="explore.html"                         class="nav__link">Explore</a></li>
-    <li><a href="https://sunfunhotel.com/#our-dining"  class="nav__link">Dining</a></li>
-    <li><a href="transportation.html"                  class="nav__link nav__link--active">Transportation</a></li>
-    <li><a href="https://sunfunhotel.com/#contact-us"  class="nav__link">Contact</a></li>
+  <ul class="sf-nav__links">
+    <li><a href="index.html"             class="sf-nav__link">Home</a></li>
+    <li><a href="index.html#about-us"    class="sf-nav__link">About</a></li>
+    <li><a href="index.html#hotel-rooms" class="sf-nav__link">Rooms</a></li>
+    <li><a href="explore.html"           class="sf-nav__link">Explore</a></li>
+    <li><a href="transportation.html"    class="sf-nav__link sf-nav__link--active">Transportation</a></li>
+    <li><a href="index.html#contact-us"  class="sf-nav__link">Contact</a></li>
   </ul>
-
-  <div class="nav__mobile-actions">
-    <button
-      class="hamburger"
-      id="hamburger"
-      aria-label="Open navigation menu"
-      aria-expanded="false"
-      aria-controls="mobile-menu"
-    >
-      <span class="hamburger__bar"></span>
-      <span class="hamburger__bar"></span>
-      <span class="hamburger__bar"></span>
+  <div class="sf-nav__mobile-actions">
+    <button class="sf-hamburger" id="sf-hamburger" aria-label="Open menu" aria-expanded="false">
+      <span class="sf-hamburger__bar"></span>
+      <span class="sf-hamburger__bar"></span>
+      <span class="sf-hamburger__bar"></span>
     </button>
   </div>
-
-  <a href="https://sunfunhotel.com/#contact-us" class="nav__book-btn">Book Now</a>
+  <a href="booking.html" class="sf-nav__book-btn">Book Now</a>
 </nav>
 
-
-<!-- ════════════════════════════════════════
-     MOBILE MENU
-════════════════════════════════════════ -->
-<div class="mobile-menu" id="mobile-menu" role="navigation" aria-label="Mobile navigation">
-  <ul class="mobile-menu__links">
-    <li><a href="https://sunfunhotel.com/#about-us"    class="mobile-menu__link">About</a></li>
-    <li><a href="https://sunfunhotel.com/#hotel-rooms" class="mobile-menu__link">Rooms</a></li>
-    <li><a href="explore.html"                         class="mobile-menu__link">Explore</a></li>
-    <li><a href="https://sunfunhotel.com/#our-dining"  class="mobile-menu__link">Dining</a></li>
-    <li><a href="transportation.html"                  class="mobile-menu__link mobile-menu__link--active">Transportation</a></li>
-    <li><a href="https://sunfunhotel.com/#contact-us"  class="mobile-menu__link">Contact</a></li>
+<!-- Mobile Menu -->
+<div class="sf-mobile-menu" id="sf-mobile-menu" role="navigation">
+  <ul class="sf-mobile-menu__links">
+    <li><a href="index.html"             class="sf-mobile-menu__link">Home</a></li>
+    <li><a href="index.html#about-us"    class="sf-mobile-menu__link">About</a></li>
+    <li><a href="index.html#hotel-rooms" class="sf-mobile-menu__link">Rooms</a></li>
+    <li><a href="explore.html"           class="sf-mobile-menu__link">Explore</a></li>
+    <li><a href="transportation.html"    class="sf-mobile-menu__link">Transportation</a></li>
+    <li><a href="index.html#contact-us"  class="sf-mobile-menu__link">Contact</a></li>
   </ul>
-  <a href="https://sunfunhotel.com/#contact-us" class="mobile-menu__book-btn">Book Now</a>
+  <a href="booking.html" class="sf-mobile-menu__book-btn">Book Now</a>
 </div>
 
 
@@ -932,7 +1072,7 @@
       <p class="pricing-card__note">
         Example: 4 guests travelling one way = $25 + ($3 × 2) = <strong style="color:var(--color-navy);">$31</strong>
       </p>
-      <a href="https://sunfunhotel.com/#contact-us" class="pricing-card__cta">Book My Transfer</a>
+      <a href="booking.html" class="pricing-card__cta">Book My Transfer</a>
     </div>
 
     <!-- Details -->
@@ -1034,20 +1174,20 @@
 
     <div class="car-grid fade-up">
 
-      <!-- Nissan Note -->
+      <!-- Nissan Bluebird #1 -->
       <div class="car-card">
         <div class="car-card__image-wrap">
           <img
-            src="https://images.unsplash.com/photo-1541899481282-d53bffe3c35d?w=800&q=80"
-            alt="Nissan Note 2016"
-            onerror="this.src='https://images.unsplash.com/photo-1494976388531-d1058494cdd8?w=800&q=80'">
+            src="https://www.nissan-global.com/EN/HERITAGE_COLLECTION/img/bluebird_sedan_2000sss_g/main.jpg"
+            alt="Nissan Bluebird"
+            onerror="this.src='https://upload.wikimedia.org/wikipedia/commons/4/4d/Nissan_Bluebird_U13_001.JPG'">
           <span class="car-card__badge">Available</span>
         </div>
         <div class="car-card__body">
           <div class="car-card__header-row">
             <div>
-              <h3 class="car-card__title">Nissan Note</h3>
-              <p class="car-card__year">2016 · Compact Hatchback</p>
+              <h3 class="car-card__title">Nissan Bluebird</h3>
+              <p class="car-card__year">Sedan · 4-Door</p>
             </div>
             <div class="car-card__price">
               <span class="car-card__price-amount">$70</span>
@@ -1060,25 +1200,25 @@
             <div class="car-card__spec"><span class="material-icons" aria-hidden="true">ac_unit</span> Air con</div>
             <div class="car-card__spec"><span class="material-icons" aria-hidden="true">local_gas_station</span> Fuel efficient</div>
           </div>
-          <p class="car-card__description">A reliable, easy-to-drive compact — perfect for navigating Nassau's streets, heading to Cable Beach, or exploring the island at your own pace.</p>
-          <a href="https://sunfunhotel.com/#contact-us" class="car-card__cta">Reserve this Car</a>
+          <p class="car-card__description">A reliable, comfortable sedan — perfect for navigating Nassau's streets, heading to Cable Beach, or exploring the island at your own pace.</p>
+          <a href="booking.html" class="car-card__cta">Reserve this Car</a>
         </div>
       </div>
 
-      <!-- Toyota Passo -->
+      <!-- Nissan Bluebird #2 -->
       <div class="car-card">
         <div class="car-card__image-wrap">
           <img
-            src="https://images.unsplash.com/photo-1533473359331-0135ef1b58bf?w=800&q=80"
-            alt="Toyota Passo 2016"
-            onerror="this.src='https://images.unsplash.com/photo-1494976388531-d1058494cdd8?w=800&q=80'">
+            src="https://upload.wikimedia.org/wikipedia/commons/4/4d/Nissan_Bluebird_U13_001.JPG"
+            alt="Nissan Bluebird"
+            onerror="this.src='https://www.nissan-global.com/EN/HERITAGE_COLLECTION/img/bluebird_sedan_2000sss_g/main.jpg'">
           <span class="car-card__badge">Available</span>
         </div>
         <div class="car-card__body">
           <div class="car-card__header-row">
             <div>
-              <h3 class="car-card__title">Toyota Passo</h3>
-              <p class="car-card__year">2016 · Mini Hatchback</p>
+              <h3 class="car-card__title">Nissan Bluebird</h3>
+              <p class="car-card__year">Sedan · 4-Door</p>
             </div>
             <div class="car-card__price">
               <span class="car-card__price-amount">$70</span>
@@ -1089,10 +1229,10 @@
             <div class="car-card__spec"><span class="material-icons" aria-hidden="true">event_seat</span> 5 seats</div>
             <div class="car-card__spec"><span class="material-icons" aria-hidden="true">settings</span> Automatic</div>
             <div class="car-card__spec"><span class="material-icons" aria-hidden="true">ac_unit</span> Air con</div>
-            <div class="car-card__spec"><span class="material-icons" aria-hidden="true">straighten</span> Compact size</div>
+            <div class="car-card__spec"><span class="material-icons" aria-hidden="true">straighten</span> Spacious boot</div>
           </div>
-          <p class="car-card__description">Small, nimble, and easy to park — the Passo is ideal for couples or solo travellers who want to explore Nassau without the fuss of a larger vehicle.</p>
-          <a href="https://sunfunhotel.com/#contact-us" class="car-card__cta">Reserve this Car</a>
+          <p class="car-card__description">Smooth, dependable, and easy to park — the Bluebird is an ideal choice for couples or families wanting to explore Nassau comfortably at their own pace.</p>
+          <a href="booking.html" class="car-card__cta">Reserve this Car</a>
         </div>
       </div>
 
@@ -1114,7 +1254,7 @@
     </div>
 
     <div class="rental-cta-group fade-up">
-      <a href="https://sunfunhotel.com/#contact-us" class="btn-primary">Reserve a Car</a>
+      <a href="booking.html" class="btn-primary">Reserve a Car</a>
       <a href="tel:+12423278827" class="btn-outline" style="color:var(--color-navy); border-color:rgba(12,35,64,0.3);">Call +1 242-327-8827</a>
     </div>
 
@@ -1204,7 +1344,7 @@
   <h2 class="transport-cta-banner__title">Ready to Arrange Your Transfer?</h2>
   <p class="transport-cta-banner__description">Contact our front desk and we'll have everything sorted before you even pack your bags.</p>
   <div class="transport-cta-banner__actions">
-    <a href="https://sunfunhotel.com/#contact-us" class="btn-primary">Contact the Front Desk</a>
+    <a href="booking.html" class="btn-primary">Contact the Front Desk</a>
     <a href="tel:+12423278827" class="btn-outline">Call +1 242-327-8827</a>
   </div>
 </section>
@@ -1213,19 +1353,39 @@
 <!-- ════════════════════════════════════════
      FOOTER
 ════════════════════════════════════════ -->
-<footer class="footer">
-  <span>© 2025 SunFun Resort &amp; Hotel — Nassau, The Bahamas</span>
-  <nav class="footer__links" aria-label="Footer navigation">
-    <a href="https://sunfunhotel.com"               class="footer__link">Home</a>
-    <a href="https://sunfunhotel.com/#hotel-rooms"  class="footer__link">Rooms</a>
-    <a href="mailto:sunfunresortsbahamas@gmail.com" class="footer__link">Email Us</a>
+<footer class="sf-footer">
+  <p>© 2025 SunFun Resort &amp; Hotel — Nassau, The Bahamas</p>
+  <nav class="sf-footer__links" aria-label="Footer navigation">
+    <a href="index.html"                             class="sf-footer__link">Home</a>
+    <a href="index.html#hotel-rooms"                 class="sf-footer__link">Rooms</a>
+    <a href="booking.html"                           class="sf-footer__link">Book Now</a>
+    <a href="mailto:sunfunresortsbahamas@gmail.com"  class="sf-footer__link">Email Us</a>
   </nav>
 </footer>
-
 
 <script src="scripts.js"></script>
 
 <script>
+  /* ── Unified Mobile Nav ── */
+  (function(){
+    var btn  = document.getElementById('sf-hamburger');
+    var menu = document.getElementById('sf-mobile-menu');
+    if (!btn || !menu) return;
+    btn.addEventListener('click', function(){
+      var open = menu.classList.contains('sf-mobile-menu--open');
+      menu.classList.toggle('sf-mobile-menu--open', !open);
+      btn.classList.toggle('sf-hamburger--open', !open);
+      btn.setAttribute('aria-expanded', String(!open));
+    });
+    menu.querySelectorAll('a').forEach(function(a){
+      a.addEventListener('click', function(){
+        menu.classList.remove('sf-mobile-menu--open');
+        btn.classList.remove('sf-hamburger--open');
+        btn.setAttribute('aria-expanded','false');
+      });
+    });
+  })();
+
   /* FAQ accordion */
   (function initFaq() {
     document.querySelectorAll('.faq-item__question').forEach(function (btn) {
